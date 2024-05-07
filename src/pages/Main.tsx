@@ -1,11 +1,9 @@
-import Locations from './Locations';
-import Cities from './Cities';
-import Header from './Header';
+import Locations from '../components/Locations';
+import Cities from '../components/Cities';
 
 function Main(): JSX.Element {
   return (
     <div className="page page--gray page--main">
-      <Header />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <Locations />
