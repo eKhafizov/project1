@@ -1,19 +1,18 @@
 import { AppType } from './app/app';
+import { Link } from 'react-router-dom';
 
 function PlacesList( {location, offers}: AppType) : JSX.Element {
-  //console.log('in placesoffers are ', offers);
+
   return (
     <div className="cities__places-list places__list tabs__content">
       {
         offers.map((item, id) => (
           <article key={item.id} className="cities__card place-card">
-            <div className="place-card__mark">
-              <span>{item.premium ? 'premium' : 'normal'}</span>
-            </div>
+            {item.premium && <div className="place-card__mark"><span>premium</span></div>}
             <div className="cities__image-wrapper place-card__image-wrapper">
-              <a href="#">
+              <Link to="#">
                 <img className="place-card__image" src={item.image} width="260" height="200" alt="Place" />
-              </a>
+              </Link>
             </div>
             <div className="place-card__info">
               <div className="place-card__price-wrapper">
@@ -24,7 +23,6 @@ function PlacesList( {location, offers}: AppType) : JSX.Element {
                 <button className="place-card__bookmark-button button" type="button">
                   <svg className="place-card__bookmark-icon" width="18" height="19">
                     {item.bookmarked && <use xlinkHref="#icon-bookmark"></use>}
-                    {!item.bookmarked && <use xlinkHref="#icon-saved"></use>}
                   </svg>
                   <span className="visually-hidden">To bookmarks</span>
                 </button>
@@ -36,7 +34,7 @@ function PlacesList( {location, offers}: AppType) : JSX.Element {
                 </div>
               </div>
               <h2 className="place-card__name">
-                <a href="#">{item.desciption}</a>
+                <Link to="#">{item.desciption}</Link>
               </h2>
               <p className="place-card__type">{item.type}</p>
             </div>
