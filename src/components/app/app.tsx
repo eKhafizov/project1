@@ -9,11 +9,12 @@ import Page404 from '../../pages/Page404';
 import { OffersArrayType } from '../../mocks/offers';
 
 
-type AppType = {
+export type AppType = {
   offers: OffersArrayType;
+  location: string[];
 };
 
-function App({offers}: AppType): JSX.Element {
+function App({offers,location}: AppType): JSX.Element {
   //console.log('props in app console', offers);
 
   return (
@@ -21,7 +22,7 @@ function App({offers}: AppType): JSX.Element {
       <ScrollToTop />
       <Routes>
         <Route path={AppRoutes.MAIN} element={<Layout />} >
-          <Route index element={<Main />} />
+          <Route index element={<Main location={location} offers={offers} />} />
           <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
           <Route path={AppRoutes.ROOM} element={<RoomPage />} />
           <Route path='*' element={<Page404 />}/>

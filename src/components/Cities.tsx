@@ -1,8 +1,10 @@
 import Map from './Map';
 import Form from './Form';
 import PlacesList from './PlacesList';
+import { AppType } from './app/app';
 
-function Cities(): JSX.Element {
+
+function Cities({location, offers} : AppType): JSX.Element {
   return (
     <div className="cities">
       <div className="cities__places-container container">
@@ -10,7 +12,7 @@ function Cities(): JSX.Element {
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">312 places to stay in Amsterdam</b>
           <Form />
-          <PlacesList />
+          <PlacesList location={location} offers={offers} />
         </section>
         <Map />
       </div>
