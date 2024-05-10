@@ -1,3 +1,4 @@
+import AppRoutes from './AppRoutes';
 import { AppType } from './app/app';
 import { Link } from 'react-router-dom';
 
@@ -10,7 +11,7 @@ function PlacesList( {location, offers}: AppType) : JSX.Element {
           <article key={item.id} className="cities__card place-card">
             {item.premium && <div className="place-card__mark"><span>premium</span></div>}
             <div className="cities__image-wrapper place-card__image-wrapper">
-              <Link to="#">
+              <Link to={AppRoutes.ROOM + item.id}>
                 <img className="place-card__image" src={item.image} width="260" height="200" alt="Place" />
               </Link>
             </div>
@@ -34,7 +35,7 @@ function PlacesList( {location, offers}: AppType) : JSX.Element {
                 </div>
               </div>
               <h2 className="place-card__name">
-                <Link to="#">{item.desciption}</Link>
+                <Link to={AppRoutes.ROOM + item.id}>{item.desciption}</Link>
               </h2>
               <p className="place-card__type">{item.type}</p>
             </div>
