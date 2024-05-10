@@ -1,14 +1,24 @@
+import { useState } from 'react';
 import AppRoutes from './AppRoutes';
 import { AppType } from './app/app';
 import { Link } from 'react-router-dom';
 
 function PlacesList( {location, offers}: AppType) : JSX.Element {
 
+  const [active, setActive] = useState('90');
+
+  function handleActive(id: string) {
+    const ind = offers.findIndex((item) => item.id === id );
+    const x = offers[ind].id;
+    setActive(x);
+  }
+
   return (
     <div className="cities__places-list places__list tabs__content">
+      <h1>{active}</h1>
       {
         offers.map((item, id) => (
-          <article key={item.id} className="cities__card place-card">
+          <article key={item.id} className="cities__card place-card" onMouseEnter={() => handleActive(item.id)}>
             {item.premium && <div className="place-card__mark"><span>premium</span></div>}
             <div className="cities__image-wrapper place-card__image-wrapper">
               <Link to={AppRoutes.ROOM + item.id}>

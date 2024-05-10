@@ -14,18 +14,17 @@ export type AppType = {
   location: string[];
 };
 
-function App({offers,location}: AppType): JSX.Element {
+function App(props: AppType): JSX.Element {
   //console.log('props in app console', offers);
-
   return (
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
         <Route path={AppRoutes.MAIN} element={<Layout />} >
-          <Route index element={<Main location={location} offers={offers} />} />
+          <Route index element={<Main location={props.location} offers={props.offers} />} />
           <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
-          <Route path={AppRoutes.ROOM} element={<RoomPage offers={offers}/>} >
-            <Route path=':id' element={<RoomPage offers={offers}/>} />
+          <Route path={AppRoutes.ROOM} element={<RoomPage offers={props.offers}/>} >
+            <Route path=':id' element={<RoomPage offers={props.offers}/>} />
           </Route>
           <Route path='*' element={<Page404 />}/>
         </Route>
