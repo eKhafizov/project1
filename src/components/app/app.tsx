@@ -24,8 +24,8 @@ function App({offers,location}: AppType): JSX.Element {
         <Route path={AppRoutes.MAIN} element={<Layout />} >
           <Route index element={<Main location={location} offers={offers} />} />
           <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
-          <Route path={AppRoutes.ROOM} element={<RoomPage offers={offers} location={location} />} >
-            <Route path=':id' element={<RoomPage offers={offers} location={location} />} />
+          <Route path={AppRoutes.ROOM} element={<RoomPage offers={offers}/>} >
+            <Route path=':id' element={<RoomPage offers={offers}/>} />
           </Route>
           <Route path='*' element={<Page404 />}/>
         </Route>

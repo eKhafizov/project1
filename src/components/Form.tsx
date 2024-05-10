@@ -1,6 +1,13 @@
+import { FormEvent } from 'react';
+
 function Form(): JSX.Element {
+
+  function hanldeFormSubmit(evt: FormEvent<HTMLFormElement>) {
+    evt.preventDefault();
+  }
+
   return (
-    <form className="places__sorting" action="#" method="get">
+    <form onSubmit={hanldeFormSubmit} className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex={0} >
             Popular
