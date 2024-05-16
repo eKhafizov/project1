@@ -7,22 +7,20 @@ type City = {
   zoom: number;
 };
 
-function useMap(
-  mapRef: MutableRefObject<HTMLElement | null>,
-  city: City
-): Map | null {
+function useMap(mapRef: MutableRefObject<HTMLElement | null>, city: City): Map | null {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef<boolean>(false);
 
   useEffect(() => {
-    //создаем карту leaflet
+    //если объект в DOM, на который ссылается ссылка отрисован, то...
     if (mapRef.current !== null && !isRenderedRef.current) {
+      //cоздаем карту
       const instance = new Map(mapRef.current, {
         center: {
-          lat: city.lat,
-          lng: city.lng
+          lat: city.lat, //указываем latitude нашего объекта
+          lng: city.lng //указываем longevity нашего объекта
         },
-        zoom: 10
+        zoom: 10 //указываем масштаб окна карты
       });
 
       // создаем слой

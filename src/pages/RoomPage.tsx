@@ -15,7 +15,7 @@ function RoomPage({offers}: RoomPageType ): JSX.Element {
     <main className="page__main page__main--property">
       <section className="property">
 
-        {/* Component #1 - PropgertyGallery */}
+        {/* Component #1 - PropertyGallery */}
         <div className="property__gallery-container container">
           <div className="property__gallery">
             <div className="property__image-wrapper">
@@ -39,7 +39,7 @@ function RoomPage({offers}: RoomPageType ): JSX.Element {
           </div>
         </div>
 
-        {/* Component #2 - PropgertyContainer */}
+        {/* Component #2 - PropertyContainer */}
         <div className="property__container container">
           <div className="property__wrapper">
             <div className="property__mark">
@@ -168,7 +168,7 @@ function RoomPage({offers}: RoomPageType ): JSX.Element {
           </div>
         </div>
 
-        {/* Component #3 - PropgertyMap */}
+        {/* Component #3 - PropertyMap */}
         <section className="property__map map"></section>
 
       </section>

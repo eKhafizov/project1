@@ -1,9 +1,10 @@
 import 'leaflet/dist/leaflet.css';
 import React, { useEffect, useRef } from 'react';
 import useMap from './useMap';
-import { AppType } from './app/app';
 import {Icon, Marker, layerGroup} from 'leaflet';
-
+import { City } from '..';
+import { OffersArrayType } from '../mocks/offers';
+import { OfferType } from '../mocks/offers';
 
 //markers
 const defaultCustomIcon = new Icon({
@@ -11,23 +12,28 @@ const defaultCustomIcon = new Icon({
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
-//const currentCustomIcon = new Icon({
-  //iconUrl: 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg',
-  //iconSize: [40, 40],
-  //iconAnchor: [20, 40]
-//});
+const currentCustomIcon = new Icon({
+  iconUrl: 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg',
+  iconSize: [40, 40],
+  iconAnchor: [20, 40]
+});
 
+type AppTypeSelect = {
+  offers: OffersArrayType;
+  location: string[];
+  city: City;
+  selectedCity?: OfferType;
+  onListItemHover: (item: OfferType) => void;
+};
 
-function Map(props: AppType): JSX.Element {
+function Map({location, offers, city, selectedCity, onListItemHover}: AppTypeSelect): JSX.Element {
+
   //используем хук useRef и вешаем ссылку на DOM дива, где будет отрисована карта
   const myRef = useRef(null);
 
   // создаем переменную map - используя хук useMap, который строит карту
   // в этот хук передаем город из props.city и ссылку на объект DOM, куда эту карту отрисуем
-  const map = useMap(myRef, props.city);
-
-  //переменная points = переданному props.offers(передаем все наши объекты)
-  const points = props.offers;
+  const map = useMap(myRef, city);
 
   //используем хук useEffect, чтобы добавлять маркеры на отрисованную карту
   useEffect(() => {
@@ -35,16 +41,18 @@ function Map(props: AppType): JSX.Element {
       //создаем слой
       const markerLayer = layerGroup().addTo(map);
       //для каждого объекта из props.offers делаем маркер
-      points.forEach((point) => {
+      offers.forEach((point) => {
         const marker = new Marker({
           lat: point.lat,
           lng: point.lng
         });
         //добавляем маркеру иконку
         marker
-          .setIcon(defaultCustomIcon
+          .setIcon(
+            selectedCity !== undefined && point.id === selectedCity.id
+              ? currentCustomIcon
+              : defaultCustomIcon
           )
-        //добавляем маркер на слой
           .addTo(markerLayer);
       });
 
@@ -53,7 +61,7 @@ function Map(props: AppType): JSX.Element {
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, points]);
+  }, [map, offers, selectedCity]);
 
 
   return (

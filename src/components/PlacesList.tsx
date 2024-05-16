@@ -1,25 +1,25 @@
-import { useState } from 'react';
 import AppRoutes from './AppRoutes';
-import { AppType } from './app/app';
 import { Link } from 'react-router-dom';
+import { OfferType, OffersArrayType } from '../mocks/offers';
+import { City } from '..';
 
-function PlacesList(props: AppType) : JSX.Element {
-  const {offers} = props;
+type AppTypeSelect = {
+  offers: OffersArrayType;
+  location: string[];
+  city: City;
+  selectedCity?: OfferType;
+  onListItemHover: (item: OfferType) => void;
+};
 
-  const [active, setActive] = useState('90');
 
-  function handleActive(id: string) {
-    const ind = offers.findIndex((item) => item.id === id );
-    const x = offers[ind].id;
-    setActive(x);
-  }
+function PlacesList({location, offers, city, selectedCity, onListItemHover}: AppTypeSelect) : JSX.Element {
 
   return (
     <div className="cities__places-list places__list tabs__content">
-      <h1>{active}</h1>
+      <h1>{selectedCity?.id}</h1>
       {
         offers.map((item, id) => (
-          <article key={item.id} className="cities__card place-card" onMouseEnter={() => handleActive(item.id)}>
+          <article key={item.id} className="cities__card place-card" onMouseEnter={() => onListItemHover(item)}>
             {item.premium && <div className="place-card__mark"><span>premium</span></div>}
             <div className="cities__image-wrapper place-card__image-wrapper">
               <Link to={AppRoutes.ROOM + item.id}>
