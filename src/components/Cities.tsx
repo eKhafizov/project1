@@ -7,7 +7,7 @@ import { OfferType } from '../mocks/offers';
 
 function Cities({location, offers, city} : AppType): JSX.Element {
 
-  const [selectedCity, setSelectedCity] = useState<OfferType | undefined>(offers[0]);
+  const [selectedCity, setSelectedCity] = useState<OfferType | undefined>(undefined);
 
   function handleListItemHover(item: OfferType) {
     setSelectedCity(item);

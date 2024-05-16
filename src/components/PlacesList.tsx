@@ -8,7 +8,7 @@ type AppTypeSelect = {
   location: string[];
   city: City;
   selectedCity?: OfferType;
-  onListItemHover: (item: OfferType) => void;
+  onListItemHover: (item: OfferType) => void; //так мы записали функцию для изменения состояния state
 };
 
 
@@ -16,7 +16,6 @@ function PlacesList({location, offers, city, selectedCity, onListItemHover}: App
 
   return (
     <div className="cities__places-list places__list tabs__content">
-      <h1>{selectedCity?.id}</h1>
       {
         offers.map((item, id) => (
           <article key={item.id} className="cities__card place-card" onMouseEnter={() => onListItemHover(item)}>

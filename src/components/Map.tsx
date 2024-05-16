@@ -50,8 +50,8 @@ function Map({location, offers, city, selectedCity, onListItemHover}: AppTypeSel
         marker
           .setIcon(
             selectedCity !== undefined && point.id === selectedCity.id
-              ? currentCustomIcon
-              : defaultCustomIcon
+              ? currentCustomIcon //если есть выбранный в сотоянии объект, то делаем его маркер красным
+              : defaultCustomIcon //остальные маркеры делаем синими
           )
           .addTo(markerLayer);
       });

@@ -76,8 +76,8 @@ const offersArray : OffersArrayType = [{
   type: hotelType.APPARTMENT,
   location: 'Brussels',
   bookmarked: false,
-  lat: 52.3809553942508,
-  lng: 4.939309666401198
+  lat: 52.3909553943507,
+  lng: 4.929309666406197
 },{
   premium: true,
   image: 'img/apartment-02.jpg',
