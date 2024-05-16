@@ -5,8 +5,8 @@ import {offersArray as offers, locationType as location} from './mocks/offers';
 
 
 const city = {
-  lat:  35.652832,
-  lng: 139.839478,
+  lat:  52.3909553943508,
+  lng: 4.85309666406198,
   zoom: 10
 };
 export type City = {

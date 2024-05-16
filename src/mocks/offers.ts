@@ -17,8 +17,11 @@ export type OfferType = {
   type: string;
   location: string;
   bookmarked: boolean;
+  lat: number;
+  lng: number;
 };
 export type OffersArrayType = OfferType[];
+
 
 const offersArray : OffersArrayType = [{
   premium: true,
@@ -28,7 +31,9 @@ const offersArray : OffersArrayType = [{
   desciption: 'Beautiful &amp; luxurious apartment at great location',
   type: hotelType.APPARTMENT,
   location: 'Amsterdam',
-  bookmarked: true
+  bookmarked: true,
+  lat: 52.3909553943508,
+  lng: 4.85309666406198
 },{
   premium: false,
   image: 'img/apartment-02.jpg',
@@ -37,7 +42,9 @@ const offersArray : OffersArrayType = [{
   desciption: 'Great location near city-center',
   type: hotelType.HOTEL,
   location: 'Barcelona',
-  bookmarked: false
+  bookmarked: false,
+  lat: 52.3609553943508,
+  lng: 4.85309666406198
 },{
   premium: true,
   image: 'img/apartment-03.jpg',
@@ -46,7 +53,9 @@ const offersArray : OffersArrayType = [{
   desciption: 'Luxurious designer hotel',
   type: hotelType.HOTEL,
   location: 'Brussels',
-  bookmarked: true
+  bookmarked: true,
+  lat: 52.3909553943508,
+  lng: 4.929309666406198
 },{
   premium: false,
   image: 'img/apartment-small-04.jpg',
@@ -55,7 +64,9 @@ const offersArray : OffersArrayType = [{
   desciption: 'Affordable for bums',
   type: hotelType.APPARTMENT,
   location: 'Hamburg',
-  bookmarked: false
+  bookmarked: false,
+  lat: 52.3809553943508,
+  lng: 4.939309666406198
 },{
   premium: false,
   image: 'img/apartment-small-03.jpg',
@@ -64,7 +75,9 @@ const offersArray : OffersArrayType = [{
   desciption: 'Small and cozy appartment outside of the city',
   type: hotelType.APPARTMENT,
   location: 'Brussels',
-  bookmarked: false
+  bookmarked: false,
+  lat: 52.3809553942508,
+  lng: 4.939309666401198
 },{
   premium: true,
   image: 'img/apartment-02.jpg',
@@ -73,7 +86,9 @@ const offersArray : OffersArrayType = [{
   desciption: 'Abramovich-style villa near georgeous lake',
   type: hotelType.HOTEL,
   location: 'Amsterdam',
-  bookmarked: true
+  bookmarked: true,
+  lat: 52.3809553843508,
+  lng: 4.939309655406198
 },{
   premium: false,
   image: 'img/apartment-small-04.jpg',
@@ -82,7 +97,9 @@ const offersArray : OffersArrayType = [{
   desciption: 'Small. Dirty. Cheap!',
   type: hotelType.APPARTMENT,
   location: 'Hamburg',
-  bookmarked: true
+  bookmarked: true,
+  lat: 52.3809553743508,
+  lng: 4.939309665406198
 },
 ];
 
