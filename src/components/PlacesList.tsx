@@ -3,7 +3,8 @@ import AppRoutes from './AppRoutes';
 import { AppType } from './app/app';
 import { Link } from 'react-router-dom';
 
-function PlacesList( {location, offers}: AppType) : JSX.Element {
+function PlacesList(props: AppType) : JSX.Element {
+  const {offers} = props;
 
   const [active, setActive] = useState('90');
 

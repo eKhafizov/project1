@@ -1,19 +1,15 @@
 import Locations from '../components/Locations';
 import Cities from '../components/Cities';
-import { OffersArrayType } from '../mocks/offers';
+import { AppType } from '../components/app/app';
 
-export type AppMain = {
-  location: string[];
-  offers: OffersArrayType;
-}
 
-function Main({location, offers}: AppMain ): JSX.Element {
+function Main(props: AppType ): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <Locations location={location} />
-        <Cities location={location} offers={offers} />
+        <Locations location={props.location} offers={props.offers} city={props.city}/>
+        <Cities location={props.location} offers={props.offers} city={props.city} />
       </main>
     </div>
   );

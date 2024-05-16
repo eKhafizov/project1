@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
+import { AppType } from './app/app';
 
-function Locations({location} : {location: string[]}): JSX.Element {
-
+function Locations(props: AppType): JSX.Element {
+  const {location} = props;
   return (
     <div className="tabs">
       <section className="locations container">

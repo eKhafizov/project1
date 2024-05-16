@@ -4,6 +4,17 @@ import App from './components/app/app';
 import {offersArray as offers, locationType as location} from './mocks/offers';
 
 
+const city = {
+  lat:  35.652832,
+  lng: 139.839478,
+  zoom: 10
+};
+export type City = {
+  lat: number;
+  lng: number;
+  zoom: number;
+};
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
@@ -14,6 +25,9 @@ root.render(
     <App
       offers={offers}
       location={location}
+      city={city}
     />
   </React.StrictMode>,
 );
+
+export {city};

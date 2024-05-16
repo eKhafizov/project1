@@ -7,12 +7,15 @@ import RoomPage from '../../pages/RoomPage';
 import Layout from '../Layout';
 import Page404 from '../../pages/Page404';
 import { OffersArrayType } from '../../mocks/offers';
+import { City } from '../..';
 
 
 export type AppType = {
   offers: OffersArrayType;
   location: string[];
+  city: City;
 };
+
 
 function App(props: AppType): JSX.Element {
   //console.log('props in app console', offers);
@@ -21,9 +24,9 @@ function App(props: AppType): JSX.Element {
       <ScrollToTop />
       <Routes>
         <Route path={AppRoutes.MAIN} element={<Layout />} >
-          <Route index element={<Main location={props.location} offers={props.offers} />} />
+          <Route index element={<Main location={props.location} offers={props.offers} city={props.city} />} />
           <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
-          <Route path={AppRoutes.ROOM} element={<RoomPage offers={props.offers}/>} >
+          <Route path={AppRoutes.ROOM} element={<RoomPage offers={props.offers} />} >
             <Route path=':id' element={<RoomPage offers={props.offers}/>} />
           </Route>
           <Route path='*' element={<Page404 />}/>

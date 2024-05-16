@@ -5,7 +5,7 @@ import { AppType } from './app/app';
 //import { useState } from 'react';
 
 
-function Cities({location, offers} : AppType): JSX.Element {
+function Cities({location, offers, city} : AppType): JSX.Element {
 //  const [city, setCity] = useState(location[1]);
 
   return (
@@ -15,9 +15,9 @@ function Cities({location, offers} : AppType): JSX.Element {
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">{offers.length} places to stay in city </b>
           <Form />
-          <PlacesList location={location} offers={offers} />
+          <PlacesList location={location} offers={offers} city={city} />
         </section>
-        <Map />
+        <Map city={city} location={location} offers={offers}/>
       </div>
     </div>
   );
