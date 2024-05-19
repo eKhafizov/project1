@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-import {offersArray as offers, locationType as location} from './mocks/offers';
-
+import {offersArray as offers, locationType as location, commentsArray as comments} from './mocks/offers';
 
 const city = {
   lat:  52.3909553943508,
@@ -26,6 +25,7 @@ root.render(
       offers={offers}
       location={location}
       city={city}
+      comments={comments}
     />
   </React.StrictMode>,
 );
