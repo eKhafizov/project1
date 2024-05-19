@@ -127,13 +127,11 @@ function RoomPage({offers, comments}: RoomPageType): JSX.Element {
           </div>
         </div>
         {/* Component - PropertyMap */}
-        <PropertyMap />
+        <PropertyMap offer={offer} offers={offers} />
       </section>
       {/* Component #4 - NearPlacesContainer */}
       <NearPlaces offer={offer} offers={offers} />
     </main>
-
-
   ) : (
     <Page404 />
   );

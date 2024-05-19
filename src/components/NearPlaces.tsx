@@ -7,7 +7,7 @@ type NearPlacesType = {
 
 function NearPlaces({offer, offers}: NearPlacesType):JSX.Element {
 
-  //an array of another offers in the same area as our offer.location
+  //creating an array of another offers in the same area as our offer.location
   const sameLocations : OffersArrayType = [];
   offers.forEach((item) => {
     item.location === offer.location && item !== offer && sameLocations.push(item);

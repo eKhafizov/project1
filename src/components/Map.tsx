@@ -77,3 +77,4 @@ function Map({location, offers, city, selectedCity, onListItemHover}: AppTypeSel
 }
 
 export default Map;
+export {defaultCustomIcon, currentCustomIcon};
