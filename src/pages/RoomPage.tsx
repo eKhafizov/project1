@@ -14,6 +14,10 @@ function RoomPage({offers, comments}: RoomPageType): JSX.Element {
   const params = useParams();
   const offer = offers.find((item) => item.id === params.id );
 
+  //lets create an empty array and will add there all comments from comments that have the same id as in offers.comments array
+  const offerComments : CommentsType = [];
+  comments.forEach((item) => offer?.comments.includes(item.id) && offerComments.push(item));
+
   return offer ? (
     <main className="page__main page__main--property">
       <section className="property">
@@ -48,7 +52,6 @@ function RoomPage({offers, comments}: RoomPageType): JSX.Element {
             <div className="property__mark">
               <span>Premium</span>
             </div>
-
             {/* Property title */}
             <div className="property__name-wrapper">
               <h1 className="property__name">
@@ -120,14 +123,14 @@ function RoomPage({offers, comments}: RoomPageType): JSX.Element {
             </div>
 
             {/* Component - Property Reviews */}
-            <PropertyReviews />
+            <PropertyReviews offerComments={offerComments} />
           </div>
         </div>
         {/* Component - PropertyMap */}
         <PropertyMap />
       </section>
       {/* Component #4 - NearPlacesContainer */}
-      <NearPlaces />
+      <NearPlaces offer={offer} offers={offers} />
     </main>
 
 
