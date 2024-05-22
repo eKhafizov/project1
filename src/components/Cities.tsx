@@ -19,6 +19,7 @@ function Cities({offers, comments, city} : CitiesType): JSX.Element {
   function handleListItemHover(item: OfferType) {
     setSelectedOffer(item);
   }
+  const offersInChosenCity = offers.filter((offer) => offer.location === city.name);
 
   return (
     <div className="cities">
@@ -27,7 +28,7 @@ function Cities({offers, comments, city} : CitiesType): JSX.Element {
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">{offers.length} places to stay in {city.name} </b>
           <Form />
-          <PlacesList offers={offers} onListItemHover={handleListItemHover}/>
+          <PlacesList offersInChosenCity={offersInChosenCity} onListItemHover={handleListItemHover}/>
         </section>
         <Map city={city} offers={offers} selectedOffer={selectedOffer} onListItemHover={handleListItemHover} />
       </div>

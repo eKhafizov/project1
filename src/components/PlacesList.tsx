@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom';
 import { OfferType, OffersArrayType } from '../mocks/offers';
 
 type PlacesListType = {
-  offers: OffersArrayType;
+  offersInChosenCity: OffersArrayType;
   onListItemHover: (item: OfferType) => void; //так мы записали функцию для изменения состояния state
 };
 
-function PlacesList({offers, onListItemHover}: PlacesListType) : JSX.Element {
+function PlacesList({offersInChosenCity, onListItemHover}: PlacesListType) : JSX.Element {
 
   return (
     <div className="cities__places-list places__list tabs__content">
       {
-        offers.map((item, id) => (
+        offersInChosenCity.map((item, id) => (
           <article key={item.id} className="cities__card place-card" onMouseEnter={() => onListItemHover(item)}>
             {item.premium && <div className="place-card__mark"><span>premium</span></div>}
             <div className="cities__image-wrapper place-card__image-wrapper">
