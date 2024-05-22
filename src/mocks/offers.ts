@@ -4,8 +4,8 @@ const hotelType = {
   HOTEL: 'hotel'
 };
 
-const locationType = [
-  'Amsterdam', 'Brussels', 'Hamburg', 'Paris','Barcelona', 'Lisbon', 'Rome'];
+const locations = [
+  'Amsterdam', 'Brussels', 'Hamburg', 'Paris','Barcelona', 'Lisbon'];
 
 export type CommentType = {
     author: string;
@@ -241,5 +241,5 @@ const offersArray : OffersArrayType = [{
 },
 ];
 
-export {hotelType, offersArray, locationType, commentsArray};
+export {hotelType, offersArray, locations, commentsArray};
 

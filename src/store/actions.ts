@@ -7,3 +7,4 @@ export const changeCityToBrussels = createAction('city/Brussels');
 export const changeCityToParis = createAction('city/Paris');
 export const changeCityToBarcelona = createAction('city/Barcelona');
 export const changeCityToLisbon = createAction('city/Lisbon');
+export const changeCityToNothing = createAction('city/Nothing');
