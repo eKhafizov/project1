@@ -1,7 +1,6 @@
 import { useRef, useEffect } from 'react';
 import useMap from './useMap';
 import { OfferType, OffersArrayType } from '../mocks/offers';
-import { City } from '..';
 import {Marker, layerGroup} from 'leaflet';
 import { defaultCustomIcon, currentCustomIcon } from './Map';
 
@@ -13,7 +12,7 @@ type PropertyMapType = {
 function PropertyMap({offer, offers}: PropertyMapType ): JSX.Element {
 
   //form an object from lat/lng of our recieved offer
-  const city : City = {
+  const city = {
     lat: offer.lat,
     lng: offer.lng,
     zoom: 10

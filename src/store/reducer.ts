@@ -1,36 +1,60 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCityToHamburg, changeCityToAmsterdam, changeCityToBarcelona, changeCityToBrussels, changeCityToLisbon, changeCityToParis, changeCityToRome, changeCityToDefault} from './actions';
+import { changeCityToHamburg, changeCityToAmsterdam} from './actions';
 
 //создаем initialState
 export const initialState = {
-  city: 'Amsterdam'
+  name: 'Amsterdam',
+  lat:  52.3909553943508,
+  lng: 4.85309666406198,
+  zoom: 10
 };
+
 //создаем reducer, внутрь которого передаем initialState и делаем билдеры, к которым добавляем actionСreators
 export const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(changeCityToHamburg, (state) => {
-      state.city = 'Hamburg';
-    })
-    .addCase(changeCityToParis, (state) => {
-      state.city = 'Paris';
-    })
-    .addCase(changeCityToBarcelona, (state) => {
-      state.city = 'Barcelona';
-    })
-    .addCase(changeCityToBrussels, (state) => {
-      state.city = 'Brussels';
-    })
-    .addCase(changeCityToLisbon, (state) => {
-      state.city = 'Lisbon';
-    })
-    .addCase(changeCityToRome, (state) => {
-      state.city = 'Rome';
-    })
     .addCase(changeCityToAmsterdam, (state) => {
-      state.city = 'Amsterdam';
+      state.name = 'Amsterdam';
+      state.lat = 52.3909553943508;
+      state.lng = 4.85309666406198;
+      state.zoom = 10;
     })
-    .addCase(changeCityToDefault, (state) => {
-      state.city = 'Amsterdam';
+    .addCase(changeCityToHamburg, (state) => {
+      state.name = 'Hamburg';
+      state.lat = 53.541328;
+      state.lng = 9.984355;
+      state.zoom = 10;
     });
+  //  .addCase(changeCityToParis, (state) => {
+  //    state = {
+  //      name: 'Paris',
+  //      lat:  48.858093,
+  //        lng: 2.294694,
+  //      zoom: 10
+  //    };
+  //  })
+  //  .addCase(changeCityToBarcelona, (state) => {
+  //    state = {
+  //    name: 'Barcelona',
+  //    lat:  41.390205,
+  //    lng: 2.154007,
+  //      zoom: 10
+  //    };
+  //  })
+  //  .addCase(changeCityToBrussels, (state) => {
+  //    state = {
+  //      name: 'Brussels',
+  //      lat:  50.85034,
+  //       lng: 4.35171,
+  //       zoom: 10
+  //     };
+  //  })
+  //  .addCase(changeCityToLisbon, (state) => {
+  //     state = {
+  //       name: 'Lisbon',
+  //       lat:  38.736946,
+  //       lng: -9.142685,
+  //       zoom: 10
+  //     };
+  //  })
 });
 

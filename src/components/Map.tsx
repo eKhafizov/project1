@@ -2,7 +2,7 @@ import 'leaflet/dist/leaflet.css';
 import React, { useEffect, useRef } from 'react';
 import useMap from './useMap';
 import {Icon, Marker, layerGroup} from 'leaflet';
-import { City } from '..';
+import City from '../types/city';
 import { OffersArrayType } from '../mocks/offers';
 import { OfferType } from '../mocks/offers';
 
@@ -20,13 +20,12 @@ const currentCustomIcon = new Icon({
 
 type AppTypeSelect = {
   offers: OffersArrayType;
-  location: string[];
   city: City;
   selectedCity?: OfferType;
   onListItemHover: (item: OfferType) => void;
 };
 
-function Map({location, offers, city, selectedCity, onListItemHover}: AppTypeSelect): JSX.Element {
+function Map({offers, city, selectedCity, onListItemHover}: AppTypeSelect): JSX.Element {
 
   //используем хук useRef и вешаем ссылку на DOM дива, где будет отрисована карта
   const myRef = useRef(null);

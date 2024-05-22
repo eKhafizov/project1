@@ -1,15 +1,19 @@
 import Locations from '../components/Locations';
 import Cities from '../components/Cities';
-import { AppType } from '../app/app';
+import AppType from '../types/appType';
+import {useAppSelector} from '../hooks/index';
 
 
 function Main(props: AppType ): JSX.Element {
+
+  const chosenCity = useAppSelector((state) => state);
+
   return (
     <div className="page page--gray page--main">
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <Locations location={props.location} offers={props.offers} city={props.city} comments={props.comments}/>
-        <Cities location={props.location} offers={props.offers} city={props.city} comments={props.comments}/>
+        <Locations offers={props.offers} comments={props.comments} city={chosenCity} />
+        <Cities offers={props.offers} comments={props.comments} city={chosenCity} />
       </main>
     </div>
   );
