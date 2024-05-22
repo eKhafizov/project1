@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AppType } from './app/app';
+import { AppType } from '../app/app';
 
 function Locations(props: AppType): JSX.Element {
   const {location} = props;

@@ -1,13 +1,13 @@
-import Main from '../../pages/Main';
+import Main from '../pages/Main';
 import {BrowserRouter,Route,Routes} from 'react-router-dom';
-import ScrollToTop from '../ScrollToTop';
-import AppRoutes from '../AppRoutes';
-import LoginPage from '../../pages/LoginPage';
-import RoomPage from '../../pages/RoomPage';
-import Layout from '../Layout';
-import Page404 from '../../pages/Page404';
-import { CommentsType, OffersArrayType } from '../../mocks/offers';
-import { City } from '../..';
+import ScrollToTop from '../components/ScrollToTop';
+import AppRoutes from '../components/AppRoutes';
+import LoginPage from '../pages/LoginPage';
+import RoomPage from '../pages/RoomPage';
+import Layout from '../components/Layout';
+import Page404 from '../pages/Page404';
+import { CommentsType, OffersArrayType } from '../mocks/offers';
+import { City } from '..';
 
 
 export type AppType = {

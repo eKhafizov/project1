@@ -1,7 +1,7 @@
 import Map from './Map';
 import Form from './Form';
 import PlacesList from './PlacesList';
-import { AppType } from './app/app';
+import { AppType } from '../app/app';
 import { useState } from 'react';
 import { OfferType } from '../mocks/offers';
 
