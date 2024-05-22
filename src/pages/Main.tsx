@@ -12,8 +12,8 @@ function Main(props: AppType ): JSX.Element {
     <div className="page page--gray page--main">
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <Locations offers={props.offers} comments={props.comments} city={chosenCity} />
-        <Cities offers={props.offers} comments={props.comments} city={chosenCity} />
+        <Locations offers={props.offers} comments={props.comments} city={chosenCity.chosenCity} locations={chosenCity.locations} />
+        <Cities offers={props.offers} comments={props.comments} city={chosenCity.chosenCity} />
       </main>
     </div>
   );

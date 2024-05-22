@@ -3,26 +3,29 @@ import { changeCityToHamburg, changeCityToAmsterdam} from './actions';
 
 //создаем initialState
 export const initialState = {
-  name: 'Amsterdam',
-  lat:  52.3909553943508,
-  lng: 4.85309666406198,
-  zoom: 10
+  chosenCity: {
+    name: 'Amsterdam',
+    lat:  52.3909553943508,
+    lng: 4.85309666406198,
+    zoom: 10
+  },
+  locations: ['Amsterdam', 'Brussels', 'Hamburg', 'Paris','Barcelona', 'Lisbon']
 };
 
 //создаем reducer, внутрь которого передаем initialState и делаем билдеры, к которым добавляем actionСreators
 export const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeCityToAmsterdam, (state) => {
-      state.name = 'Amsterdam';
-      state.lat = 52.3909553943508;
-      state.lng = 4.85309666406198;
-      state.zoom = 10;
+      state.chosenCity.name = 'Amsterdam';
+      state.chosenCity.lat = 52.3909553943508;
+      state.chosenCity.lng = 4.85309666406198;
+      state.chosenCity.zoom = 10;
     })
     .addCase(changeCityToHamburg, (state) => {
-      state.name = 'Hamburg';
-      state.lat = 53.541328;
-      state.lng = 9.984355;
-      state.zoom = 10;
+      state.chosenCity.name = 'Hamburg';
+      state.chosenCity.lat = 53.541328;
+      state.chosenCity.lng = 9.984355;
+      state.chosenCity.zoom = 10;
     });
   //  .addCase(changeCityToParis, (state) => {
   //    state = {

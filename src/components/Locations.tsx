@@ -7,23 +7,24 @@ type LocationsType = {
   offers: OffersArrayType;
   city: City;
   comments: CommentsType;
+  locations: string[];
 };
 
-function Locations({offers, comments, city}: LocationsType): JSX.Element {
+function Locations({offers, comments, city, locations}: LocationsType): JSX.Element {
 
   return (
     <div className="tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
           {
-            offers.map((item, id) => (
-              <li key={item.location} className="locations__item" >
-                <Link className={ (item.location === city?.name)
+            locations.map((item, id) => (
+              <li key={item} className="locations__item" >
+                <Link className={ (item === city?.name)
                   ? ('locations__item-link tabs__item tabs__item--active')
                   : ('locations__item-link tabs__item')}
-                to={AppRoutes.ROOM + item.id}
+                to={AppRoutes.ROOM + item}
                 >
-                  <span>{item.location}</span>
+                  <span>{item}</span>
                 </Link>
               </li>)
             )
