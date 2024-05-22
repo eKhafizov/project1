@@ -7,7 +7,7 @@ type City = {
   zoom: number;
 };
 
-function useMap(mapRef: MutableRefObject<HTMLElement | null>, city: City): Map | null {
+function useMap(mapRef: MutableRefObject<HTMLElement | null>, chosenCity: City): Map | null {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef<boolean>(false);
 
@@ -17,8 +17,8 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>, city: City): Map |
       //cоздаем карту
       const instance = new Map(mapRef.current, {
         center: {
-          lat: city.lat, //указываем latitude нашего объекта
-          lng: city.lng //указываем longevity нашего объекта
+          lat: chosenCity.lat, //указываем latitude нашего объекта
+          lng: chosenCity.lng //указываем longevity нашего объекта
         },
         zoom: 10 //указываем масштаб окна карты
       });
@@ -37,7 +37,7 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>, city: City): Map |
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapRef, city]);
+  }, [mapRef, chosenCity]);
 
   //возвращаем карту
   return map;

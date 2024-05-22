@@ -5,12 +5,12 @@ import { useAppDispatch } from '../hooks';
 
 type LocationsType = {
   offers: OffersArrayType;
-  city: City;
+  chosenCity: City;
   comments: CommentsType;
   locations: string[];
 };
 
-function Locations({offers, comments, city, locations}: LocationsType): JSX.Element {
+function Locations({offers, comments, chosenCity , locations}: LocationsType): JSX.Element {
 
   const dispatch = useAppDispatch();
 
@@ -40,7 +40,7 @@ function Locations({offers, comments, city, locations}: LocationsType): JSX.Elem
           {
             locations.map((item, id) => (
               <li key={item} className="locations__item" >
-                <button className={ (item === city?.name)
+                <button className={ (item === chosenCity.name)
                   ? ('locations__item-link tabs__item tabs__item--active')
                   : ('locations__item-link tabs__item')}
                 onClick={() => dispatch(chooseCity(item))}

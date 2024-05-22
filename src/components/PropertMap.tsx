@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import useMap from './useMap';
+import useMap from '../hooks/useMap';
 import { OfferType, OffersArrayType } from '../mocks/offers';
 import {Marker, layerGroup} from 'leaflet';
 import { defaultCustomIcon, currentCustomIcon } from './Map';

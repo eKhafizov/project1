@@ -1,6 +1,6 @@
 import 'leaflet/dist/leaflet.css';
 import React, { useEffect, useRef } from 'react';
-import useMap from './useMap';
+import useMap from '../hooks/useMap';
 import {Icon, Marker, layerGroup} from 'leaflet';
 import City from '../types/city';
 import { OffersArrayType } from '../mocks/offers';
@@ -19,20 +19,20 @@ const currentCustomIcon = new Icon({
 });
 
 type AppTypeSelect = {
-  offers: OffersArrayType;
-  city: City;
+  offersInChosenCity: OffersArrayType;
+  chosenCity: City;
   selectedOffer?: OfferType;
   onListItemHover: (item: OfferType) => void;
 };
 
-function Map({offers, city, selectedOffer, onListItemHover}: AppTypeSelect): JSX.Element {
+function Map({offersInChosenCity, chosenCity, selectedOffer, onListItemHover}: AppTypeSelect): JSX.Element {
 
   //используем хук useRef и вешаем ссылку на DOM дива, где будет отрисована карта
   const myRef = useRef(null);
 
   // создаем переменную map - используя хук useMap, который строит карту
   // в этот хук передаем город из props.city и ссылку на объект DOM, куда эту карту отрисуем
-  const map = useMap(myRef, city);
+  const map = useMap(myRef, chosenCity);
 
   //используем хук useEffect, чтобы добавлять маркеры на отрисованную карту
   useEffect(() => {
@@ -40,7 +40,7 @@ function Map({offers, city, selectedOffer, onListItemHover}: AppTypeSelect): JSX
       //создаем слой
       const markerLayer = layerGroup().addTo(map);
       //для каждого объекта из props.offers делаем маркер
-      offers.forEach((point) => {
+      offersInChosenCity.forEach((point) => {
         const marker = new Marker({
           lat: point.lat,
           lng: point.lng
@@ -60,7 +60,7 @@ function Map({offers, city, selectedOffer, onListItemHover}: AppTypeSelect): JSX
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, offers, selectedOffer]);
+  }, [map, offersInChosenCity, selectedOffer]);
 
 
   return (
