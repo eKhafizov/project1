@@ -14,10 +14,10 @@ type CitiesType = {
 
 function Cities({offers, comments, city} : CitiesType): JSX.Element {
 
-  const [selectedCity, setSelectedCity] = useState<OfferType | undefined>(undefined);
+  const [selectedOffer, setSelectedOffer] = useState<OfferType | undefined>(undefined);
 
   function handleListItemHover(item: OfferType) {
-    setSelectedCity(item);
+    setSelectedOffer(item);
   }
 
   return (
@@ -25,11 +25,11 @@ function Cities({offers, comments, city} : CitiesType): JSX.Element {
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">{offers.length} places to stay in city </b>
+          <b className="places__found">{offers.length} places to stay in {city.name} </b>
           <Form />
-          <PlacesList offers={offers} city={city} selectedCity={selectedCity} onListItemHover={handleListItemHover}/>
+          <PlacesList offers={offers} onListItemHover={handleListItemHover}/>
         </section>
-        <Map city={city} offers={offers} selectedCity={selectedCity} onListItemHover={handleListItemHover} />
+        <Map city={city} offers={offers} selectedOffer={selectedOffer} onListItemHover={handleListItemHover} />
       </div>
     </div>
   );

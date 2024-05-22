@@ -21,11 +21,11 @@ const currentCustomIcon = new Icon({
 type AppTypeSelect = {
   offers: OffersArrayType;
   city: City;
-  selectedCity?: OfferType;
+  selectedOffer?: OfferType;
   onListItemHover: (item: OfferType) => void;
 };
 
-function Map({offers, city, selectedCity, onListItemHover}: AppTypeSelect): JSX.Element {
+function Map({offers, city, selectedOffer, onListItemHover}: AppTypeSelect): JSX.Element {
 
   //используем хук useRef и вешаем ссылку на DOM дива, где будет отрисована карта
   const myRef = useRef(null);
@@ -48,7 +48,7 @@ function Map({offers, city, selectedCity, onListItemHover}: AppTypeSelect): JSX.
         //добавляем маркеру иконку
         marker
           .setIcon(
-            selectedCity !== undefined && point.id === selectedCity.id
+            selectedOffer !== undefined && point.id === selectedOffer.id
               ? currentCustomIcon //если есть выбранный в сотоянии объект, то делаем его маркер красным
               : defaultCustomIcon //остальные маркеры делаем синими
           )
@@ -60,7 +60,7 @@ function Map({offers, city, selectedCity, onListItemHover}: AppTypeSelect): JSX.
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, offers, selectedCity]);
+  }, [map, offers, selectedOffer]);
 
 
   return (

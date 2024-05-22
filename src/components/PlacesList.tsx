@@ -1,17 +1,13 @@
 import AppRoutes from './AppRoutes';
 import { Link } from 'react-router-dom';
 import { OfferType, OffersArrayType } from '../mocks/offers';
-import City from '../types/city';
 
-type AppTypeSelect = {
+type PlacesListType = {
   offers: OffersArrayType;
-  city: City;
-  selectedCity?: OfferType;
   onListItemHover: (item: OfferType) => void; //так мы записали функцию для изменения состояния state
 };
 
-
-function PlacesList({offers, city, selectedCity, onListItemHover}: AppTypeSelect) : JSX.Element {
+function PlacesList({offers, onListItemHover}: PlacesListType) : JSX.Element {
 
   return (
     <div className="cities__places-list places__list tabs__content">
