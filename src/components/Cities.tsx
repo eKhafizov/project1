@@ -15,30 +15,34 @@ type CitiesType = {
 
 function Cities({offers, chosenCity } : CitiesType): JSX.Element {
 
+  //состояние выбранного оффера
   const [selectedOffer, setSelectedOffer] = useState<OfferType | undefined>(undefined);
-
-  const currentFilter = useAppSelector((state) => state.chosenFilter);
-
+  //функция смены состояния для выбранного офера
   function handleListItemHover(item: OfferType) {
     setSelectedOffer(item);
   }
-  const offersInChosenCity = offers.filter((offer) => offer.location === chosenCity.name);
 
+  //получаем текущий фильтр из состояния store
+  const currentFilter = useAppSelector((state) => state.chosenFilter);
+  //фильтруем города, которые находятся в выбранном городе
+  const offersInChosenCity = offers.filter((offer) => offer.location === chosenCity.name);
+  //функция сортировки (изменения копии) массива офферов в нужном городе
   function filterAllOffers() {
     switch(currentFilter) {
       case 'popular':
-        return {...offersInChosenCity};
+        return [...offersInChosenCity];
       case 'priceLowToHigh':
-        return {...offersInChosenCity.sort(sortByPriceUp)};
+        return [...offersInChosenCity].sort(sortByPriceUp);
       case 'priceHighToLow':
-        return {...offersInChosenCity.sort(sortByPriceDown)};
+        return [...offersInChosenCity].sort(sortByPriceDown);
       case 'topRated':
-        return {...offersInChosenCity.sort(sortByPopularity)};
+        return [...offersInChosenCity].sort(sortByPopularity);
       default:
-        return {...offersInChosenCity};
+        return [...offersInChosenCity];
     }
   }
-  filterAllOffers();
+  //присваиваем полученный после фильтров и сортировки массив перменной и передаем ее на отрисовку
+  const filteredOffersInCity = filterAllOffers();
 
   return (
     <div className="cities">
@@ -46,10 +50,20 @@ function Cities({offers, chosenCity } : CitiesType): JSX.Element {
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">{offersInChosenCity.length} places to stay in {chosenCity.name} </b>
-          <Form currentFilter={currentFilter} />
-          <PlacesList offersInChosenCity={offersInChosenCity} onListItemHover={handleListItemHover}/>
+          <Form
+            currentFilter={currentFilter}
+          />
+          <PlacesList
+            filteredOffersInCity={filteredOffersInCity}
+            onListItemHover={handleListItemHover}
+          />
         </section>
-        <Map chosenCity={chosenCity} offersInChosenCity={offersInChosenCity} selectedOffer={selectedOffer} onListItemHover={handleListItemHover} />
+        <Map
+          chosenCity={chosenCity}
+          offersInChosenCity={offersInChosenCity}
+          selectedOffer={selectedOffer}
+          onListItemHover={handleListItemHover}
+        />
       </div>
     </div>
   );
