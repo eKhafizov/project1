@@ -12,7 +12,7 @@ export type CommentType = {
     id: number;
     text: string;
     data: Date;
-    rating?: number;
+    rating: number;
   };
 export type CommentsType = CommentType[];
 
@@ -35,7 +35,7 @@ export type OfferType = {
   lng: number;
   comments: number[];
   photo?: string;
-  rating?: number;
+  rating: number;
 };
 export type OffersArrayType = OfferType[];
 

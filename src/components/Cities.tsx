@@ -5,7 +5,8 @@ import { useState } from 'react';
 import { OfferType } from '../mocks/offers';
 import City from '../types/city';
 import { OffersArrayType} from '../mocks/offers';
-//import { useAppSelector } from '../hooks';
+import { useAppSelector } from '../hooks';
+import { sortByPriceDown, sortByPriceUp, sortByPopularity } from '../mocks/utils';
 
 type CitiesType = {
   offers: OffersArrayType;
@@ -16,13 +17,28 @@ function Cities({offers, chosenCity } : CitiesType): JSX.Element {
 
   const [selectedOffer, setSelectedOffer] = useState<OfferType | undefined>(undefined);
 
-  //const currentFilter = useAppSelector((state) => state.chosenFilter);
-
+  const currentFilter = useAppSelector((state) => state.chosenFilter);
 
   function handleListItemHover(item: OfferType) {
     setSelectedOffer(item);
   }
   const offersInChosenCity = offers.filter((offer) => offer.location === chosenCity.name);
+
+  function filterAllOffers() {
+    switch(currentFilter) {
+      case 'popular':
+        return {...offersInChosenCity};
+      case 'priceLowToHigh':
+        return {...offersInChosenCity.sort(sortByPriceUp)};
+      case 'priceHighToLow':
+        return {...offersInChosenCity.sort(sortByPriceDown)};
+      case 'topRated':
+        return {...offersInChosenCity.sort(sortByPopularity)};
+      default:
+        return {...offersInChosenCity};
+    }
+  }
+  filterAllOffers();
 
   return (
     <div className="cities">
