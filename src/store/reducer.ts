@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCityToHamburg, changeCityToAmsterdam, changeCityToBarcelona, changeCityToBrussels, changeCityToLisbon, changeCityToNothing, changeCityToParis} from './actions';
+import { changeCityToHamburg, changeCityToAmsterdam, changeCityToBarcelona, changeCityToBrussels, changeCityToLisbon, changeCityToNothing, changeCityToParis, changeFilter} from './actions';
 
 //создаем initialState
 export const initialState = {
@@ -8,7 +8,8 @@ export const initialState = {
     lat:  52.3909553943508,
     lng: 4.85309666406198,
     zoom: 10
-  }
+  },
+  chosenFilter:'popular'
 };
 
 //создаем reducer, внутрь которого передаем initialState и делаем билдеры, к которым добавляем actionСreators
@@ -52,6 +53,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(changeCityToNothing, (state) => {
       state = {...state};
+    })
+    .addCase(changeFilter, (state, type) => {
+      state.chosenFilter = type.payload.type;
     });
 });
 

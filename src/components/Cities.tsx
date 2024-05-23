@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { OfferType } from '../mocks/offers';
 import City from '../types/city';
 import { OffersArrayType} from '../mocks/offers';
+//import { useAppSelector } from '../hooks';
 
 type CitiesType = {
   offers: OffersArrayType;
@@ -14,6 +15,9 @@ type CitiesType = {
 function Cities({offers, chosenCity } : CitiesType): JSX.Element {
 
   const [selectedOffer, setSelectedOffer] = useState<OfferType | undefined>(undefined);
+
+  //const currentFilter = useAppSelector((state) => state.chosenFilter);
+
 
   function handleListItemHover(item: OfferType) {
     setSelectedOffer(item);
