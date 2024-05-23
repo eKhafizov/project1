@@ -4,7 +4,8 @@ import { OfferType, OffersArrayType } from '../mocks/offers';
 
 type PlacesListType = {
   offersInChosenCity: OffersArrayType;
-  onListItemHover: (item: OfferType) => void; //так мы записали функцию для изменения состояния state
+  onListItemHover: (item: OfferType) => void;
+//так мы записали функцию для изменения состояния state
 };
 
 function PlacesList({offersInChosenCity, onListItemHover}: PlacesListType) : JSX.Element {

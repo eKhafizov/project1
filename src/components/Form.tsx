@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react';
 import { useAppDispatch } from '../hooks';
 import { changeFilter } from '../store/actions';
 
-function Form(): JSX.Element {
+function Form({currentFilter}: {currentFilter: string}): JSX.Element {
 
   const dispatch = useAppDispatch();
 
@@ -21,9 +21,9 @@ function Form(): JSX.Element {
 
   return (
     <form onSubmit={hanldeFormSubmit} className="places__sorting" action="#" method="get">
-      <span className="places__sorting-caption">Sort by</span>
+      <span className="places__sorting-caption">Sort by </span>
       <span className="places__sorting-type" tabIndex={0} onClick={() => toggleUl()}>
-            Popular
+        {currentFilter}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
@@ -32,7 +32,7 @@ function Form(): JSX.Element {
         className={(ulOpen === true) ? ('places__options places__options--custom places__options--opened') : ('places__options places__options--custom')}
       >
         <li
-          className="places__option places__option--active"
+          className={(currentFilter === 'popular') ? ('places__option places__option--active') : ('places__option')}
           tabIndex={0}
           onClick={() => {
             dispatch(changeFilter({type: 'popular'}));
@@ -41,7 +41,7 @@ function Form(): JSX.Element {
         >Popular
         </li>
         <li
-          className="places__option"
+          className={(currentFilter === 'priceLowToHigh') ? ('places__option places__option--active') : ('places__option')}
           tabIndex={1}
           onClick={() => {
             dispatch(changeFilter({type: 'priceLowToHigh'}));
@@ -50,7 +50,7 @@ function Form(): JSX.Element {
         >Price: low to high
         </li>
         <li
-          className="places__option"
+          className={(currentFilter === 'priceHighToLow') ? ('places__option places__option--active') : ('places__option')}
           tabIndex={2}
           onClick={() => {
             dispatch(changeFilter({type: 'priceHighToLow'}));
@@ -59,7 +59,7 @@ function Form(): JSX.Element {
         >Price: high to low
         </li>
         <li
-          className="places__option"
+          className={(currentFilter === 'topRated') ? ('places__option places__option--active') : ('places__option')}
           tabIndex={3}
           onClick={() => {
             dispatch(changeFilter({type: 'topRated'}));

@@ -46,7 +46,7 @@ function Cities({offers, chosenCity } : CitiesType): JSX.Element {
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">{offersInChosenCity.length} places to stay in {chosenCity.name} </b>
-          <Form />
+          <Form currentFilter={currentFilter} />
           <PlacesList offersInChosenCity={offersInChosenCity} onListItemHover={handleListItemHover}/>
         </section>
         <Map chosenCity={chosenCity} offersInChosenCity={offersInChosenCity} selectedOffer={selectedOffer} onListItemHover={handleListItemHover} />
