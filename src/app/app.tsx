@@ -10,7 +10,7 @@ import AppType from '../types/appType';
 
 
 function App(props: AppType): JSX.Element {
-  //console.log('props in app console', offers);
+
   return (
     <BrowserRouter>
       <ScrollToTop />
