@@ -1,6 +1,6 @@
 import City from '../types/city';
 import { OffersArrayType, CommentsType } from '../mocks/offers';
-import { changeCityToHamburg, changeCityToAmsterdam, changeCityToBarcelona, changeCityToBrussels, changeCityToLisbon, changeCityToNothing, changeCityToParis} from '../store/actions';
+import { changeCityToHamburg, changeCityToAmsterdam, changeCityToBarcelona, changeCityToBrussels, changeCityToLisbon, changeCityToNothing, changeCityToParis, changeFilter} from '../store/actions';
 import { useAppDispatch } from '../hooks';
 
 type LocationsType = {
@@ -43,7 +43,10 @@ function Locations({offers, comments, chosenCity , locations}: LocationsType): J
                 <button className={ (item === chosenCity.name)
                   ? ('locations__item-link tabs__item tabs__item--active')
                   : ('locations__item-link tabs__item')}
-                onClick={() => dispatch(chooseCity(item))}
+                onClick={() => {
+                  dispatch(chooseCity(item));
+                  dispatch(changeFilter({type: 'popular'}));
+                }}
                 >
                   <span>{item}</span>
                 </button>
