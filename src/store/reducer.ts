@@ -1,8 +1,19 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { changeCityToHamburg, changeCityToAmsterdam, changeCityToBarcelona, changeCityToBrussels, changeCityToLisbon, changeCityToNothing, changeCityToParis, changeFilter} from './actions';
 
+type chosenCityType = {
+  name: string;
+  lat: number;
+  lng: number;
+  zoom: number;
+}
+type initialStateType = {
+  chosenCity: chosenCityType;
+  chosenFilter: string;
+}
+
 //создаем initialState
-export const initialState = {
+export const initialState : initialStateType = {
   chosenCity: {
     name: 'Amsterdam',
     lat:  52.3909553943508,
@@ -55,7 +66,7 @@ export const reducer = createReducer(initialState, (builder) => {
       state = {...state};
     })
     .addCase(changeFilter, (state, action) => {
-      state.chosenFilter = action.payload.kind;
+      state.chosenFilter = action.payload;
     });
 });
 
