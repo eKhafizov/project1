@@ -54,8 +54,8 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(changeCityToNothing, (state) => {
       state = {...state};
     })
-    .addCase(changeFilter, (state, type) => {
-      state.chosenFilter = type.payload.type;
+    .addCase(changeFilter, (state, action) => {
+      state.chosenFilter = action.payload.kind;
     });
 });
 

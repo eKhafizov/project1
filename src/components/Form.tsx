@@ -35,7 +35,7 @@ function Form({currentFilter}: {currentFilter: string}): JSX.Element {
           className={(currentFilter === 'popular') ? ('places__option places__option--active') : ('places__option')}
           tabIndex={0}
           onClick={() => {
-            dispatch(changeFilter({type: 'popular'}));
+            dispatch(changeFilter({kind: 'popular'}));
             toggleUl();
           }}
         >Popular
@@ -44,7 +44,7 @@ function Form({currentFilter}: {currentFilter: string}): JSX.Element {
           className={(currentFilter === 'priceLowToHigh') ? ('places__option places__option--active') : ('places__option')}
           tabIndex={1}
           onClick={() => {
-            dispatch(changeFilter({type: 'priceLowToHigh'}));
+            dispatch(changeFilter({kind: 'priceLowToHigh'}));
             toggleUl();
           }}
         >Price: low to high
@@ -53,7 +53,7 @@ function Form({currentFilter}: {currentFilter: string}): JSX.Element {
           className={(currentFilter === 'priceHighToLow') ? ('places__option places__option--active') : ('places__option')}
           tabIndex={2}
           onClick={() => {
-            dispatch(changeFilter({type: 'priceHighToLow'}));
+            dispatch(changeFilter({kind: 'priceHighToLow'}));
             toggleUl();
           }}
         >Price: high to low
@@ -62,7 +62,7 @@ function Form({currentFilter}: {currentFilter: string}): JSX.Element {
           className={(currentFilter === 'topRated') ? ('places__option places__option--active') : ('places__option')}
           tabIndex={3}
           onClick={() => {
-            dispatch(changeFilter({type: 'topRated'}));
+            dispatch(changeFilter({kind: 'topRated'}));
             toggleUl();
           }}
         >Top rated first

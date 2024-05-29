@@ -45,7 +45,7 @@ function Locations({offers, comments, chosenCity , locations}: LocationsType): J
                   : ('locations__item-link tabs__item')}
                 onClick={() => {
                   dispatch(chooseCity(item));
-                  dispatch(changeFilter({type: 'popular'}));
+                  dispatch(changeFilter({kind: 'popular'}));
                 }}
                 >
                   <span>{item}</span>
