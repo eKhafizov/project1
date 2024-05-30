@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCityToHamburg, changeCityToAmsterdam, changeCityToBarcelona, changeCityToBrussels, changeCityToLisbon, changeCityToNothing, changeCityToParis, changeFilter, loadOffers} from './actions';
+import { changeCityToHamburg, changeCityToAmsterdam, changeCityToBarcelona, changeCityToBrussels, changeCityToLisbon, changeCityToNothing, changeCityToParis, changeFilter, loadOffers, setError} from './actions';
 import { OffersArrayType } from '../mocks/offers';
 import { AuthorizationStatus } from './const';
 
@@ -14,6 +14,7 @@ type initialStateType = {
   chosenFilter: string;
   offers: OffersArrayType;
   authorization: AuthorizationStatus;
+  error: string | null;
 }
 
 //создаем initialState
@@ -26,7 +27,8 @@ export const initialState : initialStateType = {
   },
   chosenFilter:'popular',
   authorization: AuthorizationStatus.NoAuth,
-  offers: []
+  offers: [],
+  error: null
 };
 
 //создаем reducer, внутрь которого передаем initialState и делаем билдеры, к которым добавляем actionСreators
@@ -76,6 +78,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
+    })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
     });
 });
 

@@ -13,5 +13,5 @@ export const changeCityToNothing = createAction('city/Nothing');
 export const changeFilter = createAction<string>('filter/change');
 export const loadOffers = createAction<OffersArrayType>('data/loadOffers');
 export const requireAuthorization = createAction<AuthorizationStatus>('auth/createAthoriztion');
-
+export const setError = createAction<string | null>('data/setError');
 

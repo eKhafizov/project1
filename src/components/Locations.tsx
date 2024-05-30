@@ -1,7 +1,7 @@
 import City from '../types/city';
 import { OffersArrayType, CommentsType } from '../mocks/offers';
 import { changeCityToHamburg, changeCityToAmsterdam, changeCityToBarcelona, changeCityToBrussels, changeCityToLisbon, changeCityToNothing, changeCityToParis, changeFilter} from '../store/actions';
-import { useAppDispatch} from '../hooks';
+import { useAppDispatch, useAppSelector} from '../hooks';
 
 type LocationsType = {
   offers: OffersArrayType;
@@ -13,6 +13,9 @@ type LocationsType = {
 function Locations({offers, comments, chosenCity , locations}: LocationsType): JSX.Element {
 
   const dispatch = useAppDispatch();
+
+  const x = useAppSelector((state) => state);
+  console.log('x ', x);
 
   function chooseCity(name: string) {
     switch(name) {

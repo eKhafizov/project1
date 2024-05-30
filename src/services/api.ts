@@ -1,8 +1,22 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { getToken } from './token';
+import processErrorHandle from './process_error';
+import {StatusCodes} from 'http-status-codes';
 
+type DetailMessageType = {
+  type: string;
+  message: string;
+}
+const StatusCodeMapping: Record<number, boolean> = {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  [StatusCodes.BAD_REQUEST]: true,
+  [StatusCodes.UNAUTHORIZED]: true,
+  [StatusCodes.NOT_FOUND]: true
+};
+const shouldDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[response.status];
 
-const URL = 'https://13.design.pages.academy/six-cities';
+const URL = 'https://13.react.htmlacademy.pro/six-cities';
 const TIME_LIMIT = 3000;
 
 //Для отправки сетевых запросов воспользуемся пакетом `axios`
@@ -24,6 +38,17 @@ const createApi = () : AxiosInstance => {
     return config;
   }
   );
+
+
+  api.interceptors.response.use(
+    (response) => response,
+    (error: AxiosError<DetailMessageType>) => {
+      if (error.response && shouldDisplayError(error.response)) {
+        const detailMessage = (error.response.data);
+        processErrorHandle(detailMessage.message);
+      }
+      throw error;
+    });
 
   return api;
 };

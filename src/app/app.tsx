@@ -8,7 +8,6 @@ import Layout from '../components/Layout';
 import Page404 from '../pages/Page404';
 import AppType from '../types/appType';
 
-
 function App(props: AppType): JSX.Element {
 
   return (
