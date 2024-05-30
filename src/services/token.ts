@@ -28,6 +28,6 @@ export const saveToken = (token: TokenType) : void => {
   localStorage.setItem(AUTH_TOKEN_NAME, token);
 };
 
-export const dropToken = (token: TokenType) : void => {
+export const dropToken = () : void => {
   localStorage.removeItem(AUTH_TOKEN_NAME);
 };
