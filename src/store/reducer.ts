@@ -1,5 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCityToHamburg, changeCityToAmsterdam, changeCityToBarcelona, changeCityToBrussels, changeCityToLisbon, changeCityToNothing, changeCityToParis, changeFilter} from './actions';
+import { changeCityToHamburg, changeCityToAmsterdam, changeCityToBarcelona, changeCityToBrussels, changeCityToLisbon, changeCityToNothing, changeCityToParis, changeFilter, loadOffers} from './actions';
+import { OffersArrayType } from '../mocks/offers';
+import { AuthorizationStatus } from './const';
 
 type chosenCityType = {
   name: string;
@@ -10,6 +12,8 @@ type chosenCityType = {
 type initialStateType = {
   chosenCity: chosenCityType;
   chosenFilter: string;
+  offers: OffersArrayType;
+  authorization: AuthorizationStatus;
 }
 
 //создаем initialState
@@ -20,7 +24,9 @@ export const initialState : initialStateType = {
     lng: 4.85309666406198,
     zoom: 10
   },
-  chosenFilter:'popular'
+  chosenFilter:'popular',
+  authorization: AuthorizationStatus.NoAuth,
+  offers: []
 };
 
 //создаем reducer, внутрь которого передаем initialState и делаем билдеры, к которым добавляем actionСreators
@@ -67,6 +73,15 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(changeFilter, (state, action) => {
       state.chosenFilter = action.payload;
+    })
+    .addCase(loadOffers, (state, action) => {
+      state.offers = action.payload;
     });
 });
+
+/*
+//.addCase(requireAuthorization, (state, action) => {
+      //state.authorization = action.payload;
+    //});
+*/
 

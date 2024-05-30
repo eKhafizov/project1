@@ -1,7 +1,7 @@
 import City from '../types/city';
 import { OffersArrayType, CommentsType } from '../mocks/offers';
 import { changeCityToHamburg, changeCityToAmsterdam, changeCityToBarcelona, changeCityToBrussels, changeCityToLisbon, changeCityToNothing, changeCityToParis, changeFilter} from '../store/actions';
-import { useAppDispatch } from '../hooks';
+import { useAppDispatch} from '../hooks';
 
 type LocationsType = {
   offers: OffersArrayType;
