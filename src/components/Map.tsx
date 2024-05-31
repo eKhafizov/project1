@@ -5,6 +5,7 @@ import {Icon, Marker, layerGroup} from 'leaflet';
 import City from '../types/city';
 import { OffersArrayType } from '../mocks/offers';
 import { OfferType } from '../mocks/offers';
+import { useAppSelector } from '../hooks';
 
 //markers
 const defaultCustomIcon = new Icon({
@@ -27,12 +28,14 @@ type AppTypeSelect = {
 
 function Map({offersInChosenCity, chosenCity, selectedOffer, onListItemHover}: AppTypeSelect): JSX.Element {
 
+  const chosen = useAppSelector((state) => state.chosenCity);
+
   //используем хук useRef и вешаем ссылку на DOM дива, где будет отрисована карта
   const myRef = useRef(null);
 
   // создаем переменную map - используя хук useMap, который строит карту
   // в этот хук передаем город из props.city и ссылку на объект DOM, куда эту карту отрисуем
-  const map = useMap(myRef, chosenCity);
+  const map = useMap(myRef, chosen);
 
   //используем хук useEffect, чтобы добавлять маркеры на отрисованную карту
   useEffect(() => {

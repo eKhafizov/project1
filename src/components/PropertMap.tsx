@@ -24,7 +24,7 @@ function PropertyMap({offer, offers}: PropertyMapType ): JSX.Element {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const sameLocations : OffersArrayType = [];
   offers.forEach((item) => {
-    item.location === offer.location && item !== offer && sameLocations.push(item);
+    item.city.name === offer.city.name && sameLocations.push(item);
   });
 
   //используем хук useEffect, чтобы добавлять маркеры на отрисованную карту
@@ -33,7 +33,7 @@ function PropertyMap({offer, offers}: PropertyMapType ): JSX.Element {
       //создаем слой
       const markerLayer = layerGroup().addTo(map);
       //для каждого объекта из props.offers делаем маркер
-      sameLocations.forEach((point) => {
+      sameLocations.slice(0,4).forEach((point) => {
         const marker = new Marker({
           lat: point.location.latitude,
           lng: point.location.longitude
@@ -41,7 +41,7 @@ function PropertyMap({offer, offers}: PropertyMapType ): JSX.Element {
         //добавляем маркеру иконку
         marker
           .setIcon(
-            offer !== undefined && point.id === offer.id
+            point.id === offer.id
               ? currentCustomIcon //если есть выбранный в сотоянии объект, то делаем его маркер красным
               : defaultCustomIcon //остальные маркеры делаем синими
           )

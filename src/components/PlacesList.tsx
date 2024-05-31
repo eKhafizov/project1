@@ -25,7 +25,7 @@ function PlacesList({ filteredOffersInCity, onListItemHover}: PlacesListType) : 
             {item.isPremium && <div className="place-card__mark"><span>premium</span></div>}
             <div className="cities__image-wrapper place-card__image-wrapper">
               <Link to={AppRoutes.ROOM + (item.id).toString()}>
-                <img className="place-card__image" src={item.images[0].replace('pages.academy', 'htmlacademy.pro')} width="260" height="200" alt="Place" />
+                <img className="place-card__image" src={item.previewImage.replace('pages.academy', 'htmlacademy.pro')} width="260" height="200" alt="Place" />
               </Link>
             </div>
             <div className="place-card__info">

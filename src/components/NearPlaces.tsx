@@ -1,4 +1,5 @@
 import { OfferType, OffersArrayType } from '../mocks/offers';
+import AppRoutes from './AppRoutes';
 
 type NearPlacesType = {
   offer: OfferType;
@@ -10,7 +11,7 @@ function NearPlaces({offer, offers}: NearPlacesType):JSX.Element {
   //creating an array of another offers in the same area as our offer.location
   const sameLocations : OffersArrayType = [];
   offers.forEach((item) => {
-    item.location === offer.location && item !== offer && sameLocations.push(item);
+    item.city.name === offer.city.name && item !== offer && sameLocations.push(item);
   });
 
   return (
@@ -21,11 +22,17 @@ function NearPlaces({offer, offers}: NearPlacesType):JSX.Element {
           {/* render all another locations in this area if they exist*/}
           { (sameLocations && sameLocations.length > 1)
             ? (
-              sameLocations.map((item) => (
+              sameLocations.slice(0,3).map((item) => (
                 <article key={item.id} className="near-places__card place-card">
                   <div className="near-places__image-wrapper place-card__image-wrapper">
-                    <a href="#">
-                      <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place image"/>
+                    <a href={AppRoutes.ROOM + (item.id).toString()}>
+                      <img
+                        className="place-card__image"
+                        src={item.previewImage.replace('pages.academy', 'htmlacademy.pro')}
+                        width="260"
+                        height="200"
+                        alt={item.description}
+                      />
                     </a>
                   </div>
                   <div className="place-card__info">
