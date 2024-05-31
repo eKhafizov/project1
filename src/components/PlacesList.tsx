@@ -15,10 +15,10 @@ function PlacesList({ filteredOffersInCity, onListItemHover}: PlacesListType) : 
       {
         filteredOffersInCity.map((item, id) => (
           <article key={item.id} className="cities__card place-card" onMouseEnter={() => onListItemHover(item)}>
-            {item.premium && <div className="place-card__mark"><span>premium</span></div>}
+            {item.isPremium && <div className="place-card__mark"><span>premium</span></div>}
             <div className="cities__image-wrapper place-card__image-wrapper">
-              <Link to={AppRoutes.ROOM + item.id}>
-                <img className="place-card__image" src={item.image} width="260" height="200" alt="Place" />
+              <Link to={`${AppRoutes.ROOM} + item.id`}>
+                <img className="place-card__image" src={item.images[0]} width="260" height="200" alt="Place" />
               </Link>
             </div>
             <div className="place-card__info">
@@ -29,7 +29,7 @@ function PlacesList({ filteredOffersInCity, onListItemHover}: PlacesListType) : 
                 </div>
                 <button className="place-card__bookmark-button button" type="button">
                   <svg className="place-card__bookmark-icon" width="18" height="19">
-                    {item.bookmarked && <use xlinkHref="#icon-bookmark"></use>}
+                    {item.isFavorite && <use xlinkHref="#icon-bookmark"></use>}
                   </svg>
                   <span className="visually-hidden">To bookmarks</span>
                 </button>
@@ -41,7 +41,7 @@ function PlacesList({ filteredOffersInCity, onListItemHover}: PlacesListType) : 
                 </div>
               </div>
               <h2 className="place-card__name">
-                <Link to={AppRoutes.ROOM + item.id}>{item.desciption}</Link>
+                <Link to={`${AppRoutes.ROOM}+ item.id`}>{item.description}</Link>
               </h2>
               <p className="place-card__type">{item.type}</p>
             </div>

@@ -25,7 +25,7 @@ function Cities({offers, chosenCity } : CitiesType): JSX.Element {
   //получаем текущий фильтр из состояния store
   const currentFilter = useAppSelector((state) => state.chosenFilter);
   //фильтруем города, которые находятся в выбранном городе
-  const offersInChosenCity = offers.filter((offer) => offer.location === chosenCity.name);
+  const offersInChosenCity = offers.filter((offer) => offer.city.name === chosenCity.name);
   //функция сортировки (изменения копии) массива офферов в нужном городе
   function filterAllOffers() {
     switch(currentFilter) {

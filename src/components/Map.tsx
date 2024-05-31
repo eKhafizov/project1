@@ -42,8 +42,8 @@ function Map({offersInChosenCity, chosenCity, selectedOffer, onListItemHover}: A
       //для каждого объекта из props.offers делаем маркер
       offersInChosenCity.forEach((point) => {
         const marker = new Marker({
-          lat: point.lat,
-          lng: point.lng
+          lat: point.location.latitude,
+          lng: point.location.longitude
         });
         //добавляем маркеру иконку
         marker

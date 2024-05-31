@@ -8,6 +8,7 @@ import Layout from '../components/Layout';
 import Page404 from '../pages/Page404';
 import AppType from '../types/appType';
 
+
 function App(props: AppType): JSX.Element {
 
   return (
@@ -15,10 +16,17 @@ function App(props: AppType): JSX.Element {
       <ScrollToTop />
       <Routes>
         <Route path={AppRoutes.MAIN} element={<Layout />} >
-          <Route index element={<Main offers={props.offers} comments={props.comments} locations={props.locations}/>} />
+          <Route index element={
+            <Main
+              //offers={props.offers}
+              comments={props.comments}
+              locations={props.locations}
+            />
+          }
+          />
           <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
-          <Route path={AppRoutes.ROOM} element={<RoomPage offers={props.offers} comments={props.comments} />} >
-            <Route path=':id' element={<RoomPage offers={props.offers} comments={props.comments} />} />
+          <Route path={AppRoutes.ROOM} element={<RoomPage />} >
+            <Route path=':id' element={<RoomPage />} />
           </Route>
           <Route path='*' element={<Page404 />}/>
         </Route>

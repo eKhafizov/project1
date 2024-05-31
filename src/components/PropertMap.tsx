@@ -13,8 +13,8 @@ function PropertyMap({offer, offers}: PropertyMapType ): JSX.Element {
 
   //form an object from lat/lng of our recieved offer
   const city = {
-    lat: offer.lat,
-    lng: offer.lng,
+    lat: offer.location.latitude,
+    lng: offer.location.longitude,
     zoom: 10
   };
 
@@ -35,8 +35,8 @@ function PropertyMap({offer, offers}: PropertyMapType ): JSX.Element {
       //для каждого объекта из props.offers делаем маркер
       sameLocations.forEach((point) => {
         const marker = new Marker({
-          lat: point.lat,
-          lng: point.lng
+          lat: point.location.latitude,
+          lng: point.location.longitude
         });
         //добавляем маркеру иконку
         marker

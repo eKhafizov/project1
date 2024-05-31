@@ -1,7 +1,7 @@
-import { OffersArrayType, CommentsType } from '../mocks/offers';
+import { CommentsType } from '../mocks/offers';
 
 type AppType = {
-  offers: OffersArrayType;
+  //offers: OffersArrayType;
   comments: CommentsType;
   locations: string[];
 };

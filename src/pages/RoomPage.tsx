@@ -1,22 +1,28 @@
 import { useParams } from 'react-router-dom';
 import Page404 from './Page404';
-import {CommentsType, OffersArrayType} from '../mocks/offers';
+//import {OffersArrayType} from '../mocks/offers';
 import PropertyReviews from '../components/PropertyReviews';
 import PropertyMap from '../components/PropertMap';
 import NearPlaces from '../components/NearPlaces';
+import { useAppSelector } from '../hooks';
 
-type RoomPageType = {
-  offers: OffersArrayType;
-  comments: CommentsType;
-};
+//type RoomPageType = {
+//offers: OffersArrayType;
+//comments: CommentsType;
+//};
 
-function RoomPage({offers, comments}: RoomPageType): JSX.Element {
+function RoomPage(): JSX.Element {
+
+  const offers = useAppSelector((state) => state.offers);
+
   const params = useParams();
-  const offer = offers.find((item) => item.id === params.id );
+  const offer = offers.find(
+    (item) => item.id === Number(params.id));
 
   //lets create an empty array and will add there all comments from comments that have the same id as in offers.comments array
-  const offerComments : CommentsType = [];
-  comments.forEach((item) => offer?.comments.includes(item.id) && offerComments.push(item));
+  //  const offerComments : CommentsType = [];
+  //  comments.forEach(
+  //  (item) => offer?.comments.includes(item.id) && offerComments.push(item));
 
   return offer ? (
     <main className="page__main page__main--property">
@@ -25,24 +31,18 @@ function RoomPage({offers, comments}: RoomPageType): JSX.Element {
         {/* Component #1 - PropertyGallery */}
         <div className="property__gallery-container container">
           <div className="property__gallery">
-            <div className="property__image-wrapper">
-              <img className="property__image" src="img/room.jpg" alt="Photo studio"/>
-            </div>
-            <div className="property__image-wrapper">
-              <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-            </div>
-            <div className="property__image-wrapper">
-              <img className="property__image" src="img/apartment-02.jpg" alt="Photo studio"/>
-            </div>
-            <div className="property__image-wrapper">
-              <img className="property__image" src="img/apartment-03.jpg" alt="Photo studio"/>
-            </div>
-            <div className="property__image-wrapper">
-              <img className="property__image" src="img/studio-01.jpg" alt="Photo studio"/>
-            </div>
-            <div className="property__image-wrapper">
-              <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-            </div>
+            {offer.images.map((image) => (
+              <div
+                key={offer.id}
+                className="property__image-wrapper"
+              >
+                <img
+                  className="property__image"
+                  src={image}
+                  alt={offer.description}
+                />
+              </div>)
+            )}
           </div>
         </div>
 
@@ -80,10 +80,10 @@ function RoomPage({offers, comments}: RoomPageType): JSX.Element {
                 {offer.type}
               </li>
               <li className="property__feature property__feature--bedrooms">
-                {offer.rooms} rooms
+                {offer.bedrooms} rooms
               </li>
               <li className="property__feature property__feature--adults">
-                {offer.capacity} guests
+                {offer.maxAdults} guests
               </li>
             </ul>
 
@@ -97,7 +97,7 @@ function RoomPage({offers, comments}: RoomPageType): JSX.Element {
             <div className="property__inside">
               <h2 className="property__inside-title">What&apos;s inside</h2>
               <ul className="property__inside-list">
-                {offer.inside && offer.inside.map((item, index) => (<li key={item} className="property__inside-item">{item}</li>) )}
+                {offer.goods && offer.goods.map((item, index) => (<li key={item} className="property__inside-item">{item}</li>) )}
               </ul>
             </div>
 
@@ -106,24 +106,24 @@ function RoomPage({offers, comments}: RoomPageType): JSX.Element {
               <h2 className="property__host-title">Meet the host</h2>
               <div className="property__host-user user">
                 <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                  <img className="property__avatar user__avatar" src={offer.photo ? 'img/avatar-max.jpg' : 'img/avatar-angelina.jpg'} width="74" height="74" alt="Host avatar"/>
+                  <img className="property__avatar user__avatar" src={offer.host.avatarUrl ? offer.host.avatarUrl : 'img/avatar-angelina.jpg'} width="74" height="74" alt="Host avatar"/>
                 </div>
                 <span className="property__user-name">
-                  {offer.host}
+                  {offer.host.name}
                 </span>
                 <span className="property__user-status">
-                  {offer.proStatus && 'Pro'}
+                  {offer.host.isPro && 'Pro'}
                 </span>
               </div>
               <div className="property__description">
                 <p className="property__text">
-                  {offer.desciption}
+                  {offer.description}
                 </p>
               </div>
             </div>
 
             {/* Component - Property Reviews */}
-            <PropertyReviews offerComments={offerComments} />
+            <PropertyReviews />
           </div>
         </div>
         {/* Component - PropertyMap */}

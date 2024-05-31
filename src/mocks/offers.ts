@@ -17,6 +17,31 @@ export type CommentType = {
 export type CommentsType = CommentType[];
 
 export type OfferType = {
+  bedrooms: number;
+  city: {
+    name: string;
+    location: {latitude:number;longitude: number;zoom:number};};
+  description: string;
+  goods: string[];
+  host: {
+    id: number;
+    name: string;
+    isPro: boolean;
+    avatarUrl: string;};
+  id: number; //а был number но пишеь ошибку
+  images: string[];
+  isFavorite: false;
+  isPremium: false;
+  location: {latitude: number; longitude: number; zoom: number};
+  maxAdults: 2;
+  previewImage: string;
+  price: number;
+  rating: number;
+  title: string;
+  type: string;
+};
+/*
+export type OfferType = {
   premium: boolean;
   host: string;
   title: string;
@@ -37,6 +62,7 @@ export type OfferType = {
   photo?: string;
   rating: number;
 };
+*/
 export type OffersArrayType = OfferType[];
 
 const commentsArray : CommentsType = [
@@ -104,7 +130,7 @@ const commentsArray : CommentsType = [
     rating: 3.3
   },
 ];
-
+/*
 const offersArray : OffersArrayType = [{
   premium: true,
   title: 'Cool appartment',
@@ -760,6 +786,7 @@ const offersArray : OffersArrayType = [{
   comments: [1, 2]
 }
 ];
+*/
 
-export {hotelType, offersArray, locations, commentsArray};
+export {hotelType, locations, commentsArray};
 
