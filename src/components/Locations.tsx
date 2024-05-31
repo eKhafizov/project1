@@ -1,7 +1,7 @@
 import City from '../types/city';
 import { OffersArrayType, CommentsType } from '../mocks/offers';
-import { changeCityToHamburg, changeCityToAmsterdam, changeCityToBarcelona, changeCityToBrussels, changeCityToLisbon, changeCityToNothing, changeCityToParis, changeFilter} from '../store/actions';
-import { useAppDispatch, useAppSelector} from '../hooks';
+import { changeCityToHamburg, changeCityToAmsterdam, changeCityToCologne, changeCityToBrussels, changeCityToDusseldorf, changeCityToNothing, changeCityToParis, changeFilter} from '../store/actions';
+import { useAppDispatch} from '../hooks';
 
 type LocationsType = {
   offers: OffersArrayType;
@@ -14,9 +14,6 @@ function Locations({offers, comments, chosenCity , locations}: LocationsType): J
 
   const dispatch = useAppDispatch();
 
-  const x = useAppSelector((state) => state);
-  console.log('x ', x);
-
   function chooseCity(name: string) {
     switch(name) {
       case 'Amsterdam':
@@ -25,10 +22,10 @@ function Locations({offers, comments, chosenCity , locations}: LocationsType): J
         return changeCityToBrussels();
       case 'Hamburg':
         return changeCityToHamburg();
-      case 'Barcelona':
-        return changeCityToBarcelona();
-      case 'Lisbon':
-        return changeCityToLisbon();
+      case 'Dusseldorf':
+        return changeCityToDusseldorf();
+      case 'Cologne':
+        return changeCityToCologne();
       case 'Paris':
         return changeCityToParis();
       default:

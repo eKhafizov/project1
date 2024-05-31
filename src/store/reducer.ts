@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCityToHamburg, changeCityToAmsterdam, changeCityToBarcelona, changeCityToBrussels, changeCityToLisbon, changeCityToNothing, changeCityToParis, changeFilter, loadOffers, setError} from './actions';
+import { changeCityToHamburg, changeCityToAmsterdam, changeCityToCologne, changeCityToBrussels, changeCityToDusseldorf, changeCityToNothing, changeCityToParis, changeFilter, loadOffers, setError} from './actions';
 import { OffersArrayType } from '../mocks/offers';
 import { AuthorizationStatus } from './const';
 
@@ -52,10 +52,10 @@ export const reducer = createReducer(initialState, (builder) => {
       state.chosenCity.lng = 2.294694;
       state.chosenCity.zoom = 10;
     })
-    .addCase(changeCityToBarcelona, (state) => {
-      state.chosenCity.name = 'Barcelona';
-      state.chosenCity.lat = 41.390205;
-      state.chosenCity.lng = 2.154007;
+    .addCase(changeCityToCologne, (state) => {
+      state.chosenCity.name = 'Cologne';
+      state.chosenCity.lat = 50.935173;
+      state.chosenCity.lng = 6.953101;
       state.chosenCity.zoom = 10;
     })
     .addCase(changeCityToBrussels, (state) => {
@@ -64,10 +64,10 @@ export const reducer = createReducer(initialState, (builder) => {
       state.chosenCity.lng = 4.35171;
       state.chosenCity.zoom = 10;
     })
-    .addCase(changeCityToLisbon, (state) => {
-      state.chosenCity.name = 'Lisbon';
-      state.chosenCity.lat = 38.736946;
-      state.chosenCity.lng = -9.142685;
+    .addCase(changeCityToDusseldorf, (state) => {
+      state.chosenCity.name = 'Dusseldorf';
+      state.chosenCity.lat = 51.233334;
+      state.chosenCity.lng = 6.783333;
       state.chosenCity.zoom = 10;
     })
     .addCase(changeCityToNothing, (state) => {
