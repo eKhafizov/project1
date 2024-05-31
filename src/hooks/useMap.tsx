@@ -1,5 +1,6 @@
 import {useEffect, useState, MutableRefObject, useRef} from 'react';
 import {Map, TileLayer} from 'leaflet';
+import { useAppSelector } from '.';
 
 type City = {
   lat: number;
@@ -10,6 +11,7 @@ type City = {
 function useMap(mapRef: MutableRefObject<HTMLElement | null>, chosenCity: City): Map | null {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef<boolean>(false);
+  const currentCity = useAppSelector((state) => state.chosenCity);
 
   useEffect(() => {
     //если объект в DOM, на который ссылается ссылка отрисован, то...
@@ -17,8 +19,8 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>, chosenCity: City):
       //cоздаем карту
       const instance = new Map(mapRef.current, {
         center: {
-          lat: chosenCity.lat, //указываем latitude нашего объекта
-          lng: chosenCity.lng //указываем longevity нашего объекта
+          lat: currentCity.lat, //указываем latitude нашего объекта
+          lng: currentCity.lng //указываем longevity нашего объекта
         },
         zoom: 10 //указываем масштаб окна карты
       });
@@ -37,7 +39,7 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>, chosenCity: City):
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapRef, chosenCity]);
+  }, [mapRef, currentCity, chosenCity]);
 
   //возвращаем карту
   return map;
