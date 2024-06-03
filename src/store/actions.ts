@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 import { OffersArrayType } from '../mocks/offers';
-import { AuthorizationStatus } from '../store/const';
+import { AuthorizationStatus, APIRoute } from '../store/const';
 
 //создаем actionsCreators
 export const changeCityToHamburg = createAction('city/Hamburg');
@@ -15,3 +15,4 @@ export const loadOffers = createAction<OffersArrayType>('data/loadOffers');
 export const requireAuthorization = createAction<AuthorizationStatus>('auth/createAthoriztion');
 export const setError = createAction<string | null>('data/setError');
 export const setDataLoading = createAction<boolean>('data/isLoading');
+export const redirectToRoute = createAction<APIRoute>('data/redirect');
