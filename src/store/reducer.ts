@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCityToHamburg, changeCityToAmsterdam, changeCityToCologne, changeCityToBrussels, changeCityToDusseldorf, changeCityToNothing, changeCityToParis, changeFilter, loadOffers, setError} from './actions';
+import { changeCityToHamburg, changeCityToAmsterdam, changeCityToCologne, changeCityToBrussels, changeCityToDusseldorf, changeCityToNothing, changeCityToParis, changeFilter, loadOffers, setError, requireAuthorization, setDataLoading} from './actions';
 import { OffersArrayType } from '../mocks/offers';
 import { AuthorizationStatus } from './const';
 
@@ -15,6 +15,7 @@ type initialStateType = {
   offers: OffersArrayType;
   authorization: AuthorizationStatus;
   error: string | null;
+  isDataLoading: boolean;
 }
 
 //создаем initialState
@@ -28,7 +29,8 @@ export const initialState : initialStateType = {
   chosenFilter:'popular',
   authorization: AuthorizationStatus.NoAuth,
   offers: [],
-  error: null
+  error: null,
+  isDataLoading: false
 };
 
 //создаем reducer, внутрь которого передаем initialState и делаем билдеры, к которым добавляем actionСreators
@@ -81,6 +83,12 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setError, (state, action) => {
       state.error = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorization = action.payload;
+    })
+    .addCase(setDataLoading, (state, action) => {
+      state.isDataLoading = action.payload;
     });
 });
 

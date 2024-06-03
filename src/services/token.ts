@@ -15,7 +15,7 @@
 отдельный модуль и опишем несколько функций. В будущем это упростит
 нам написание автоматизированных тестов.
 */
-const AUTH_TOKEN_NAME = 'guess-melody-token';
+const AUTH_TOKEN_NAME = 'six-cities';
 
 export type TokenType = string;
 

@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch } from '../types/state';
 import { RootState } from '../types/state';
 import { AxiosInstance } from 'axios';
-import { loadOffers, requireAuthorization, setError } from './actions';
+import { loadOffers, requireAuthorization, setDataLoading, setError } from './actions';
 import { OffersArrayType } from '../mocks/offers';
 import { APIRoute, AuthorizationStatus, AuthData, UserData, TIMEOUT_SHOW_ERROR } from './const';
 import { dropToken, saveToken } from '../services/token';
@@ -19,11 +19,12 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
 }>(
   'data/fetchQuestions',
   async (_arg, {dispatch, extra: api}) => {
+    dispatch(setDataLoading(true));
     const {data} = await api.get<OffersArrayType>(APIRoute.Offers);
+    dispatch(setDataLoading(false));
     dispatch(loadOffers(data));
   },
 );
-
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;

@@ -19,10 +19,10 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>, chosenCity: City):
       //cоздаем карту
       const instance = new Map(mapRef.current, {
         center: {
-          lat: currentCity.lat, //указываем latitude нашего объекта
-          lng: currentCity.lng //указываем longevity нашего объекта
+          lat: chosenCity.lat, //указываем latitude нашего объекта
+          lng: chosenCity.lng //указываем longevity нашего объекта
         },
-        zoom: 10 //указываем масштаб окна карты
+        zoom: chosenCity.zoom //указываем масштаб окна карты
       });
 
       // создаем слой

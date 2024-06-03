@@ -44,7 +44,8 @@ function Cities({offers, chosenCity } : CitiesType): JSX.Element {
   //присваиваем полученный после фильтров и сортировки массив перменной и передаем ее на отрисовку
   const filteredOffersInCity = filterAllOffers();
 
-  if (offers.length < 1) {
+  const isDataLoading = useAppSelector((state) => state.isDataLoading);
+  if (isDataLoading && offers.length < 1) {
     return (
       <div>
         <h2>LOADING</h2>

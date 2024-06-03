@@ -7,8 +7,8 @@ import store from './store';
 import ErrorMessage from './components/error_message';
 import {checkAuthAction, fetchOffersAction} from './store/api-actions';
 
-store.dispatch(checkAuthAction());
 store.dispatch(fetchOffersAction());
+store.dispatch(checkAuthAction());
 
 
 const root = ReactDOM.createRoot(
@@ -20,7 +20,6 @@ root.render(
     <Provider store={store}>
       <ErrorMessage />
       <App
-        //offers={offers}
         comments={comments}
         locations={locations}
       />
