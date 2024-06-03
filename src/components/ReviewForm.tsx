@@ -1,4 +1,8 @@
 import { ChangeEvent, FormEvent, useState} from 'react';
+import { useAppSelector } from '../hooks';
+import { AuthorizationStatus } from '../store/const';
+import { useNavigate } from 'react-router-dom';
+import AppRoutes from './AppRoutes';
 
 function ReviewForm() {
 
@@ -9,11 +13,17 @@ function ReviewForm() {
   function handlerFormSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
   }
+  const navigate = useNavigate();
 
+  const authorized = useAppSelector((state) => state.authorization);
   function handleTextChanges(evt: ChangeEvent<HTMLTextAreaElement>) {
     evt.preventDefault();
-    const {value} = evt.target;
-    setForm1({text: value, rating:'sss'});
+    if (authorized === AuthorizationStatus.Auth) {
+      const {value} = evt.target;
+      setForm1({text: value, rating:'sss'});
+    } else {
+      navigate(AppRoutes.LOGIN);
+    }
   }
 
   function handleRatingChanges(evt: ChangeEvent<HTMLInputElement>) {
