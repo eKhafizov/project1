@@ -4,9 +4,11 @@ import { RootState } from '../types/state';
 import { AxiosInstance } from 'axios';
 import { loadOffers, redirectToRoute, requireAuthorization, setDataLoading, setError } from './actions';
 import { OffersArrayType } from '../mocks/offers';
-import { APIRoute, AuthorizationStatus, AuthData, UserData, TIMEOUT_SHOW_ERROR } from './const';
+import { APIRoute, AuthorizationStatus, AuthData, UserData, TIMEOUT_SHOW_ERROR} from './const';
 import { dropToken, saveToken } from '../services/token';
+import AppRoutes from '../components/AppRoutes';
 import store from '.';
+
 /*
 Создадим отдельный модуль в котором опишем асинхронные действия. В этих действиях будем выполнять запросы к серверу. На данном этапе нам потребуются следующие действия: для загрузки списка офферов, проверки наличия авторизации и отправки данных для прохождения аутентификации, отправки запроса на выход из приложения.
 */
@@ -52,7 +54,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
     const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
-    dispatch(redirectToRoute(APIRoute.Offers));
+    dispatch(redirectToRoute(AppRoutes.MAIN));
   },
 );
 
