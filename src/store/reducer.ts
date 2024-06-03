@@ -86,6 +86,7 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorization = action.payload;
+      console.log('in reducer auth is ', state.authorization);
     })
     .addCase(setDataLoading, (state, action) => {
       state.isDataLoading = action.payload;

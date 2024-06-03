@@ -1,7 +1,18 @@
 import { NavLink } from 'react-router-dom';
 import AppRoutes from '../components/AppRoutes';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { logoutAction } from '../store/api-actions';
+import { AuthorizationStatus } from '../store/const';
 
 function Header(): JSX.Element {
+
+  const dispatch = useAppDispatch();
+  const authStatus = useAppSelector((state) => state.authorization);
+
+  const dispatchLogout = () => {
+    authStatus === AuthorizationStatus.Auth && dispatch(logoutAction());
+  };
+
   return (
     <header className="header">
       <nav>
@@ -19,11 +30,15 @@ function Header(): JSX.Element {
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
                     <span className="header__user-name user__name">login</span>
-                    <span className="header__favorite-count">3</span>
+                    {authStatus === AuthorizationStatus.Auth && (<span className="header__favorite-count"></span>)}
                   </NavLink>
                 </li>
                 <li className="header__nav-item">
-                  <NavLink to={AppRoutes.LOGIN} className="header__nav-link">
+                  <NavLink
+                    to={AppRoutes.MAIN}
+                    className="header__nav-link"
+                    onClick={dispatchLogout}
+                  >
                     <span className="header__signout">Sign out</span>
                   </NavLink>
                 </li>
