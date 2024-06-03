@@ -93,9 +93,3 @@ export const reducer = createReducer(initialState, (builder) => {
     });
 });
 
-/*
-//.addCase(requireAuthorization, (state, action) => {
-      //state.authorization = action.payload;
-    //});
-*/
-
