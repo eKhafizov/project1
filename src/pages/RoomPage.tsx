@@ -4,7 +4,8 @@ import Page404 from './Page404';
 import PropertyReviews from '../components/PropertyReviews';
 import PropertyMap from '../components/PropertMap';
 import NearPlaces from '../components/NearPlaces';
-import { useAppSelector } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { fetchCommentsAction } from '../store/api-actions';
 
 //type RoomPageType = {
 //offers: OffersArrayType;
@@ -12,12 +13,14 @@ import { useAppSelector } from '../hooks';
 //};
 
 function RoomPage(): JSX.Element {
-
+  const dispatch = useAppDispatch();
   const offers = useAppSelector((state) => state.offers);
-
   const params = useParams();
   const offer = offers.find(
     (item) => item.id === Number(params.id));
+
+  //запросим комменты с сервера и добавим их в состояние с помощью thunk api-action
+  dispatch(fetchCommentsAction(Number(offer?.id)));
 
   const handleBookmarkButton = () => {
   //  if (offer !== undefined ) {

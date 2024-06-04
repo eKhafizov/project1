@@ -1,7 +1,8 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCityToHamburg, changeCityToAmsterdam, changeCityToCologne, changeCityToBrussels, changeCityToDusseldorf, changeCityToNothing, changeCityToParis, changeFilter, loadOffers, setError, requireAuthorization, setDataLoading} from './actions';
+import { changeCityToHamburg, changeCityToAmsterdam, changeCityToCologne, changeCityToBrussels, changeCityToDusseldorf, changeCityToNothing, changeCityToParis, changeFilter, loadOffers, setError, requireAuthorization, setDataLoading, loadComments} from './actions';
 import { OffersArrayType } from '../mocks/offers';
 import { AuthorizationStatus } from './const';
+import { Comments } from '../types/appType';
 
 type chosenCityType = {
   name: string;
@@ -16,6 +17,7 @@ type initialStateType = {
   authorization: AuthorizationStatus;
   error: string | null;
   isDataLoading: boolean;
+  chosenOfferComments: Comments | null;
 }
 
 //создаем initialState
@@ -30,7 +32,8 @@ export const initialState : initialStateType = {
   authorization: AuthorizationStatus.NoAuth,
   offers: [],
   error: null,
-  isDataLoading: false
+  isDataLoading: false,
+  chosenOfferComments: null
 };
 
 //создаем reducer, внутрь которого передаем initialState и делаем билдеры, к которым добавляем actionСreators
@@ -81,12 +84,14 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
     })
+    .addCase(loadComments, (state, action) => {
+      state.chosenOfferComments = action.payload;
+    })
     .addCase(setError, (state, action) => {
       state.error = action.payload;
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorization = action.payload;
-      console.log('in reducer auth is ', state.authorization);
     })
     .addCase(setDataLoading, (state, action) => {
       state.isDataLoading = action.payload;
