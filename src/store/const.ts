@@ -7,7 +7,8 @@ export enum AuthorizationStatus {
 export enum APIRoute {
   Offers = '/offers',
   Login = '/login',
-  Logout = '/logout'
+  Logout = '/logout',
+  Offer = '/reviews'
 }
 export type AuthData = {
   login: string;

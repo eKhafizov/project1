@@ -19,6 +19,16 @@ function RoomPage(): JSX.Element {
   const offer = offers.find(
     (item) => item.id === Number(params.id));
 
+  const handleBookmarkButton = () => {
+  //  if (offer !== undefined ) {
+    //  if (offer.isFavorite === true) {
+    //  offer.isFavorite = false;
+    //  } else {
+    //    offer.isFavorite = true;
+    //  }
+    //}
+  };
+
   //lets create an empty array and will add there all comments from comments that have the same id as in offers.comments array
   //  const offerComments : CommentsType = [];
   //  comments.forEach(
@@ -57,7 +67,7 @@ function RoomPage(): JSX.Element {
               <h1 className="property__name">
                 {offer.title}
               </h1>
-              <button className="property__bookmark-button button" type="button">
+              <button className="property__bookmark-button button" type="button" onClick={handleBookmarkButton}>
                 <svg className="property__bookmark-icon" width="31" height="33">
                   <use xlinkHref="#icon-bookmark"></use>
                 </svg>

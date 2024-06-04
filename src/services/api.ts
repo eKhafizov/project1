@@ -18,11 +18,9 @@ const StatusCodeMapping: Record<number, boolean> = {
 const shouldDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[response.status];
 
 
-//
-//
-//
-//
-//
+//https://13.react.htmlacademy.pro/six-cities/comments/10 - комменты к месту
+//https://13.react.htmlacademy.pro/six-cities/offers/10/nearby - места вокруг конкретного оффера
+//https://13.react.htmlacademy.pro/six-cities/offers/10 - оффер конкретный
 const URL = 'https://13.react.htmlacademy.pro/six-cities';
 const TIME_LIMIT = 3000;
 
