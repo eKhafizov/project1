@@ -4,6 +4,7 @@ import { getToken } from './token';
 import processErrorHandle from './process_error';
 import {StatusCodes} from 'http-status-codes';
 
+//code mapping
 type DetailMessageType = {
   type: string;
   message: string;
@@ -16,6 +17,12 @@ const StatusCodeMapping: Record<number, boolean> = {
 };
 const shouldDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[response.status];
 
+
+//
+//
+//
+//
+//
 const URL = 'https://13.react.htmlacademy.pro/six-cities';
 const TIME_LIMIT = 3000;
 

@@ -9,6 +9,9 @@ function Header(): JSX.Element {
   const dispatch = useAppDispatch();
   const authStatus = useAppSelector((state) => state.authorization);
 
+  const offers = useAppSelector((state) => state.offers);
+  const favouriteOffers = offers.filter((offer) => offer.isFavorite);
+
   const dispatchLogout = () => {
     authStatus === AuthorizationStatus.Auth && dispatch(logoutAction());
   };
@@ -30,17 +33,16 @@ function Header(): JSX.Element {
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
                     <span className="header__user-name user__name">login</span>
-                    {authStatus === AuthorizationStatus.Auth && (<span className="header__favorite-count"></span>)}
+                    {authStatus === AuthorizationStatus.Auth && (<span className="header__favorite-count">{favouriteOffers.length}</span>)}
                   </NavLink>
                 </li>
                 <li className="header__nav-item">
-                  <NavLink
-                    to={AppRoutes.MAIN}
+                  <button
                     className="header__nav-link"
                     onClick={dispatchLogout}
                   >
                     <span className="header__signout">Sign out</span>
-                  </NavLink>
+                  </button>
                 </li>
               </ul>
             </nav>
