@@ -3,6 +3,7 @@ import { OffersArrayType } from '../mocks/offers';
 import { AuthorizationStatus} from '../store/const';
 import AppRoutes from '../components/AppRoutes';
 import { Comments } from '../types/appType';
+import { ServerResponse } from 'http';
 
 //создаем actionsCreators
 export const changeCityToHamburg = createAction('city/Hamburg');
@@ -17,6 +18,7 @@ export const loadOffers = createAction<OffersArrayType>('data/loadOffers');
 export const loadComments = createAction<Comments>('data/loadComments');
 export const loadOffersNearby = createAction<OffersArrayType>('data/loadOffersNearby');
 export const loadFavouritesOffers = createAction<OffersArrayType>('data/loadFavouriteOffers');
+export const addFavouritesOffers = createAction<ServerResponse>('data/addFavouriteOffer');
 export const requireAuthorization = createAction<AuthorizationStatus>('auth/createAthoriztion');
 export const setError = createAction<string | null>('data/setError');
 export const setDataLoading = createAction<boolean>('data/isLoading');

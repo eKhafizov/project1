@@ -2,13 +2,14 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch } from '../types/state';
 import { RootState } from '../types/state';
 import { AxiosInstance } from 'axios';
-import { loadOffers, redirectToRoute, requireAuthorization, setDataLoading, setError, loadComments, loadOffersNearby, loadFavouritesOffers} from './actions';
+import { loadOffers, redirectToRoute, requireAuthorization, setDataLoading, setError, loadComments, loadOffersNearby, loadFavouritesOffers, addFavouritesOffers} from './actions';
 import { OffersArrayType } from '../mocks/offers';
 import { APIRoute, AuthorizationStatus, AuthData, UserData, TIMEOUT_SHOW_ERROR} from './const';
 import { dropToken, saveToken } from '../services/token';
 import AppRoutes from '../components/AppRoutes';
 import store from '.';
 import { Comments } from '../types/appType';
+import { ServerResponse } from 'http';
 
 /*
 Создадим отдельный модуль в котором опишем асинхронные действия. В этих действиях будем выполнять запросы к серверу. На данном этапе нам потребуются следующие действия: для загрузки списка офферов, проверки наличия авторизации и отправки данных для прохождения аутентификации, отправки запроса на выход из приложения.
@@ -68,7 +69,18 @@ export const fetchFavouritesAction = createAsyncThunk<void, undefined, {
     dispatch(loadFavouritesOffers(data));
   },
 );
-
+//thunk для добавление в список favourites
+export const fetchAddFavouritesAction = createAsyncThunk<void, number, {
+  dispatch: AppDispatch;
+  state: RootState;
+  extra: AxiosInstance;
+}>(
+  'data/fetchAddFavouritesOffer',
+  async (offerId, {dispatch, extra: api}) => {
+    const {data} = await api.post<ServerResponse>(`${APIRoute.Favourite}/${offerId}/1`);
+    dispatch(addFavouritesOffers(data));
+  },
+);
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;

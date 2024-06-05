@@ -5,7 +5,7 @@ import PropertyReviews from '../components/PropertyReviews';
 import PropertyMap from '../components/PropertMap';
 import NearPlaces from '../components/NearPlaces';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { fetchCommentsAction, fetchOffersNearbyAction } from '../store/api-actions';
+import { fetchCommentsAction, fetchOffersNearbyAction, fetchAddFavouritesAction } from '../store/api-actions';
 
 //type RoomPageType = {
 //offers: OffersArrayType;
@@ -15,6 +15,7 @@ import { fetchCommentsAction, fetchOffersNearbyAction } from '../store/api-actio
 function RoomPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const offers = useAppSelector((state) => state.offers);
+  const isFavourite = useAppSelector((state) => state.favouriteOffers);
   const params = useParams();
   const offer = offers.find(
     (item) => item.id === Number(params.id));
@@ -24,13 +25,7 @@ function RoomPage(): JSX.Element {
   dispatch(fetchOffersNearbyAction(Number(offer?.id)));
 
   const handleBookmarkButton = () => {
-  //  if (offer !== undefined ) {
-    //  if (offer.isFavorite === true) {
-    //  offer.isFavorite = false;
-    //  } else {
-    //    offer.isFavorite = true;
-    //  }
-    //}
+    offer !== undefined && dispatch(fetchAddFavouritesAction(Number(offer.id)));
   };
 
   //lets create an empty array and will add there all comments from comments that have the same id as in offers.comments array
@@ -69,7 +64,7 @@ function RoomPage(): JSX.Element {
             {/* Property title */}
             <div className="property__name-wrapper">
               <h1 className="property__name">
-                {offer.title}
+                {offer.title}{isFavourite === null ? (<p>fav</p>) : (<p>no fav</p>)}
               </h1>
               <button className="property__bookmark-button button" type="button" onClick={handleBookmarkButton}>
                 <svg className="property__bookmark-icon" width="31" height="33">
