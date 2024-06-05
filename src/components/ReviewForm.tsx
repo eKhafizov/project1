@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useState} from 'react';
 import { useAppSelector, useAppDispatch} from '../hooks';
 import { AuthorizationStatus } from '../store/const';
 import { OfferType } from '../mocks/offers';
-import {fetchAddCommentsAction} from '../store/api-actions';
+import {fetchAddCommentsAction, fetchCommentsAction} from '../store/api-actions';
 
 export type PassingOfferNew = {
   offer: OfferType;
@@ -18,20 +18,18 @@ function ReviewForm({offer}: PassingOfferNew) {
     rating: 2 });
   const obj = form1;
 
+  const authorized = useAppSelector((state) => state.authorization);
+
   function handlerFormSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
     dispatch(fetchAddCommentsAction(obj));
-    //dispatch(fetchCommentsAction(Number(offer.id)));
+    dispatch(fetchCommentsAction(Number(offer.id)));
   }
-
-  const authorized = useAppSelector((state) => state.authorization);
-
   function handleTextChanges(evt: ChangeEvent<HTMLTextAreaElement>) {
     evt.preventDefault();
     const {value} = evt.target;
     setForm1({...form1, comment: value});
   }
-
   function handleRatingChanges(evt: ChangeEvent<HTMLInputElement>) {
     evt.preventDefault();
     const {value} = evt.target;
