@@ -19,7 +19,7 @@ type initialStateType = {
   isDataLoading: boolean;
   chosenOfferComments: Comments | null;
   offersNearby: OffersArrayType | null;
-  favouriteOffers: OffersArrayType | null;
+  favouriteOffers: OffersArrayType;
 }
 
 //создаем initialState
@@ -37,7 +37,7 @@ export const initialState : initialStateType = {
   isDataLoading: false,
   chosenOfferComments: null,
   offersNearby: null,
-  favouriteOffers: null
+  favouriteOffers: []
 };
 
 //создаем reducer, внутрь которого передаем initialState и делаем билдеры, к которым добавляем actionСreators
