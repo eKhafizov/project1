@@ -20,8 +20,6 @@ function App(props: AppType): JSX.Element {
         <Route path={AppRoutes.MAIN} element={<Layout />} >
           <Route index element={
             <Main
-              //offers={props.offers}
-              comments={props.comments}
               locations={props.locations}
             />
           }

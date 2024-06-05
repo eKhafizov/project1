@@ -5,12 +5,14 @@ import PropertyMap from '../components/PropertMap';
 import NearPlaces from '../components/NearPlaces';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { fetchCommentsAction, fetchOffersNearbyAction, fetchAddFavouritesAction, fetchFavouritesAction, fetchRemoveFavouritesAction } from '../store/api-actions';
+import { AuthorizationStatus } from '../store/const';
 
 
 function RoomPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const offers = useAppSelector((state) => state.offers);
   const favouriteOffers = useAppSelector((state) => state.favouriteOffers);
+  const authorized = useAppSelector((state) => state.authorization);
 
   const params = useParams();
   const offer = offers.find(
@@ -30,11 +32,11 @@ function RoomPage(): JSX.Element {
 
   const handleBookmarkButton = () => {
     if (isFavourite === false) {
-      offer !== undefined && dispatch(fetchAddFavouritesAction(Number(offer.id)));
-      dispatch(fetchFavouritesAction());
+      authorized === AuthorizationStatus.Auth && offer !== undefined && dispatch(fetchAddFavouritesAction(Number(offer.id)));
+      authorized === AuthorizationStatus.Auth && dispatch(fetchFavouritesAction());
     } else {
-      offer !== undefined && dispatch(fetchRemoveFavouritesAction(Number(offer.id)));
-      dispatch(fetchFavouritesAction());
+      authorized === AuthorizationStatus.Auth && offer !== undefined && dispatch(fetchRemoveFavouritesAction(Number(offer.id)));
+      authorized === AuthorizationStatus.Auth && dispatch(fetchFavouritesAction());
     }
   };
 
@@ -148,7 +150,7 @@ function RoomPage(): JSX.Element {
             </div>
 
             {/* Component - Property Reviews */}
-            <PropertyReviews />
+            <PropertyReviews offer={offer}/>
           </div>
         </div>
         {/* Component - PropertyMap */}

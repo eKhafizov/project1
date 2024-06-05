@@ -14,7 +14,10 @@ function Main(props: AppType ): JSX.Element {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         {/*here we changing chosenCity using dispatch inside <Locations/> */}
-        <Locations offers={offers} comments={props.comments} chosenCity={chosenCity.chosenCity} locations={props.locations} />
+        <Locations
+          chosenCity={chosenCity.chosenCity}
+          locations={props.locations}
+        />
         {/* We send chosenCity here in <Cities /> to render only offers in this city */}
         <Cities offers={offers} chosenCity={chosenCity.chosenCity} />
       </main>

@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCityToHamburg, changeCityToAmsterdam, changeCityToCologne, changeCityToBrussels, changeCityToDusseldorf, changeCityToNothing, changeCityToParis, changeFilter, loadOffers, setError, requireAuthorization, setDataLoading, loadComments, loadOffersNearby, addFavouritesOffers, loadFavouritesOffers, removeFavouritesOffers} from './actions';
+import { changeCityToHamburg, changeCityToAmsterdam, changeCityToCologne, changeCityToBrussels, changeCityToDusseldorf, changeCityToNothing, changeCityToParis, changeFilter, loadOffers, setError, requireAuthorization, setDataLoading, loadComments, loadOffersNearby, addFavouritesOffers, loadFavouritesOffers, removeFavouritesOffers, addComments} from './actions';
 import { OffersArrayType } from '../mocks/offers';
 import { AuthorizationStatus } from './const';
 import { Comments } from '../types/appType';
@@ -96,6 +96,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadComments, (state, action) => {
       state.chosenOfferComments = action.payload;
+    })
+    .addCase(addComments, (state) => {
+      state = {...state};
     })
     .addCase(addFavouritesOffers, (state) => {
       state = {...state};

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './app/app';
-import {commentsArray as comments, locations } from './mocks/offers';
+import {locations } from './mocks/offers';
 import { Provider } from 'react-redux';
 import store from './store';
 import ErrorMessage from './components/error_message';
@@ -21,7 +21,6 @@ root.render(
     <Provider store={store}>
       <ErrorMessage />
       <App
-        comments={comments}
         locations={locations}
       />
     </Provider>

@@ -1,15 +1,27 @@
 import { ChangeEvent, FormEvent, useState} from 'react';
-import { useAppSelector } from '../hooks';
+import { useAppSelector, useAppDispatch } from '../hooks';
 import { AuthorizationStatus } from '../store/const';
+import { OfferType } from '../mocks/offers';
+import {fetchAddCommentsAction, fetchCommentsAction} from '../store/api-actions';
 
-function ReviewForm() {
+export type PassingOfferNew = {
+  offer: OfferType;
+};
+
+function ReviewForm({offer}: PassingOfferNew) {
+
+  const dispatch = useAppDispatch();
 
   const [form1, setForm1] = useState({
-    text: 'Tell how was your stay, what you like and what can be improved',
-    rating: '0-start'});
+    id: Number(offer.id),
+    comment: 'Tell how was your stay, what you like and what can be improved',
+    rating: 2 });
 
   function handlerFormSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
+    console.log('in submit ', form1);
+    dispatch(fetchAddCommentsAction(form1));
+    dispatch(fetchCommentsAction(Number(offer.id)));
   }
 
   const authorized = useAppSelector((state) => state.authorization);
@@ -17,14 +29,16 @@ function ReviewForm() {
   function handleTextChanges(evt: ChangeEvent<HTMLTextAreaElement>) {
     evt.preventDefault();
     const {value} = evt.target;
-    setForm1({text: value, rating:'sss'});
+    setForm1({...form1, comment: value});
   }
 
   function handleRatingChanges(evt: ChangeEvent<HTMLInputElement>) {
     evt.preventDefault();
-    const {name, value} = evt.target;
-    setForm1({...form1, [name]: value}); //this works but we need to change previous state
+    const {value} = evt.target;
+    setForm1({...form1, rating: Number(value)}); //this works but we need to change previous state
   }
+
+
   return authorized === AuthorizationStatus.Auth
     ? (
       <form onSubmit={handlerFormSubmit} className="reviews__form form" action="#" method="post">
@@ -65,7 +79,7 @@ function ReviewForm() {
           className="reviews__textarea form__textarea"
           id="review"
           name="review"
-          placeholder={form1.text}
+          placeholder={form1.comment}
           onChange={handleTextChanges}
         >
         </textarea>
@@ -73,7 +87,7 @@ function ReviewForm() {
           <p className="reviews__help">
             To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
           </p>
-          {form1.text}
+          {form1.comment}
           {form1.rating}
           <button className="reviews__submit form__submit button" type="submit" disabled={false}>
             Submit

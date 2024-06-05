@@ -1,16 +1,13 @@
 import City from '../types/city';
-import { OffersArrayType, CommentsType } from '../mocks/offers';
 import { changeCityToHamburg, changeCityToAmsterdam, changeCityToCologne, changeCityToBrussels, changeCityToDusseldorf, changeCityToNothing, changeCityToParis, changeFilter} from '../store/actions';
 import { useAppDispatch} from '../hooks';
 
 type LocationsType = {
-  offers: OffersArrayType;
   chosenCity: City;
-  comments: CommentsType;
   locations: string[];
 };
 
-function Locations({offers, comments, chosenCity , locations}: LocationsType): JSX.Element {
+function Locations({chosenCity , locations}: LocationsType): JSX.Element {
 
   const dispatch = useAppDispatch();
 
