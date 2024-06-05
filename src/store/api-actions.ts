@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch } from '../types/state';
 import { RootState } from '../types/state';
 import { AxiosInstance } from 'axios';
-import { loadOffers, redirectToRoute, requireAuthorization, setDataLoading, setError, loadComments, loadOffersNearby, loadFavouritesOffers, addFavouritesOffers} from './actions';
+import { loadOffers, redirectToRoute, requireAuthorization, setDataLoading, setError, loadComments, loadOffersNearby, loadFavouritesOffers, addFavouritesOffers, removeFavouritesOffers} from './actions';
 import { OffersArrayType } from '../mocks/offers';
 import { APIRoute, AuthorizationStatus, AuthData, UserData, TIMEOUT_SHOW_ERROR} from './const';
 import { dropToken, saveToken } from '../services/token';
@@ -79,6 +79,18 @@ export const fetchAddFavouritesAction = createAsyncThunk<void, number, {
   async (offerId, {dispatch, extra: api}) => {
     const {data} = await api.post<ServerResponse>(`${APIRoute.Favourite}/${offerId}/1`);
     dispatch(addFavouritesOffers(data));
+  },
+);
+//thunk для удаления из списка favourites
+export const fetchRemoveFavouritesAction = createAsyncThunk<void, number, {
+  dispatch: AppDispatch;
+  state: RootState;
+  extra: AxiosInstance;
+}>(
+  'data/fetchAddFavouritesOffer',
+  async (offerId, {dispatch, extra: api}) => {
+    const {data} = await api.post<ServerResponse>(`${APIRoute.Favourite}/${offerId}/0`);
+    dispatch(removeFavouritesOffers(data));
   },
 );
 

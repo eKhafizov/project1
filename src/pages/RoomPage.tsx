@@ -4,7 +4,7 @@ import PropertyReviews from '../components/PropertyReviews';
 import PropertyMap from '../components/PropertMap';
 import NearPlaces from '../components/NearPlaces';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { fetchCommentsAction, fetchOffersNearbyAction, fetchAddFavouritesAction, fetchFavouritesAction } from '../store/api-actions';
+import { fetchCommentsAction, fetchOffersNearbyAction, fetchAddFavouritesAction, fetchFavouritesAction, fetchRemoveFavouritesAction } from '../store/api-actions';
 
 
 function RoomPage(): JSX.Element {
@@ -16,7 +16,7 @@ function RoomPage(): JSX.Element {
   const offer = offers.find(
     (item) => item.id === Number(params.id));
 
-  let isFavourite;
+  let isFavourite : boolean;
   const y = favouriteOffers.findIndex((item) => item.id === Number(params.id));
   if (y !== -1) {
     isFavourite = true;
@@ -29,8 +29,13 @@ function RoomPage(): JSX.Element {
   dispatch(fetchOffersNearbyAction(Number(offer?.id)));
 
   const handleBookmarkButton = () => {
-    offer !== undefined && dispatch(fetchAddFavouritesAction(Number(offer.id)));
-    dispatch(fetchFavouritesAction());
+    if (isFavourite === false) {
+      offer !== undefined && dispatch(fetchAddFavouritesAction(Number(offer.id)));
+      dispatch(fetchFavouritesAction());
+    } else {
+      offer !== undefined && dispatch(fetchRemoveFavouritesAction(Number(offer.id)));
+      dispatch(fetchFavouritesAction());
+    }
   };
 
   //lets create an empty array and will add there all comments from comments that have the same id as in offers.comments array

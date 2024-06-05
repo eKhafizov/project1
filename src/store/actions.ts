@@ -19,6 +19,7 @@ export const loadComments = createAction<Comments>('data/loadComments');
 export const loadOffersNearby = createAction<OffersArrayType>('data/loadOffersNearby');
 export const loadFavouritesOffers = createAction<OffersArrayType>('data/loadFavouriteOffers');
 export const addFavouritesOffers = createAction<ServerResponse>('data/addFavouriteOffer');
+export const removeFavouritesOffers = createAction<ServerResponse>('data/removeFavouriteOffer');
 export const requireAuthorization = createAction<AuthorizationStatus>('auth/createAthoriztion');
 export const setError = createAction<string | null>('data/setError');
 export const setDataLoading = createAction<boolean>('data/isLoading');
