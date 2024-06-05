@@ -1,15 +1,15 @@
 import { useRef, useEffect } from 'react';
 import useMap from '../hooks/useMap';
-import { OfferType, OffersArrayType } from '../mocks/offers';
+import { OfferType } from '../mocks/offers';
 import {Marker, layerGroup} from 'leaflet';
 import { defaultCustomIcon, currentCustomIcon } from './Map';
+import { useAppSelector } from '../hooks';
 
 type PropertyMapType = {
   offer: OfferType;
-  offers: OffersArrayType;
 }
 
-function PropertyMap({offer, offers}: PropertyMapType ): JSX.Element {
+function PropertyMap({offer}: PropertyMapType ): JSX.Element {
 
   //form an object from lat/lng of our recieved offer
   const city = {
@@ -22,10 +22,7 @@ function PropertyMap({offer, offers}: PropertyMapType ): JSX.Element {
   const map = useMap(propertyRef, city);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const sameLocations : OffersArrayType = [];
-  offers.forEach((item) => {
-    item.city.name === offer.city.name && sameLocations.push(item);
-  });
+  const sameLocations = useAppSelector((state) => state.offersNearby);
 
   //используем хук useEffect, чтобы добавлять маркеры на отрисованную карту
   useEffect(() => {
@@ -33,7 +30,7 @@ function PropertyMap({offer, offers}: PropertyMapType ): JSX.Element {
       //создаем слой
       const markerLayer = layerGroup().addTo(map);
       //для каждого объекта из props.offers делаем маркер
-      sameLocations.slice(0,4).forEach((point) => {
+      sameLocations !== null && sameLocations.forEach((point) => {
         const marker = new Marker({
           lat: point.location.latitude,
           lng: point.location.longitude

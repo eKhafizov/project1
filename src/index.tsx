@@ -5,10 +5,11 @@ import {commentsArray as comments, locations } from './mocks/offers';
 import { Provider } from 'react-redux';
 import store from './store';
 import ErrorMessage from './components/error_message';
-import {checkAuthAction, fetchOffersAction} from './store/api-actions';
+import {checkAuthAction, fetchOffersAction, fetchFavouritesAction} from './store/api-actions';
 
 store.dispatch(fetchOffersAction());
 store.dispatch(checkAuthAction());
+store.dispatch(fetchFavouritesAction());
 
 
 const root = ReactDOM.createRoot(

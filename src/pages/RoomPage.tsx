@@ -5,7 +5,7 @@ import PropertyReviews from '../components/PropertyReviews';
 import PropertyMap from '../components/PropertMap';
 import NearPlaces from '../components/NearPlaces';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { fetchCommentsAction } from '../store/api-actions';
+import { fetchCommentsAction, fetchOffersNearbyAction } from '../store/api-actions';
 
 //type RoomPageType = {
 //offers: OffersArrayType;
@@ -21,6 +21,7 @@ function RoomPage(): JSX.Element {
 
   //запросим комменты с сервера и добавим их в состояние с помощью thunk api-action
   dispatch(fetchCommentsAction(Number(offer?.id)));
+  dispatch(fetchOffersNearbyAction(Number(offer?.id)));
 
   const handleBookmarkButton = () => {
   //  if (offer !== undefined ) {
@@ -146,10 +147,10 @@ function RoomPage(): JSX.Element {
           </div>
         </div>
         {/* Component - PropertyMap */}
-        <PropertyMap offer={offer} offers={offers} />
+        <PropertyMap offer={offer} />
       </section>
       {/* Component #4 - NearPlacesContainer */}
-      <NearPlaces offer={offer} offers={offers} />
+      <NearPlaces />
     </main>
   ) : (
     <Page404 />

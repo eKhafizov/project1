@@ -1,18 +1,11 @@
-import { OfferType, OffersArrayType } from '../mocks/offers';
+import { useAppSelector } from '../hooks';
 import AppRoutes from './AppRoutes';
 
-type NearPlacesType = {
-  offer: OfferType;
-  offers: OffersArrayType;
-}
 
-function NearPlaces({offer, offers}: NearPlacesType):JSX.Element {
+function NearPlaces():JSX.Element {
 
   //creating an array of another offers in the same area as our offer.location
-  const sameLocations : OffersArrayType = [];
-  offers.forEach((item) => {
-    item.city.name === offer.city.name && item !== offer && sameLocations.push(item);
-  });
+  const sameLocations = useAppSelector((state) => state.offersNearby);
 
   return (
     <div className="container">

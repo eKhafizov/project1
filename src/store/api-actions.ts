@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch } from '../types/state';
 import { RootState } from '../types/state';
 import { AxiosInstance } from 'axios';
-import { loadOffers, redirectToRoute, requireAuthorization, setDataLoading, setError, loadComments } from './actions';
+import { loadOffers, redirectToRoute, requireAuthorization, setDataLoading, setError, loadComments, loadOffersNearby, loadFavouritesOffers} from './actions';
 import { OffersArrayType } from '../mocks/offers';
 import { APIRoute, AuthorizationStatus, AuthData, UserData, TIMEOUT_SHOW_ERROR} from './const';
 import { dropToken, saveToken } from '../services/token';
@@ -14,8 +14,11 @@ import { Comments } from '../types/appType';
 Создадим отдельный модуль в котором опишем асинхронные действия. В этих действиях будем выполнять запросы к серверу. На данном этапе нам потребуются следующие действия: для загрузки списка офферов, проверки наличия авторизации и отправки данных для прохождения аутентификации, отправки запроса на выход из приложения.
 */
 
-
-export const fetchOffersAction = createAsyncThunk<void, undefined, {
+//thunk для загрузки офферов с сервера
+export const fetchOffersAction = createAsyncThunk<
+void,
+undefined,
+{
   dispatch: AppDispatch;
   state: RootState;
   extra: AxiosInstance;
@@ -28,7 +31,9 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
     dispatch(loadOffers(data));
   },
 );
-export const fetchCommentsAction = createAsyncThunk<void, number, { //string отвечает за offerId ??
+//thunk для загрузки комментов с сервера
+//number здесь отвечает за тип offerId. А offerId - за аргумент, который мы добавим в качестве запроса к серверу внутри функции
+export const fetchCommentsAction = createAsyncThunk<void, number, {
   dispatch: AppDispatch;
   state: RootState;
   extra: AxiosInstance;
@@ -37,6 +42,30 @@ export const fetchCommentsAction = createAsyncThunk<void, number, { //string о�
   async (offerId, {dispatch, extra: api}) => {
     const {data} = await api.get<Comments>(`${APIRoute.Comments}/${offerId}`);
     dispatch(loadComments(data));
+  },
+);
+//thunk для загрузки мест рядом
+export const fetchOffersNearbyAction = createAsyncThunk<void, number, {
+  dispatch: AppDispatch;
+  state: RootState;
+  extra: AxiosInstance;
+}>(
+  'data/fetchOffersNearby',
+  async (offerId, {dispatch, extra: api}) => {
+    const {data} = await api.get<OffersArrayType>(`${APIRoute.Offers}/${offerId}/nearby`);
+    dispatch(loadOffersNearby(data));
+  },
+);
+//thunk для списка favourites
+export const fetchFavouritesAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch;
+  state: RootState;
+  extra: AxiosInstance;
+}>(
+  'data/fetchFavouritesOffers',
+  async (_arg, {dispatch, extra: api}) => {
+    const {data} = await api.get<OffersArrayType>(APIRoute.Favourite);
+    dispatch(loadFavouritesOffers(data));
   },
 );
 

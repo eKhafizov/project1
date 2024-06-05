@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCityToHamburg, changeCityToAmsterdam, changeCityToCologne, changeCityToBrussels, changeCityToDusseldorf, changeCityToNothing, changeCityToParis, changeFilter, loadOffers, setError, requireAuthorization, setDataLoading, loadComments} from './actions';
+import { changeCityToHamburg, changeCityToAmsterdam, changeCityToCologne, changeCityToBrussels, changeCityToDusseldorf, changeCityToNothing, changeCityToParis, changeFilter, loadOffers, setError, requireAuthorization, setDataLoading, loadComments, loadOffersNearby, loadFavouritesOffers} from './actions';
 import { OffersArrayType } from '../mocks/offers';
 import { AuthorizationStatus } from './const';
 import { Comments } from '../types/appType';
@@ -18,6 +18,8 @@ type initialStateType = {
   error: string | null;
   isDataLoading: boolean;
   chosenOfferComments: Comments | null;
+  offersNearby: OffersArrayType | null;
+  favouriteOffers: OffersArrayType | null;
 }
 
 //создаем initialState
@@ -33,7 +35,9 @@ export const initialState : initialStateType = {
   offers: [],
   error: null,
   isDataLoading: false,
-  chosenOfferComments: null
+  chosenOfferComments: null,
+  offersNearby: null,
+  favouriteOffers: null
 };
 
 //создаем reducer, внутрь которого передаем initialState и делаем билдеры, к которым добавляем actionСreators
@@ -83,6 +87,12 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
+    })
+    .addCase(loadOffersNearby, (state, action) => {
+      state.offersNearby = action.payload;
+    })
+    .addCase(loadFavouritesOffers, (state, action) => {
+      state.favouriteOffers = action.payload;
     })
     .addCase(loadComments, (state, action) => {
       state.chosenOfferComments = action.payload;
