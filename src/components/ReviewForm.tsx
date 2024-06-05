@@ -1,8 +1,8 @@
 import { ChangeEvent, FormEvent, useState} from 'react';
-import { useAppSelector, useAppDispatch } from '../hooks';
+import { useAppSelector, useAppDispatch} from '../hooks';
 import { AuthorizationStatus } from '../store/const';
 import { OfferType } from '../mocks/offers';
-import {fetchAddCommentsAction, fetchCommentsAction} from '../store/api-actions';
+import {fetchAddCommentsAction} from '../store/api-actions';
 
 export type PassingOfferNew = {
   offer: OfferType;
@@ -16,12 +16,12 @@ function ReviewForm({offer}: PassingOfferNew) {
     id: Number(offer.id),
     comment: 'Tell how was your stay, what you like and what can be improved',
     rating: 2 });
+  const obj = form1;
 
   function handlerFormSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
-    console.log('in submit ', form1);
-    dispatch(fetchAddCommentsAction(form1));
-    dispatch(fetchCommentsAction(Number(offer.id)));
+    dispatch(fetchAddCommentsAction(obj));
+    //dispatch(fetchCommentsAction(Number(offer.id)));
   }
 
   const authorized = useAppSelector((state) => state.authorization);
@@ -35,7 +35,7 @@ function ReviewForm({offer}: PassingOfferNew) {
   function handleRatingChanges(evt: ChangeEvent<HTMLInputElement>) {
     evt.preventDefault();
     const {value} = evt.target;
-    setForm1({...form1, rating: Number(value)}); //this works but we need to change previous state
+    setForm1({...form1, rating: Number(value)});
   }
 
 

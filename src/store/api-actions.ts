@@ -75,12 +75,13 @@ export const fetchCommentsAction = createAsyncThunk<void, number, {
     dispatch(loadComments(data));
   },
 );
+
 //thunk для отправки коммента на сервер
 //нам нужно id-оффера, чтобы знать к какому объекту коммент
 //нам нужнен коммент сам с текстом
 //нам нужно значение рейтинга для публикации коммента
 export const fetchAddCommentsAction = createAsyncThunk<
-Review,
+void,
 DataCommentType,
 {
   dispatch: AppDispatch;
@@ -89,9 +90,9 @@ DataCommentType,
 }
 >(
   'data/fetchAddComment',
-  async ({comment, rating, id} , {extra: api}) => {
-    const {data} = await api.post<Review>(`${APIRoute.Comments}/${id}`, {rating, comment});
-    dispatch(addComments(data));
+  async ({ id, comment, rating } , {extra: api}) => {
+    const {data} = await api.post<Review>(`${APIRoute.Comments}/${id}`, {comment, rating});
+    store.dispatch(addComments(data));
   },
 );
 
