@@ -7,6 +7,8 @@ import City from '../types/city';
 import { OffersArrayType} from '../mocks/offers';
 import { useAppSelector } from '../hooks';
 import { sortByPriceDown, sortByPriceUp, sortByPopularity } from '../mocks/utils';
+import {getCurrentFilter} from '../store/user-options';
+import {isDataLoading} from '../store/service-data';
 
 type CitiesType = {
   offers: OffersArrayType;
@@ -23,7 +25,7 @@ function Cities({offers, chosenCity } : CitiesType): JSX.Element {
   }
 
   //получаем текущий фильтр из состояния store
-  const currentFilter = useAppSelector((state) => state.chosenFilter);
+  const currentFilter = useAppSelector(getCurrentFilter);
   //фильтруем города, которые находятся в выбранном городе
   const offersInChosenCity = offers.filter((offer) => offer.city.name === chosenCity.name);
   //функция сортировки (изменения копии) массива офферов в нужном городе
@@ -44,8 +46,8 @@ function Cities({offers, chosenCity } : CitiesType): JSX.Element {
   //присваиваем полученный после фильтров и сортировки массив перменной и передаем ее на отрисовку
   const filteredOffersInCity = filterAllOffers();
 
-  const isDataLoading = useAppSelector((state) => state.isDataLoading);
-  if (isDataLoading && offers.length < 1) {
+  const isDataLoaded = useAppSelector(isDataLoading);
+  if (isDataLoaded && offers.length < 1) {
     return (
       <div>
         <h2>LOADING</h2>

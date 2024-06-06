@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { getToken } from './token';
-import processErrorHandle from './process_error';
 import {StatusCodes} from 'http-status-codes';
 
 //code mapping
@@ -49,8 +48,8 @@ const createApi = () : AxiosInstance => {
     (response) => response,
     (error: AxiosError<DetailMessageType>) => {
       if (error.response && shouldDisplayError(error.response)) {
-        const detailMessage = (error.response.data);
-        processErrorHandle(detailMessage.message);
+        //const detailMessage = (error.response.data);
+        //processErrorHandle(detailMessage.message);
       }
       throw error;
     });

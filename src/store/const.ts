@@ -21,3 +21,11 @@ export type UserData = {
   token: string;
 };
 export const TIMEOUT_SHOW_ERROR = 2000;
+
+
+//AFTER OPTIMISATION
+export enum Namespace {
+  Data = 'DATA',
+  User = 'USER',
+  ChosenOptions = 'CHOSEN_OPTIONS'
+}

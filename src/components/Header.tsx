@@ -3,12 +3,14 @@ import AppRoutes from '../components/AppRoutes';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { logoutAction } from '../store/api-actions';
 import { AuthorizationStatus } from '../store/const';
+import {getAuthorization} from '../store/user-data';
+import {getFavouriteOffers} from '../store/service-data';
 
 function Header(): JSX.Element {
 
   const dispatch = useAppDispatch();
-  const authStatus = useAppSelector((state) => state.authorization);
-  const favouriteOffers = useAppSelector((state) => state.favouriteOffers);
+  const authStatus = useAppSelector(getAuthorization);
+  const favouriteOffers = useAppSelector(getFavouriteOffers);
 
   const dispatchLogout = () => {
     authStatus === AuthorizationStatus.Auth && dispatch(logoutAction());
@@ -51,3 +53,6 @@ function Header(): JSX.Element {
 }
 
 export default Header;
+
+
+//Поменять везде, где appselectors

@@ -6,13 +6,15 @@ import NearPlaces from '../components/NearPlaces';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { fetchCommentsAction, fetchOffersNearbyAction, fetchAddFavouritesAction, fetchFavouritesAction, fetchRemoveFavouritesAction } from '../store/api-actions';
 import { AuthorizationStatus } from '../store/const';
-
+import {getOffers, getFavouriteOffers} from '../store/service-data';
+import {getAuthorization} from '../store/user-data';
 
 function RoomPage(): JSX.Element {
   const dispatch = useAppDispatch();
-  const offers = useAppSelector((state) => state.offers);
-  const favouriteOffers = useAppSelector((state) => state.favouriteOffers);
-  const authorized = useAppSelector((state) => state.authorization);
+  const offers = useAppSelector(getOffers);
+  const favouriteOffers = useAppSelector(getFavouriteOffers);
+  const authorized = useAppSelector(getAuthorization);
+
 
   const params = useParams();
   const offer = offers.find(
