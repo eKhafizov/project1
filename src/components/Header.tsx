@@ -53,6 +53,3 @@ function Header(): JSX.Element {
 }
 
 export default Header;
-
-
-//Поменять везде, где appselectors

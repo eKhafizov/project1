@@ -42,3 +42,4 @@ export const serviceData = createSlice({
 export const getOffers = (state: RootState) : OffersArrayType => state[Namespace.Data].offers;
 export const getFavouriteOffers = (state: RootState) : OffersArrayType => state[Namespace.Data].favouriteOffers;
 export const isDataLoading = (state: RootState) : boolean => state[Namespace.Data].isDataLoading;
+export const getNearbyOffers = (state: RootState) : OffersArrayType | null => state[Namespace.Data].offersNearby;

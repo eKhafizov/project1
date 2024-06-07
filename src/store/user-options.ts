@@ -97,4 +97,7 @@ export const getChosenCity = (state: RootState) : {
   lng: number;
   zoom: number;
 } => state[Namespace.ChosenOptions].chosenCity;
+
 export const getCurrentFilter = (state: RootState) : string => state[Namespace.ChosenOptions].chosenFilter;
+export const getOfferComments = (state: RootState) : Comments | null => state[Namespace.ChosenOptions].chosenOfferComments;
+export const getCurrentCity = (state: RootState) : {name: string;lat: number;lng: number;zoom: number} => state[Namespace.ChosenOptions].chosenCity;

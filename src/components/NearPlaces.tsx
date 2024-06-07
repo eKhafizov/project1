@@ -1,11 +1,12 @@
 import { useAppSelector } from '../hooks';
 import AppRoutes from './AppRoutes';
-
+import {getNearbyOffers} from '../store/service-data';
+import { Link } from 'react-router-dom';
 
 function NearPlaces():JSX.Element {
 
   //creating an array of another offers in the same area as our offer.location
-  const sameLocations = useAppSelector((state) => state.offersNearby);
+  const sameLocations = useAppSelector(getNearbyOffers);
 
   return (
     <div className="container">
@@ -48,7 +49,7 @@ function NearPlaces():JSX.Element {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">{item.title}</a>
+                      <Link to={AppRoutes.ROOM + (item.id).toString()}>{item.title}</Link>
                     </h2>
                     <p className="place-card__type">{item.type}</p>
                   </div>

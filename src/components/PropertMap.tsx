@@ -4,6 +4,7 @@ import { OfferType } from '../mocks/offers';
 import {Marker, layerGroup} from 'leaflet';
 import { defaultCustomIcon, currentCustomIcon } from './Map';
 import { useAppSelector } from '../hooks';
+import {getNearbyOffers} from '../store/service-data';
 
 type PropertyMapType = {
   offer: OfferType;
@@ -22,7 +23,7 @@ function PropertyMap({offer}: PropertyMapType ): JSX.Element {
   const map = useMap(propertyRef, city);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const sameLocations = useAppSelector((state) => state.offersNearby);
+  const sameLocations = useAppSelector(getNearbyOffers);
 
   //используем хук useEffect, чтобы добавлять маркеры на отрисованную карту
   useEffect(() => {

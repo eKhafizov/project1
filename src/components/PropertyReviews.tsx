@@ -1,6 +1,7 @@
 import ReviewForm from './ReviewForm';
 import { useAppSelector } from '../hooks';
 import { OfferType } from '../mocks/offers';
+import {getOfferComments} from '../store/user-options';
 
 export type PassingOffer = {
   offer: OfferType;
@@ -8,7 +9,7 @@ export type PassingOffer = {
 
 function PropertyReviews({offer}: PassingOffer):JSX.Element {
   //запросим комменты из состояния
-  const comments = useAppSelector((state) => state.chosenOfferComments);
+  const comments = useAppSelector(getOfferComments);
 
   return (
     <section className="property__reviews reviews">

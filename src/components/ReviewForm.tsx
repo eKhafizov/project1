@@ -3,6 +3,7 @@ import { useAppSelector, useAppDispatch} from '../hooks';
 import { AuthorizationStatus } from '../store/const';
 import { OfferType } from '../mocks/offers';
 import {fetchAddCommentsAction, fetchCommentsAction} from '../store/api-actions';
+import {getAuthorization} from '../store/user-data';
 
 export type PassingOfferNew = {
   offer: OfferType;
@@ -18,7 +19,7 @@ function ReviewForm({offer}: PassingOfferNew) {
     rating: 2 });
   const obj = form1;
 
-  const authorized = useAppSelector((state) => state.authorization);
+  const authorized = useAppSelector(getAuthorization);
 
   function handlerFormSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
