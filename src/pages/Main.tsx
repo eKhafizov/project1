@@ -2,8 +2,8 @@ import Locations from '../components/Locations';
 import Cities from '../components/Cities';
 import AppType from '../types/appType';
 import {useAppSelector} from '../hooks/index';
-import { getOffers } from '../store/service-data';
-import {getChosenCity} from '../store/user-options';
+import { getOffers } from '../store/offers-data/offers-data';
+import {getChosenCity} from '../store/user-activity/selector';
 
 function Main(props: AppType ): JSX.Element {
 

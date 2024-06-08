@@ -23,9 +23,8 @@ export type UserData = {
 export const TIMEOUT_SHOW_ERROR = 2000;
 
 
-//AFTER OPTIMISATION
 export enum Namespace {
-  Data = 'DATA',
-  User = 'USER',
-  ChosenOptions = 'CHOSEN_OPTIONS'
+  offersData = 'OFFERS_DATA',
+  serverData = 'SERVER_DATA',
+  userActivity = 'USER_ACTIVITY'
 }

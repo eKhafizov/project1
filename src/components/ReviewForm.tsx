@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch} from '../hooks';
 import { AuthorizationStatus } from '../store/const';
 import { OfferType } from '../mocks/offers';
 import {fetchAddCommentsAction, fetchCommentsAction} from '../store/api-actions';
-import {getAuthorization} from '../store/user-data';
+import {getAuthorization} from '../store/server-data/selector';
 
 export type PassingOfferNew = {
   offer: OfferType;

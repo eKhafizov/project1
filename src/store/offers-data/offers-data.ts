@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Namespace } from './const';
-import { fetchOffersAction, fetchOffersNearbyAction, fetchFavouritesAction} from './api-actions';
-import { OffersArrayType } from '../mocks/offers';
-import { RootState } from '../types/state';
+import { Namespace } from '../const';
+import { fetchOffersAction, fetchOffersNearbyAction, fetchFavouritesAction} from '../api-actions';
+import { OffersArrayType } from '../../mocks/offers';
+import { RootState } from '../../types/state';
 
 //EVRT in this file has been made after optimization
 export type ServiceDataType = {
@@ -20,26 +20,26 @@ const initialState : ServiceDataType = {
   favouriteOffers: []
 };
 
-export const serviceData = createSlice({
-  name: Namespace.Data,
+export const offersData = createSlice({
+  name: Namespace.offersData,
   initialState: initialState,
   reducers: {},
   extraReducers(builder) {
-    builder
+    builder ///////////api-action
       .addCase(fetchOffersAction.fulfilled, (state, action) => {
         state.offers = action.payload;
         state.isDataLoading = false;
-      })
+      }) ///////////api-action
       .addCase(fetchOffersNearbyAction.fulfilled, (state, action) => {
         state.offersNearby = action.payload;
-      })
+      }) ///////////api-action
       .addCase(fetchFavouritesAction.fulfilled, (state, action) => {
         state.favouriteOffers = action.payload;
       });
   },
 });
 
-export const getOffers = (state: RootState) : OffersArrayType => state[Namespace.Data].offers;
-export const getFavouriteOffers = (state: RootState) : OffersArrayType => state[Namespace.Data].favouriteOffers;
-export const isDataLoading = (state: RootState) : boolean => state[Namespace.Data].isDataLoading;
-export const getNearbyOffers = (state: RootState) : OffersArrayType | null => state[Namespace.Data].offersNearby;
+export const getOffers = (state: RootState) : OffersArrayType => state[Namespace.offersData].offers;
+export const getFavouriteOffers = (state: RootState) : OffersArrayType => state[Namespace.offersData].favouriteOffers;
+export const isDataLoading = (state: RootState) : boolean => state[Namespace.offersData].isDataLoading;
+export const getNearbyOffers = (state: RootState) : OffersArrayType | null => state[Namespace.offersData].offersNearby;

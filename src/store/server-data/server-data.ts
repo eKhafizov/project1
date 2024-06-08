@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { AuthorizationStatus, Namespace } from './const';
-import { checkAuthAction, loginAction, logoutAction } from './api-actions';
-import { RootState } from '../types/state';
+import { AuthorizationStatus, Namespace } from '../const';
+import { checkAuthAction, loginAction, logoutAction } from '../api-actions';
 
 export type UserProcessType = {
   authorizationStatus: AuthorizationStatus;
@@ -11,8 +10,8 @@ const initialState : UserProcessType = {
   authorizationStatus: AuthorizationStatus.Unknown
 };
 
-export const userProcess = createSlice({
-  name: Namespace.User,
+export const serverData = createSlice({
+  name: Namespace.serverData,
   initialState: initialState,
   reducers: {},
   extraReducers(builder) {
@@ -34,5 +33,3 @@ export const userProcess = createSlice({
       });
   },
 });
-
-export const getAuthorization = (state: RootState) : string => state[Namespace.User].authorizationStatus;

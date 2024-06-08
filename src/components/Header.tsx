@@ -3,15 +3,15 @@ import AppRoutes from '../components/AppRoutes';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { logoutAction } from '../store/api-actions';
 import { AuthorizationStatus } from '../store/const';
-import {getAuthorization} from '../store/user-data';
-import {getFavouriteOffers} from '../store/service-data';
+import {getAuthorization} from '../store/server-data/selector';
+import {getFavouriteOffers} from '../store/offers-data/selector';
 
 function Header(): JSX.Element {
 
-  const dispatch = useAppDispatch();
   const authStatus = useAppSelector(getAuthorization);
   const favouriteOffers = useAppSelector(getFavouriteOffers);
 
+  const dispatch = useAppDispatch();
   const dispatchLogout = () => {
     authStatus === AuthorizationStatus.Auth && dispatch(logoutAction());
   };

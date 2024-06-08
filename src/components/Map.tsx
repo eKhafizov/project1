@@ -5,6 +5,8 @@ import {Icon, Marker, layerGroup} from 'leaflet';
 import City from '../types/city';
 import { OffersArrayType } from '../mocks/offers';
 import { OfferType } from '../mocks/offers';
+import { useAppSelector } from '../hooks';
+import { getCurrentCity } from '../store/user-activity/selector';
 
 //markers
 const defaultCustomIcon = new Icon({
@@ -27,13 +29,14 @@ type AppTypeSelect = {
 
 function Map({offersInChosenCity, chosenCity, selectedOffer, onListItemHover}: AppTypeSelect): JSX.Element {
 
+  const city = useAppSelector(getCurrentCity);
 
   //используем хук useRef и вешаем ссылку на DOM дива, где будет отрисована карта
   const myRef = useRef(null);
 
   // создаем переменную map - используя хук useMap, который строит карту
   // в этот хук передаем город из props.city и ссылку на объект DOM, куда эту карту отрисуем
-  const map = useMap(myRef, chosenCity);
+  const map = useMap(myRef, city);
 
   //используем хук useEffect, чтобы добавлять маркеры на отрисованную карту
   useEffect(() => {
@@ -61,8 +64,15 @@ function Map({offersInChosenCity, chosenCity, selectedOffer, onListItemHover}: A
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, offersInChosenCity, selectedOffer, chosenCity.name]);
+  }, [map, offersInChosenCity, selectedOffer, city]);
 
+  //хук, чтобы обновлять карту после смены города в шапке
+  useEffect(() => {
+    map !== null && map.setView(
+      [city.lat, city.lng],
+      city.zoom
+    );
+  }, [city, map]);
 
   return (
     <div className="cities__right-section">

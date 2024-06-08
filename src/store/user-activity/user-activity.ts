@@ -1,9 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Namespace } from './const';
-import { fetchCommentsAction, fetchAddCommentsAction, fetchAddFavouritesAction, fetchRemoveFavouritesAction } from './api-actions';
-import { Comments } from '../types/appType';
-import { changeCityToAmsterdam, changeCityToCologne, changeCityToBrussels, changeCityToDusseldorf, changeCityToHamburg, changeCityToNothing, changeCityToParis, changeFilter } from './actions';
-import { RootState } from '../types/state';
+import { Namespace } from '../const';
+import { fetchCommentsAction, fetchAddCommentsAction, fetchAddFavouritesAction, fetchRemoveFavouritesAction } from '../api-actions';
+import { Comments } from '../../types/appType';
+import { changeCityToAmsterdam, changeCityToCologne, changeCityToBrussels, changeCityToDusseldorf, changeCityToHamburg, changeCityToNothing, changeCityToParis, changeFilter } from '../actions';
 
 //EVRT in this file has been made after optimization
 export type UserOptionsType = {
@@ -28,8 +27,8 @@ const initialState : UserOptionsType = {
 };
 
 
-export const userOptions = createSlice({
-  name: Namespace.ChosenOptions,
+export const userActivity = createSlice({
+  name: Namespace.userActivity,
   initialState: initialState,
   reducers: {},
   extraReducers(builder) {
@@ -90,14 +89,3 @@ export const userOptions = createSlice({
       });
   },
 });
-
-export const getChosenCity = (state: RootState) : {
-  name: string;
-  lat: number;
-  lng: number;
-  zoom: number;
-} => state[Namespace.ChosenOptions].chosenCity;
-
-export const getCurrentFilter = (state: RootState) : string => state[Namespace.ChosenOptions].chosenFilter;
-export const getOfferComments = (state: RootState) : Comments | null => state[Namespace.ChosenOptions].chosenOfferComments;
-export const getCurrentCity = (state: RootState) : {name: string;lat: number;lng: number;zoom: number} => state[Namespace.ChosenOptions].chosenCity;

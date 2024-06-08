@@ -4,7 +4,7 @@ import { OfferType } from '../mocks/offers';
 import {Marker, layerGroup} from 'leaflet';
 import { defaultCustomIcon, currentCustomIcon } from './Map';
 import { useAppSelector } from '../hooks';
-import {getNearbyOffers} from '../store/service-data';
+import {getNearbyOffers} from '../store/offers-data/offers-data';
 
 type PropertyMapType = {
   offer: OfferType;

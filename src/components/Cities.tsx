@@ -7,8 +7,8 @@ import City from '../types/city';
 import { OffersArrayType} from '../mocks/offers';
 import { useAppSelector } from '../hooks';
 import { sortByPriceDown, sortByPriceUp, sortByPopularity } from '../mocks/utils';
-import {getCurrentFilter} from '../store/user-options';
-import {isDataLoading} from '../store/service-data';
+import {getCurrentFilter} from '../store/user-activity/selector';
+import {isDataLoading} from '../store/offers-data/selector';
 
 type CitiesType = {
   offers: OffersArrayType;
