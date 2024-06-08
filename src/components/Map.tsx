@@ -41,6 +41,10 @@ function Map({offersInChosenCity, chosenCity, selectedOffer, onListItemHover}: A
   //используем хук useEffect, чтобы добавлять маркеры на отрисованную карту
   useEffect(() => {
     if (map) {
+      //обновляем карту, центрируя вью на нужном городе
+      map.setView([city.lat, city.lng],
+        city.zoom);
+
       //создаем слой
       const markerLayer = layerGroup().addTo(map);
       //для каждого объекта из props.offers делаем маркер
@@ -66,13 +70,6 @@ function Map({offersInChosenCity, chosenCity, selectedOffer, onListItemHover}: A
     }
   }, [map, offersInChosenCity, selectedOffer, city]);
 
-  //хук, чтобы обновлять карту после смены города в шапке
-  useEffect(() => {
-    map !== null && map.setView(
-      [city.lat, city.lng],
-      city.zoom
-    );
-  }, [city, map]);
 
   return (
     <div className="cities__right-section">
