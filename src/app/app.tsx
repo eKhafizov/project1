@@ -9,9 +9,16 @@ import Page404 from '../pages/Page404';
 import AppType from '../types/appType';
 import HistoryRouter from '../history-route';
 import browserHistory from '../browser-history';
-
+import { useAppSelector } from '../hooks';
+import ErrorPage from '../pages/ErrorPage';
+import { getErrors } from '../store/offers-data/selector';
 
 function App(props: AppType): JSX.Element {
+
+  const error = useAppSelector(getErrors);
+  if (error) {
+    return (<ErrorPage />);
+  }
 
   return (
     <HistoryRouter history={browserHistory}>

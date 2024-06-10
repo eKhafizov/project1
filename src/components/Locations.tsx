@@ -1,15 +1,15 @@
-import City from '../types/city';
 import { changeCityToHamburg, changeCityToAmsterdam, changeCityToCologne, changeCityToBrussels, changeCityToDusseldorf, changeCityToNothing, changeCityToParis, changeFilter} from '../store/actions';
-import { useAppDispatch} from '../hooks';
+import { useAppDispatch, useAppSelector} from '../hooks';
+import { getChosenCity } from '../store/user-activity/selector';
 
 type LocationsType = {
-  chosenCity: City;
   locations: string[];
 };
 
-function Locations({chosenCity , locations}: LocationsType): JSX.Element {
+function Locations({locations}: LocationsType): JSX.Element {
 
   const dispatch = useAppDispatch();
+  const chosenCity = useAppSelector(getChosenCity);
 
   function chooseCity(name: string) {
     switch(name) {

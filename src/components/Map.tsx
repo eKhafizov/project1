@@ -1,12 +1,12 @@
 import 'leaflet/dist/leaflet.css';
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import useMap from '../hooks/useMap';
 import {Icon, Marker, layerGroup} from 'leaflet';
-import City from '../types/city';
 import { OffersArrayType } from '../mocks/offers';
 import { OfferType } from '../mocks/offers';
 import { useAppSelector } from '../hooks';
 import { getCurrentCity } from '../store/user-activity/selector';
+
 
 //markers
 const defaultCustomIcon = new Icon({
@@ -22,12 +22,10 @@ const currentCustomIcon = new Icon({
 
 type AppTypeSelect = {
   offersInChosenCity: OffersArrayType;
-  chosenCity: City;
   selectedOffer?: OfferType;
-  onListItemHover: (item: OfferType) => void;
 };
 
-function Map({offersInChosenCity, chosenCity, selectedOffer, onListItemHover}: AppTypeSelect): JSX.Element {
+function Map({offersInChosenCity, selectedOffer}: AppTypeSelect): JSX.Element {
 
   const city = useAppSelector(getCurrentCity);
 

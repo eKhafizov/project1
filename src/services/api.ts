@@ -26,7 +26,6 @@ const TIME_LIMIT = 3000;
 //Для отправки сетевых запросов воспользуемся пакетом `axios`
 //Создадим отдельный модуль и опишем в нём функцию `createAPI`.
 const createApi = () : AxiosInstance => {
-
   const api = axios.create({
     baseURL: URL,
     timeout: TIME_LIMIT,
@@ -40,8 +39,7 @@ const createApi = () : AxiosInstance => {
       config.headers['x-token'] = token;
     }
     return config;
-  }
-  );
+  });
 
 
   api.interceptors.response.use(

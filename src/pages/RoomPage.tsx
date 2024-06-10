@@ -6,7 +6,7 @@ import NearPlaces from '../components/NearPlaces';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { fetchCommentsAction, fetchOffersNearbyAction, fetchAddFavouritesAction, fetchFavouritesAction, fetchRemoveFavouritesAction } from '../store/api-actions';
 import { AuthorizationStatus } from '../store/const';
-import {getOffers, getFavouriteOffers} from '../store/offers-data/offers-data';
+import {getOffers, getFavouriteOffers} from '../store/offers-data/selector';
 import {getAuthorization} from '../store/server-data/selector';
 
 function RoomPage(): JSX.Element {

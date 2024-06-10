@@ -1,16 +1,19 @@
 import { FormEvent, useState } from 'react';
-import { useAppDispatch } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../hooks';
 import { changeFilter } from '../store/actions';
+import { getCurrentFilter } from '../store/user-activity/selector';
 
-function Form({currentFilter}: {currentFilter: string}): JSX.Element {
+function Form(): JSX.Element {
 
   const dispatch = useAppDispatch();
+  //const currentFilter = useMemo(useAppSelector(getCurrentFilter),[]);
+  const currentFilter = useAppSelector(getCurrentFilter);
 
   function hanldeFormSubmit(evt: FormEvent) {
     evt.preventDefault();
   }
-  const [ulOpen, setUlOpen] = useState(false);
 
+  const [ulOpen, setUlOpen] = useState(false);
   function toggleUl() {
     setUlOpen((previous) => {
       if (previous === true) {
@@ -35,7 +38,7 @@ function Form({currentFilter}: {currentFilter: string}): JSX.Element {
           className={(currentFilter === 'popular') ? ('places__option places__option--active') : ('places__option')}
           tabIndex={0}
           onClick={() => {
-            dispatch(changeFilter('popular'));
+            currentFilter !== 'popular' && dispatch(changeFilter('popular'));
             toggleUl();
           }}
         >Popular
@@ -44,7 +47,7 @@ function Form({currentFilter}: {currentFilter: string}): JSX.Element {
           className={(currentFilter === 'priceLowToHigh') ? ('places__option places__option--active') : ('places__option')}
           tabIndex={1}
           onClick={() => {
-            dispatch(changeFilter('priceLowToHigh'));
+            currentFilter !== 'priceLowToHigh' && dispatch(changeFilter('priceLowToHigh'));
             toggleUl();
           }}
         >Price: low to high
@@ -53,7 +56,7 @@ function Form({currentFilter}: {currentFilter: string}): JSX.Element {
           className={(currentFilter === 'priceHighToLow') ? ('places__option places__option--active') : ('places__option')}
           tabIndex={2}
           onClick={() => {
-            dispatch(changeFilter('priceHighToLow'));
+            currentFilter !== 'priceHighToLow' && dispatch(changeFilter('priceHighToLow'));
             toggleUl();
           }}
         >Price: high to low
@@ -62,7 +65,7 @@ function Form({currentFilter}: {currentFilter: string}): JSX.Element {
           className={(currentFilter === 'topRated') ? ('places__option places__option--active') : ('places__option')}
           tabIndex={3}
           onClick={() => {
-            dispatch(changeFilter('topRated'));
+            currentFilter !== 'topRated' && dispatch(changeFilter('topRated'));
             toggleUl();
           }}
         >Top rated first

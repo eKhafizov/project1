@@ -2,19 +2,18 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Namespace } from '../const';
 import { fetchOffersAction, fetchOffersNearbyAction, fetchFavouritesAction} from '../api-actions';
 import { OffersArrayType } from '../../mocks/offers';
-import { RootState } from '../../types/state';
 
 //EVRT in this file has been made after optimization
 export type ServiceDataType = {
   offers: OffersArrayType;
-  error: string | null;
+  error: boolean;
   isDataLoading: boolean;
   offersNearby: OffersArrayType | null;
   favouriteOffers: OffersArrayType;
 }
 const initialState : ServiceDataType = {
   offers: [],
-  error: null,
+  error: false,
   isDataLoading: true,
   offersNearby: null,
   favouriteOffers: []
@@ -29,7 +28,10 @@ export const offersData = createSlice({
       .addCase(fetchOffersAction.fulfilled, (state, action) => {
         state.offers = action.payload;
         state.isDataLoading = false;
-      }) ///////////api-action
+      })
+      .addCase(fetchOffersAction.rejected, (state, action) => {
+        state.error = true;
+      })
       .addCase(fetchOffersNearbyAction.fulfilled, (state, action) => {
         state.offersNearby = action.payload;
       }) ///////////api-action
@@ -38,8 +40,3 @@ export const offersData = createSlice({
       });
   },
 });
-
-export const getOffers = (state: RootState) : OffersArrayType => state[Namespace.offersData].offers;
-export const getFavouriteOffers = (state: RootState) : OffersArrayType => state[Namespace.offersData].favouriteOffers;
-export const isDataLoading = (state: RootState) : boolean => state[Namespace.offersData].isDataLoading;
-export const getNearbyOffers = (state: RootState) : OffersArrayType | null => state[Namespace.offersData].offersNearby;
