@@ -1,6 +1,7 @@
-import { changeCityToHamburg, changeCityToAmsterdam, changeCityToCologne, changeCityToBrussels, changeCityToDusseldorf, changeCityToNothing, changeCityToParis, changeFilter} from '../store/actions';
+import { changeFilter} from '../store/actions';
 import { useAppDispatch, useAppSelector} from '../hooks';
 import { getChosenCity } from '../store/user-activity/selector';
+import { changeCityToAmsterdam, changeCityToBrussels, changeCityToCologne, changeCityToDusseldorf, changeCityToHamburg, changeCityToNothing, changeCityToParis } from '../store/user-activity/user-activity';
 
 type LocationsType = {
   locations: string[];

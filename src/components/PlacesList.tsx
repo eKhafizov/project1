@@ -1,6 +1,7 @@
 import AppRoutes from './AppRoutes';
 import { Link } from 'react-router-dom';
 import { OfferType, OffersArrayType } from '../mocks/offers';
+import { memo } from 'react';
 
 type PlacesListType = {
   onListItemHover: (item: OfferType) => void;
@@ -60,4 +61,4 @@ function PlacesList({ filteredOffersInCity, onListItemHover}: PlacesListType) : 
   );
 }
 
-export default PlacesList;
+export default memo(PlacesList);

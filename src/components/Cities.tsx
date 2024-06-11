@@ -7,7 +7,7 @@ import { useAppSelector } from '../hooks';
 import { sortByPriceDown, sortByPriceUp, sortByPopularity } from '../mocks/utils';
 import {getChosenCity, getCurrentFilter} from '../store/user-activity/selector';
 import {getOffers, isDataLoading} from '../store/offers-data/selector';
-
+import { memo } from 'react';
 
 function Cities(): JSX.Element {
 
@@ -17,12 +17,14 @@ function Cities(): JSX.Element {
   //состояние выбранного оффера
   const [selectedOffer, setSelectedOffer] = useState<OfferType | undefined>(undefined);
   //функция смены состояния для выбранного офера
-  const handleListItemHover = (item: OfferType) => {
-    setSelectedOffer(item);};
+  const handleListItemHover = useCallback((item: OfferType) => {
+    setSelectedOffer(item);},[]);
 
   //получаем текущий фильтр из состояния store
   const currentFilter = useAppSelector(getCurrentFilter);
   //фильтруем города, которые находятся в выбранном городе
+  const offersForMap = useCallback(() => offers.filter((offer) => offer.city.name === chosenCity.name),[chosenCity.name, offers]);
+
   const offersInChosenCity = offers.filter((offer) => offer.city.name === chosenCity.name);
   //функция сортировки (изменения копии) массива офферов в нужном городе
   const filterAllOffers = useCallback(() => {
@@ -53,7 +55,7 @@ function Cities(): JSX.Element {
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">{offersInChosenCity.length} places to stay in {chosenCity.name} </b>
+          <b className="places__found">{offersForMap.length} places to stay in {chosenCity.name} </b>
           <Form />
           <PlacesList
             filteredOffersInCity={filterAllOffers()}
@@ -61,7 +63,7 @@ function Cities(): JSX.Element {
           />
         </section>
         <Map
-          offersInChosenCity={offersInChosenCity}
+          offersInChosenCity={offersForMap}
           selectedOffer={selectedOffer}
         />
       </div>
@@ -69,4 +71,4 @@ function Cities(): JSX.Element {
   );
 }
 
-export default Cities;
+export default memo(Cities);
