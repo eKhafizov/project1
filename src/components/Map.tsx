@@ -4,7 +4,7 @@ import useMap from '../hooks/useMap';
 import {Icon, Marker, layerGroup} from 'leaflet';
 import { OfferType } from '../mocks/offers';
 import { useAppSelector } from '../hooks';
-import { getCurrentCity } from '../store/user-activity/selector';
+import { getCurrentCity} from '../store/user-activity/selector';
 import { memo } from 'react';
 
 //markers
@@ -20,7 +20,7 @@ const currentCustomIcon = new Icon({
 });
 
 type AppTypeSelect = {
-  offersInChosenCity: () => OfferType[];
+  offersInChosenCity: OfferType[] | undefined;
   selectedOffer?: OfferType;
 };
 
@@ -44,9 +44,9 @@ function Map({offersInChosenCity, selectedOffer}: AppTypeSelect): JSX.Element {
 
       //создаем слой
       const markerLayer = layerGroup().addTo(map);
-      const offersInChosenCity2 = offersInChosenCity();
+      const offersInChosenCity2 = offersInChosenCity;
       //для каждого объекта из props.offers делаем маркер
-      offersInChosenCity2.forEach((point) => {
+      offersInChosenCity2 !== undefined && offersInChosenCity2.forEach((point) => {
         const marker = new Marker({
           lat: point.location.latitude,
           lng: point.location.longitude

@@ -3,9 +3,12 @@ import { Namespace } from '../const';
 import { fetchCommentsAction, fetchAddCommentsAction, fetchAddFavouritesAction, fetchRemoveFavouritesAction } from '../api-actions';
 import { Comments } from '../../types/appType';
 import { changeFilter } from '../actions';
+import { OffersArrayType } from '../../mocks/offers';
+import { fetchOffersAction } from '../api-actions';
 
 //EVRT in this file has been made after optimization
 export type UserOptionsType = {
+  offers: OffersArrayType;
   chosenCity: {
     name: string;
     lat: number;
@@ -16,6 +19,7 @@ export type UserOptionsType = {
   chosenOfferComments: Comments | null;
 }
 const initialState : UserOptionsType = {
+  offers: [],
   chosenCity: {
     name: 'Amsterdam',
     lat:  52.3909553943508,
@@ -73,6 +77,9 @@ export const userActivity = createSlice({
   },
   extraReducers(builder) {
     builder
+      .addCase(fetchOffersAction.fulfilled, (state, action) => {
+        state.offers = action.payload;
+      })
       .addCase(fetchCommentsAction.fulfilled, (state, action) => {
         state.chosenOfferComments = action.payload;
       })
