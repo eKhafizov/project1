@@ -12,6 +12,7 @@ import browserHistory from '../browser-history';
 import { useAppSelector } from '../hooks';
 import ErrorPage from '../pages/ErrorPage';
 import { getErrors } from '../store/offers-data/selector';
+import FavouritePage from '../pages/FavouritePage';
 
 function App(props: AppType): JSX.Element {
 
@@ -25,13 +26,9 @@ function App(props: AppType): JSX.Element {
       <ScrollToTop />
       <Routes>
         <Route path={AppRoutes.MAIN} element={<Layout />} >
-          <Route index element={
-            <Main
-              locations={props.locations}
-            />
-          }
-          />
+          <Route index element={<Main locations={props.locations} />} />
           <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
+          <Route path={AppRoutes.FAVOURITES} element={<FavouritePage />} />
           <Route path={AppRoutes.ROOM} element={<RoomPage />} >
             <Route path=':id' element={<RoomPage />} />
           </Route>

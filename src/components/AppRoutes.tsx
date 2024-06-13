@@ -3,7 +3,8 @@
 export enum AppRoutes {
   MAIN = '/',
   LOGIN = '/login',
-  ROOM = '/offer/'
+  ROOM = '/offer/',
+  FAVOURITES = '/favourites'
 }
 
 export default AppRoutes;
