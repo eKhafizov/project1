@@ -29,7 +29,7 @@ function Header(): JSX.Element {
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
-                  <NavLink to={AppRoutes.FAVOURITES} className="header__nav-link header__nav-link--profile" >
+                  <NavLink to={authStatus === AuthorizationStatus.Auth ? AppRoutes.FAVOURITES : AppRoutes.LOGIN} className="header__nav-link header__nav-link--profile" >
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
                     <span className="header__user-name user__name">login</span>
@@ -37,12 +37,13 @@ function Header(): JSX.Element {
                   </NavLink>
                 </li>
                 <li className="header__nav-item">
-                  <button
+                  <NavLink
+                    to={AppRoutes.MAIN}
                     className="header__nav-link"
                     onClick={dispatchLogout}
                   >
                     <span className="header__signout">Sign out</span>
-                  </button>
+                  </NavLink>
                 </li>
               </ul>
             </nav>
