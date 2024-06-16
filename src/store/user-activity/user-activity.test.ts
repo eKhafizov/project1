@@ -47,13 +47,29 @@ describe('UserActivity test', () => {
 
     //сравниваем с отказом, который должен вернуть undefined без payload
     const fetchOffersNearbyActionRejected = emittedActions.at(2) as ReturnType<typeof fetchOffersAction.rejected>;
-    // сравниваем payload полученного fullfilled запроса с желаемым результатом
+    // сравниваем payload полученного rejected запроса с желаемым результатом
     expect(fetchOffersNearbyActionRejected).toBe(undefined);
 
     //сравниваем с pending
     const fetchOffersNearbyActionPending = emittedActions.at(0) as ReturnType<typeof fetchOffersAction.pending>;
-    // сравниваем payload полученного fullfilled запроса с желаемым результатом
+    // сравниваем payload полученного pending запроса с желаемым результатом
     expect(fetchOffersNearbyActionPending.meta.requestStatus).toBe('pending');
+  });
+
+
+  it('should upload offers error', async () => {
+    //создадти store
+    store = mockStoreCreator({USER_ACTIVITY : { offers: []}});
+    //mockAxiosAdapter делаем запрос по адресу APIRoute/offers и получает 400 ответ от сервера и сервер возвращает ему ошибку
+    mockAxiosAdapter
+      .onGet(APIRoute.Offers)
+      .reply(400, Error);
+    //диспатчим тестируем api-action fetchOffersAction
+    await store.dispatch(fetchOffersAction());
+    const emittedActions = store.getActions();
+    const fetchOffersActionError = emittedActions.at(1) as ReturnType<typeof fetchOffersAction.rejected>;
+    expect(fetchOffersActionError.error.name).toBe('Error');
+
   });
 
   it('Passing empty action into reducer', () => {
