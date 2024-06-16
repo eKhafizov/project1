@@ -40,6 +40,31 @@ export type OfferType = {
 
 export type OffersArrayType = OfferType[];
 
+const testOffer = {
+  bedrooms: 2,
+  city: {
+    name: 'lalal',
+    location: {latitude:33.333, longitude: 3.444, zoom: 10}},
+  description: 'string',
+  goods: ['string'],
+  host: {
+    id: 66,
+    name: 'string',
+    isPro: true,
+    avatarUrl: 'string'},
+  id: 66, //а был number но пишеь ошибку
+  images: ['string'],
+  isFavorite: false,
+  isPremium: false,
+  location: {latitude:33.333, longitude: 3.444, zoom: 10},
+  maxAdults: 2,
+  previewImage: 'string',
+  price: 666,
+  rating: 8,
+  title: 'string',
+  type: 'strng',
+};
+const testOfferArray = [testOffer, testOffer];
 
-export {hotelType, locations};
+export {hotelType, locations, testOffer, testOfferArray};
 
