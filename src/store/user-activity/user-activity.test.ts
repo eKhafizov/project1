@@ -28,7 +28,6 @@ describe('UserActivity test', () => {
   //создадим пустую переменную store указав ей тип
   let store : ReturnType<typeof mockStoreCreator>;
 
-
   it('should upload offers', async () => {
     //создадти store
     store = mockStoreCreator({USER_ACTIVITY : { offers: []}});
@@ -55,7 +54,6 @@ describe('UserActivity test', () => {
     // сравниваем payload полученного pending запроса с желаемым результатом
     expect(fetchOffersNearbyActionPending.meta.requestStatus).toBe('pending');
   });
-
 
   it('should upload offers error', async () => {
     //создадти store
