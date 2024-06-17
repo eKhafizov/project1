@@ -2,9 +2,9 @@ import { OffersArrayType } from '../../mocks/offers';
 import { RootState } from '../../types/state';
 import { Namespace } from '../const';
 
-
-export const getFavouriteOffers = (state: RootState) : OffersArrayType => state[Namespace.offersData].favouriteOffers;
-export const isDataLoading = (state: RootState) : boolean => state[Namespace.offersData].isDataLoading;
-export const getNearbyOffers = (state: RootState) : OffersArrayType | null => state[Namespace.offersData].offersNearby;
-export const getErrors = (state: RootState) : boolean => state[Namespace.offersData].error;
+//using to Pick<State, NameOfSlice> for testing purpose
+export const getFavouriteOffers = (state: Pick<RootState, Namespace.offersData>) : OffersArrayType => state[Namespace.offersData].favouriteOffers;
+export const isDataLoading = (state: Pick<RootState, Namespace.offersData>) : boolean => state[Namespace.offersData].isDataLoading;
+export const getNearbyOffers = (state: Pick<RootState, Namespace.offersData>) : OffersArrayType | null => state[Namespace.offersData].offersNearby;
+export const getErrors = (state: Pick<RootState, Namespace.offersData>) : boolean => state[Namespace.offersData].error;
 

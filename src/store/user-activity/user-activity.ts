@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Namespace } from '../const';
-import { fetchCommentsAction, fetchAddCommentsAction, fetchAddFavouritesAction, fetchRemoveFavouritesAction } from '../api-actions';
+import { fetchCommentsAction, fetchAddCommentsAction, fetchAddFavouritesAction, fetchRemoveFavouritesAction } from '../api-actions/api-actions';
 import { Comments } from '../../types/appType';
 import { changeFilter } from '../actions';
 import { OffersArrayType } from '../../mocks/offers';
-import { fetchOffersAction } from '../api-actions';
+import { fetchOffersAction } from '../api-actions/api-actions';
 
 //EVRT in this file has been made after optimization
 export type UserOptionsType = {

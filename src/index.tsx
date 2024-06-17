@@ -5,7 +5,7 @@ import {locations } from './mocks/offers';
 import { Provider } from 'react-redux';
 import store from './store';
 import ErrorMessage from './components/error_message';
-import {checkAuthAction, fetchOffersAction, fetchFavouritesAction} from './store/api-actions';
+import {checkAuthAction, fetchOffersAction, fetchFavouritesAction} from './store/api-actions/api-actions';
 
 store.dispatch(fetchOffersAction());
 store.dispatch(checkAuthAction());

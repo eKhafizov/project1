@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Namespace } from '../const';
-import { fetchOffersNearbyAction, fetchFavouritesAction} from '../api-actions';
+import { fetchOffersNearbyAction, fetchFavouritesAction} from '../api-actions/api-actions';
 import { OffersArrayType } from '../../mocks/offers';
 
 //EVRT in this file has been made after optimization
@@ -31,3 +31,4 @@ export const offersData = createSlice({
       });
   },
 });
+

@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import AppRoutes from '../components/AppRoutes';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { logoutAction } from '../store/api-actions';
+import { logoutAction } from '../store/api-actions/api-actions';
 import { AuthorizationStatus } from '../store/const';
 import {getAuthorization} from '../store/server-data/selector';
 import {getFavouriteOffers} from '../store/offers-data/selector';

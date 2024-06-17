@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AppDispatch } from '../types/state';
-import { RootState } from '../types/state';
+import { AppDispatch } from '../../types/state';
+import { RootState } from '../../types/state';
 import { AxiosInstance } from 'axios';
-import { redirectToRoute} from './actions';
-import { OffersArrayType } from '../mocks/offers';
-import { APIRoute, AuthData, UserData} from './const';
-import { dropToken, saveToken } from '../services/token';
-import AppRoutes from '../components/AppRoutes';
-import { Comments } from '../types/appType';
+import { redirectToRoute} from '.././actions';
+import { OffersArrayType } from '../../mocks/offers';
+import { APIRoute, AuthData, UserData} from '.././const';
+import { dropToken, saveToken } from '../../services/token';
+import AppRoutes from '../../components/AppRoutes';
+import { Comments } from '../../types/appType';
 import { ServerResponse } from 'http';
 
 
