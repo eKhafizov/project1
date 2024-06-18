@@ -1,18 +1,18 @@
-import Main from '../pages/Main';
+import Main from '../pages/mainPage/Main';
 import {Route,Routes} from 'react-router-dom';
 import ScrollToTop from '../components/ScrollToTop';
 import AppRoutes from '../components/AppRoutes';
-import LoginPage from '../pages/LoginPage';
-import RoomPage from '../pages/RoomPage';
+import LoginPage from '../pages/loginPage/LoginPage';
+import RoomPage from '../pages/roomPage/RoomPage';
 import Layout from '../components/Layout';
-import Page404 from '../pages/Page404';
+import Page404 from '../pages/404page/Page404';
 import AppType from '../types/appType';
 import HistoryRouter from '../history-route';
 import browserHistory from '../browser-history';
 import { useAppSelector } from '../hooks';
-import ErrorPage from '../pages/ErrorPage';
+import ErrorPage from '../pages/errorPage/ErrorPage';
 import { getErrors } from '../store/offers-data/selector';
-import FavouritePage from '../pages/FavouritePage';
+import FavouritePage from '../pages/favouritePage/FavouritePage';
 
 function App(props: AppType): JSX.Element {
 

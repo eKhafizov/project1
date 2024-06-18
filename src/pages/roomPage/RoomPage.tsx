@@ -1,14 +1,14 @@
 import { useParams } from 'react-router-dom';
-import Page404 from './Page404';
-import PropertyReviews from '../components/PropertyReviews';
-import PropertyMap from '../components/PropertMap';
-import NearPlaces from '../components/NearPlaces';
-import { useAppDispatch, useAppSelector } from '../hooks';
-import { fetchCommentsAction, fetchOffersNearbyAction, fetchAddFavouritesAction, fetchFavouritesAction, fetchRemoveFavouritesAction } from '../store/api-actions/api-actions';
-import { AuthorizationStatus } from '../store/const';
-import {getFavouriteOffers} from '../store/offers-data/selector';
-import {getAuthorization} from '../store/server-data/selector';
-import { getOffers } from '../store/user-activity/selector';
+import Page404 from '../404page/Page404';
+import PropertyReviews from '../../components/PropertyReviews';
+import PropertyMap from '../../components/PropertMap';
+import NearPlaces from '../../components/NearPlaces';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { fetchCommentsAction, fetchOffersNearbyAction, fetchAddFavouritesAction, fetchFavouritesAction, fetchRemoveFavouritesAction } from '../../store/api-actions/api-actions';
+import { AuthorizationStatus } from '../../store/const';
+import {getFavouriteOffers} from '../../store/offers-data/selector';
+import {getAuthorization} from '../../store/server-data/selector';
+import { getOffers } from '../../store/user-activity/selector';
 
 function RoomPage(): JSX.Element {
   const dispatch = useAppDispatch();

@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import AppRoutes from '../components/AppRoutes';
+import AppRoutes from '../../components/AppRoutes';
 
 function Page404(): JSX.Element {
   return (
