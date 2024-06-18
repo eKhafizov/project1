@@ -5,11 +5,11 @@ import { createSelector } from '@reduxjs/toolkit';
 import { OffersArrayType } from '../../mocks/offers';
 import { sortByPopularity, sortByPriceDown, sortByPriceUp } from '../../mocks/utils';
 
-export const getChosenCity = (state: RootState) : {name: string;lat: number;lng: number;zoom: number} => state[Namespace.userActivity].chosenCity;
-export const getCurrentFilter = (state: RootState) : string => state[Namespace.userActivity].chosenFilter;
-export const getOfferComments = (state: RootState) : Comments | null => state[Namespace.userActivity].chosenOfferComments;
-export const getCurrentCity = (state: RootState) : {name: string;lat: number;lng: number;zoom: number} => state[Namespace.userActivity].chosenCity;
-export const getOffers = (state: RootState) : OffersArrayType => state[Namespace.userActivity].offers;
+export const getChosenCity = (state: Pick<RootState, Namespace.userActivity>) : {name: string;lat: number;lng: number;zoom: number} => state[Namespace.userActivity].chosenCity;
+export const getCurrentFilter = (state: Pick<RootState, Namespace.userActivity>) : string => state[Namespace.userActivity].chosenFilter;
+export const getOfferComments = (state: Pick<RootState, Namespace.userActivity>) : Comments | null => state[Namespace.userActivity].chosenOfferComments;
+export const getCurrentCity = (state: Pick<RootState, Namespace.userActivity>) : {name: string;lat: number;lng: number;zoom: number} => state[Namespace.userActivity].chosenCity;
+export const getOffers = (state: Pick<RootState, Namespace.userActivity>) : OffersArrayType => state[Namespace.userActivity].offers;
 
 //memoized selector
 export const getTheSelector = createSelector(
