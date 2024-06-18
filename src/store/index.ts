@@ -1,20 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createApi from '../services/api';
-import { redirect } from './middlewares';
+import { redirect } from '../middleware/redirect';
 import { rootReducer } from './root-reducer';
 
-
+//создадим аксиос в переменной api
 const api = createApi();
-//Cконфигурируем хранилище. Подключим `redux-thunk` в список middlewares
-//Аргументом для `thunk` передадим сконфигурированный экземпляр `axios`,чтобы была возможность обратиться к нему из действия.
+
+//cконфигурируем хранилище
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: rootReducer, //укажем редюсером общий редюсер, который включает в себя слайсы
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
+    getDefaultMiddleware({ //подключим redux thunks(api-actions) в наше middleware
       thunk: {
-        extraArgument: api
+        extraArgument: api //добавим axios экстраргументом в наши санки(api-actions)
       }
-    }).concat(redirect),
+    }).concat(redirect), //подключим редирект middlware (browserHistory) в массив с остальным middleware
 });
 
 export default store;

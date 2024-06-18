@@ -5,7 +5,7 @@ import { getAuthorization } from './selector';
 describe('server-data selector test', () => {
   const state = {
     [Namespace.serverData]: {
-      authorizationStatus: AuthorizationStatus
+      authorizationStatus: AuthorizationStatus.NoAuth
     }
   };
 
