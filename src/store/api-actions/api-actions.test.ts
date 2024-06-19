@@ -30,7 +30,7 @@ describe('Offers-data reducer tests', () => {
     store = mockStoreCreator({ OFFERS_DATA: { offersNearby: [] }});
     mockAxiosAdapter //мок адаптер имитирует ответ от сервера
       .onGet(`${APIRoute.Offers}/2/nearby`)
-      .reply(200, testOfferArray); //в случае 200 он возвращает массив 
+      .reply(200, testOfferArray); //в случае 200 он возвращает массив
 
     //диспатчим в выдуманный стор наш api-action, чтобы имитировать получение ответа с сервера
     await store.dispatch(fetchOffersNearbyAction(2));

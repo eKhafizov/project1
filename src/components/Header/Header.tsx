@@ -32,8 +32,8 @@ function Header(): JSX.Element {
                   <NavLink to={authStatus === AuthorizationStatus.Auth ? AppRoutes.FAVOURITES : AppRoutes.LOGIN} className="header__nav-link header__nav-link--profile" >
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
-                    <span className="header__user-name user__name">login</span>
-                    {authStatus === AuthorizationStatus.Auth && (<span className="header__favorite-count">{favouriteOffers && favouriteOffers.length}</span>)}
+                    <span className="header__user-name user__name" data-testid='header__login'>login</span>
+                    {authStatus === AuthorizationStatus.Auth && (<span data-testid='header__favouritesNumber' className="header__favorite-count" >{favouriteOffers && favouriteOffers.length}</span>)}
                   </NavLink>
                 </li>
                 <li className="header__nav-item">
