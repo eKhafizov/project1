@@ -16,6 +16,7 @@ import { fetchOffersNearbyAction } from '../../store/api-actions/api-actions';
 import { APIRoute } from '../../store/const';
 import { AuthorizationStatus } from '../../store/const';
 
+
 describe('Correct rendering of Header', () => {
 
   it('should render button signout', () => {
@@ -32,6 +33,7 @@ describe('Correct rendering of Header', () => {
     expect(signOutButton).toBeInTheDocument();
 
   });
+
   it('should render button login', () => {
     //рендерим нужный компонент, но окружаем его в Provider и в HistoryRouter
     render(
@@ -44,8 +46,7 @@ describe('Correct rendering of Header', () => {
     expect(screen.getByTestId('header__login')).toBeInTheDocument();
   });
 
-  //header__favouritesNumber
-  it('should render number of favourite offers', async () => {
+  it('should render number if there is favourite offers in state key', async () => {
     const axios = createApi();
     const mockAxiosAdapter = new MockAdapter(axios);
     const middlewares = [thunk.withExtraArgument(axios)];
@@ -64,15 +65,7 @@ describe('Correct rendering of Header', () => {
     //диспатчим в выдуманный стор наш api-action, чтобы имитировать получение ответа с сервера
     await store.dispatch(fetchOffersNearbyAction(2));
 
-    //AuthorizationStatus.Auth
-
-    render(
-      <Provider store={store2}>
-        <HistoryRouter history={browserHistory}>
-          <Header />
-        </HistoryRouter>
-      </Provider>
-    );
+    render(<Provider store={store2}><HistoryRouter history={browserHistory}><Header /></HistoryRouter></Provider>);
 
     expect(screen.getByTestId('header__favouritesNumber')).toBeInTheDocument();
   });
