@@ -1,6 +1,6 @@
-import { useAppSelector } from '../hooks';
-import AppRoutes from './AppRoutes';
-import {getNearbyOffers} from '../store/offers-data/selector';
+import { useAppSelector } from '../../hooks';
+import AppRoutes from '../AppRoutes/AppRoutes';
+import {getNearbyOffers} from '../../store/offers-data/selector';
 import { Link } from 'react-router-dom';
 
 function NearPlaces():JSX.Element {

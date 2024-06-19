@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
-import AppRoutes from '../components/AppRoutes';
-import { useAppDispatch, useAppSelector } from '../hooks';
-import { logoutAction } from '../store/api-actions/api-actions';
-import { AuthorizationStatus } from '../store/const';
-import {getAuthorization} from '../store/server-data/selector';
-import {getFavouriteOffers} from '../store/offers-data/selector';
+import AppRoutes from '../AppRoutes/AppRoutes';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { logoutAction } from '../../store/api-actions/api-actions';
+import { AuthorizationStatus } from '../../store/const';
+import {getAuthorization} from '../../store/server-data/selector';
+import {getFavouriteOffers} from '../../store/offers-data/selector';
 
 function Header(): JSX.Element {
 
@@ -42,7 +42,7 @@ function Header(): JSX.Element {
                     className="header__nav-link"
                     onClick={dispatchLogout}
                   >
-                    <span className="header__signout">Sign out</span>
+                    <span className="header__signout" data-testid='header__signout' >Sign out</span>
                   </NavLink>
                 </li>
               </ul>

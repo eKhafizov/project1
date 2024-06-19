@@ -1,5 +1,5 @@
-import Locations from '../../components/Locations';
-import Cities from '../../components/Cities';
+import Locations from '../../components/Locations/Locations';
+import Cities from '../../components/Cities/Cities';
 import AppType from '../../types/appType';
 
 function Main(props: AppType ): JSX.Element {

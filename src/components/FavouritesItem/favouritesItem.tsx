@@ -1,5 +1,5 @@
-import { OffersArrayType } from '../mocks/offers';
-import AppRoutes from './AppRoutes';
+import { OffersArrayType } from '../../mocks/offers';
+import AppRoutes from '../AppRoutes/AppRoutes';
 
 export type ItemsType = {
   items: OffersArrayType;

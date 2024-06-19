@@ -6,7 +6,7 @@ import { redirectToRoute} from '.././actions';
 import { OffersArrayType } from '../../mocks/offers';
 import { APIRoute, AuthData, UserData} from '.././const';
 import { dropToken, saveToken } from '../../services/token';
-import AppRoutes from '../../components/AppRoutes';
+import AppRoutes from '../../components/AppRoutes/AppRoutes';
 import { Comments } from '../../types/appType';
 import { ServerResponse } from 'http';
 

@@ -2,7 +2,7 @@ import { FormEvent, useRef } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/api-actions/api-actions';
 import { Link } from 'react-router-dom';
-import AppRoutes from '../../components/AppRoutes';
+import AppRoutes from '../../components/AppRoutes/AppRoutes';
 
 function LoginPage(): JSX.Element {
 

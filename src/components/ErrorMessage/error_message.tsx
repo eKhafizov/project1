@@ -1,5 +1,4 @@
-//import { useAppSelector } from '../hooks';
-import '../components/error_message.css';
+import './error_message.css';
 
 function ErrorMessage():JSX.Element | null {
   //const error = useAppSelector((state) => state.error);

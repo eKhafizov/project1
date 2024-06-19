@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../hooks';
-import { changeFilter } from '../store/actions';
-import { getCurrentFilter } from '../store/user-activity/selector';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { changeFilter } from '../../store/actions';
+import { getCurrentFilter } from '../../store/user-activity/selector';
 
 function Form(): JSX.Element {
 

@@ -1,11 +1,11 @@
-import Map from './Map';
-import Form from './Form';
-import PlacesList from './PlacesList';
+import Map from '../Map/Map';
+import Form from '../Form/Form';
+import PlacesList from '../PlacesList/PlacesList';
 import { useCallback, useState } from 'react';
-import { OfferType } from '../mocks/offers';
-import { useAppSelector } from '../hooks';
-import {getTheSelector} from '../store/user-activity/selector';
-import {isDataLoading} from '../store/offers-data/selector';
+import { OfferType } from '../../mocks/offers';
+import { useAppSelector } from '../../hooks';
+import {getTheSelector} from '../../store/user-activity/selector';
+import {isDataLoading} from '../../store/offers-data/selector';
 import { memo } from 'react';
 
 

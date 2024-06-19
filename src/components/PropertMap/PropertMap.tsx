@@ -1,10 +1,10 @@
 import { useRef, useEffect } from 'react';
-import useMap from '../hooks/useMap';
-import { OfferType } from '../mocks/offers';
+import useMap from '../../hooks/useMap';
+import { OfferType } from '../../mocks/offers';
 import {Marker, layerGroup} from 'leaflet';
-import { defaultCustomIcon, currentCustomIcon } from './Map';
-import { useAppSelector } from '../hooks';
-import {getNearbyOffers} from '../store/offers-data/selector';
+import { defaultCustomIcon, currentCustomIcon } from '../Map/Map';
+import { useAppSelector } from '../../hooks';
+import {getNearbyOffers} from '../../store/offers-data/selector';
 
 type PropertyMapType = {
   offer: OfferType;

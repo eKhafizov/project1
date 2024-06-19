@@ -1,7 +1,7 @@
-import ReviewForm from './ReviewForm';
-import { useAppSelector } from '../hooks';
-import { OfferType } from '../mocks/offers';
-import {getOfferComments} from '../store/user-activity/selector';
+import ReviewForm from '../ReviewForm/ReviewForm';
+import { useAppSelector } from '../../hooks';
+import { OfferType } from '../../mocks/offers';
+import {getOfferComments} from '../../store/user-activity/selector';
 
 export type PassingOffer = {
   offer: OfferType;

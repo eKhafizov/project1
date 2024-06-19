@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createApi from '../services/api';
-import { redirect } from '../middleware/redirect';
+import { redirect } from '../middleware/redirect/redirect';
 import { rootReducer } from './root-reducer';
 
 //создадим аксиос в переменной api

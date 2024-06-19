@@ -1,6 +1,6 @@
-import AppRoutes from './AppRoutes';
+import AppRoutes from '../AppRoutes/AppRoutes';
 import { Link } from 'react-router-dom';
-import { OfferType, OffersArrayType } from '../mocks/offers';
+import { OfferType, OffersArrayType } from '../../mocks/offers';
 import { memo } from 'react';
 
 type PlacesListType = {

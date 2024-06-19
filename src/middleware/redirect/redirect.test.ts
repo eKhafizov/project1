@@ -2,7 +2,7 @@ import { MockStore, configureMockStore } from '@jedmao/redux-mock-store';
 import { redirect } from '../redirect/redirect';
 import { RootState } from '../../types/state';
 import { AnyAction } from '@reduxjs/toolkit';
-import AppRoutes from '../../components/AppRoutes';
+import AppRoutes from '../../components/AppRoutes/AppRoutes';
 import { redirectToRoute } from '../../store/actions';
 
 //делаем объект левой истории с методом push, который добавляет в location строку название пути(страницы)
@@ -12,7 +12,7 @@ const fakeHistory = {
     this.location.pathname = path;
   }
 };
-jest.mock('../browser-history.ts', () => fakeHistory); //используем jest чтобы смокать левую историю
+jest.mock('../../browser-history.ts', () => fakeHistory); //используем jest чтобы смокать левую историю
 
 describe('redirect test', () => {
   const middlewares = [redirect]; //cоздаем новый миддлвее с функцией(мидлвейной) редирект

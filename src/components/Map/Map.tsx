@@ -1,10 +1,10 @@
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useRef } from 'react';
-import useMap from '../hooks/useMap';
+import useMap from '../../hooks/useMap';
 import {Icon, Marker, layerGroup} from 'leaflet';
-import { OfferType } from '../mocks/offers';
-import { useAppSelector } from '../hooks';
-import { getCurrentCity} from '../store/user-activity/selector';
+import { OfferType } from '../../mocks/offers';
+import { useAppSelector } from '../../hooks';
+import { getCurrentCity} from '../../store/user-activity/selector';
 import { memo } from 'react';
 
 //markers

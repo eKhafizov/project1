@@ -1,7 +1,7 @@
 import { useAppSelector } from '../../hooks';
 import { getFavouriteOffers } from '../../store/offers-data/selector';
 import { OfferType } from '../../mocks/offers';
-import FavoritesItem from '../../components/favouritesItem';
+import FavoritesItem from '../../components/FavouritesItem/favouritesItem';
 
 function FavouritePage(): JSX.Element {
 
