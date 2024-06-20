@@ -39,6 +39,7 @@ function LoginPage(): JSX.Element {
                   type="email"
                   name="email"
                   placeholder="Email"
+                  data-testid='email'
                   ref={loginRef}
                   required
                 />
