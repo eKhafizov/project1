@@ -15,9 +15,17 @@ import { ThunkDispatch } from 'redux-thunk';
 import { fetchOffersNearbyAction } from '../../store/api-actions/api-actions';
 import { APIRoute } from '../../store/const';
 import { AuthorizationStatus } from '../../store/const';
-
+import withWrapper from '../../mocks/withWrapper';
+import testState from '../../mocks/utils';
 
 describe('Correct rendering of Header', () => {
+
+  it('should render button signout by using wrapper function', () => {
+    //рендерим нужный компонент c помощью функции withStore, которая включает обертки Provider и HistoryRouter
+    render(withWrapper(<Header /> , testState));
+
+    expect(screen.getByTestId('header__signout')).toBeInTheDocument();
+  });
 
   it('should render button signout', () => {
     //рендерим нужный компонент, но окружаем его в Provider и в HistoryRouter
@@ -28,7 +36,6 @@ describe('Correct rendering of Header', () => {
         </HistoryRouter>
       </Provider>
     );
-
     const signOutButton = screen.getByTestId('header__signout');
     expect(signOutButton).toBeInTheDocument();
 
