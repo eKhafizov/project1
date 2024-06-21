@@ -6,6 +6,9 @@ import { Provider } from 'react-redux';
 import store from './store';
 import ErrorMessage from './components/ErrorMessage/error_message';
 import {checkAuthAction, fetchOffersAction, fetchFavouritesAction} from './store/api-actions/api-actions';
+import HistoryRouter from './history-route';
+import browserHistory from './browser-history';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 store.dispatch(fetchOffersAction());
 store.dispatch(checkAuthAction());
@@ -19,10 +22,13 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ErrorMessage />
-      <App
-        locations={locations}
-      />
+      <HistoryRouter history={browserHistory}>
+        <ScrollToTop />
+        <ErrorMessage />
+        <App
+          locations={locations}
+        />
+      </HistoryRouter>
     </Provider>
   </React.StrictMode>,
 );
