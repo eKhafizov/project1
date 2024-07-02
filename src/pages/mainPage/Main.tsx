@@ -2,8 +2,39 @@ import Locations from '../../components/Locations/Locations';
 import Cities from '../../components/Cities/Cities';
 import AppType from '../../types/appType';
 import { Helmet } from 'react-helmet-async';
+import { useSearchParams } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks';
+import { changeCityToAmsterdam, changeCityToCologne, changeCityToBrussels, changeCityToDusseldorf, changeCityToHamburg, changeCityToParis, changeCityToNothing } from '../../store/user-activity/user-activity';
+import { changeFilter } from '../../store/actions';
 
 function Main(props: AppType ): JSX.Element {
+
+  //useSearchParams for updating page when copying url link (made myself!!!!)
+  const dispatch = useAppDispatch();
+  const [searchParams] = useSearchParams();
+  const city = searchParams.get('type');
+  const filter = searchParams.get('filter');
+  function chooseCity(name: string) {
+    switch(name) {
+      case 'Amsterdam':
+        return changeCityToAmsterdam();
+      case 'Brussels':
+        return changeCityToBrussels();
+      case 'Hamburg':
+        return changeCityToHamburg();
+      case 'Dusseldorf':
+        return changeCityToDusseldorf();
+      case 'Cologne':
+        return changeCityToCologne();
+      case 'Paris':
+        return changeCityToParis();
+      default:
+        return changeCityToNothing();
+    }
+  }
+  (city !== null && city !== undefined) && dispatch(chooseCity(city));
+  (filter !== null && filter !== undefined) && dispatch(changeFilter(filter));
+
 
   return (
     <div className="page page--gray page--main">
