@@ -1,13 +1,15 @@
 import { FormEvent, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeFilter } from '../../store/actions';
-import { getCurrentFilter } from '../../store/user-activity/selector';
+import { getChosenCity, getCurrentFilter } from '../../store/user-activity/selector';
+import { useSearchParams } from 'react-router-dom';
 
 function Form(): JSX.Element {
 
   const dispatch = useAppDispatch();
   //const currentFilter = useMemo(useAppSelector(getCurrentFilter),[]);
   const currentFilter = useAppSelector(getCurrentFilter);
+  const chosenCity = useAppSelector(getChosenCity);
 
   function hanldeFormSubmit(evt: FormEvent) {
     evt.preventDefault();
@@ -21,6 +23,9 @@ function Form(): JSX.Element {
       } else {return true;}
     });
   }
+  //используем searchParams
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [searchParams, setSearchParams] = useSearchParams();
 
   return (
     <form onSubmit={hanldeFormSubmit} className="places__sorting" action="#" method="get">
@@ -38,6 +43,7 @@ function Form(): JSX.Element {
           className={(currentFilter === 'popular') ? ('places__option places__option--active') : ('places__option')}
           tabIndex={0}
           onClick={() => {
+            setSearchParams({type: chosenCity.name, filter:'popular'});
             currentFilter !== 'popular' && dispatch(changeFilter('popular'));
             toggleUl();
           }}
@@ -47,6 +53,7 @@ function Form(): JSX.Element {
           className={(currentFilter === 'priceLowToHigh') ? ('places__option places__option--active') : ('places__option')}
           tabIndex={1}
           onClick={() => {
+            setSearchParams({type: chosenCity.name, filter:'priceLowToHigh'});
             currentFilter !== 'priceLowToHigh' && dispatch(changeFilter('priceLowToHigh'));
             toggleUl();
           }}
@@ -56,6 +63,7 @@ function Form(): JSX.Element {
           className={(currentFilter === 'priceHighToLow') ? ('places__option places__option--active') : ('places__option')}
           tabIndex={2}
           onClick={() => {
+            setSearchParams({type: chosenCity.name, filter:'priceHighToLow'});
             currentFilter !== 'priceHighToLow' && dispatch(changeFilter('priceHighToLow'));
             toggleUl();
           }}
@@ -65,6 +73,7 @@ function Form(): JSX.Element {
           className={(currentFilter === 'topRated') ? ('places__option places__option--active') : ('places__option')}
           tabIndex={3}
           onClick={() => {
+            setSearchParams({type: chosenCity.name, filter:'topRated'});
             currentFilter !== 'topRated' && dispatch(changeFilter('topRated'));
             toggleUl();
           }}

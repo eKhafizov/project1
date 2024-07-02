@@ -1,7 +1,8 @@
 import { changeFilter} from '../../store/actions';
 import { useAppDispatch, useAppSelector} from '../../hooks';
-import { getChosenCity } from '../../store/user-activity/selector';
+import { getChosenCity, getCurrentFilter } from '../../store/user-activity/selector';
 import { changeCityToAmsterdam, changeCityToBrussels, changeCityToCologne, changeCityToDusseldorf, changeCityToHamburg, changeCityToNothing, changeCityToParis } from '../../store/user-activity/user-activity';
+import { useSearchParams } from 'react-router-dom';
 
 type LocationsType = {
   locations: string[];
@@ -11,6 +12,7 @@ function Locations({locations}: LocationsType): JSX.Element {
 
   const dispatch = useAppDispatch();
   const chosenCity = useAppSelector(getChosenCity);
+  const chosenFilter = useAppSelector(getCurrentFilter);
 
   function chooseCity(name: string) {
     switch(name) {
@@ -31,6 +33,10 @@ function Locations({locations}: LocationsType): JSX.Element {
     }
   }
 
+  //используем searchParams
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [searchParams, setSearchParams] = useSearchParams();
+
   return (
     <div className="tabs">
       <section className="locations container">
@@ -44,6 +50,7 @@ function Locations({locations}: LocationsType): JSX.Element {
                 onClick={() => {
                   dispatch(chooseCity(item));
                   dispatch(changeFilter('popular'));
+                  setSearchParams({type: item, filter: chosenFilter});
                 }}
                 >
                   <span>{item}</span>

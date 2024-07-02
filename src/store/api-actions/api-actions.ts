@@ -30,16 +30,9 @@ export type Review = {
 Создадим отдельный модуль в котором опишем асинхронные действия. В этих действиях будем выполнять запросы к серверу. На данном этапе нам потребуются следующие действия: для загрузки списка офферов, проверки наличия авторизации и отправки данных для прохождения аутентификации, отправки запроса на выход из приложения.
 */
 
-//AFTER OPTIMISATION
+//AFTER OPTIMIZATION
 //thunk для загрузки офферов с сервера
-export const fetchOffersAction = createAsyncThunk<
-OffersArrayType,
-undefined,
-{
-  dispatch: AppDispatch;
-  state: RootState;
-  extra: AxiosInstance;
-}>(
+export const fetchOffersAction = createAsyncThunk<OffersArrayType,undefined,{dispatch: AppDispatch;state: RootState;extra: AxiosInstance}>(
   'data/fetchQuestions',
   async (_arg, {extra: api}) => {
     const {data} = await api.get<OffersArrayType>(APIRoute.Offers);
@@ -48,7 +41,7 @@ undefined,
 );
 
 /*
-//BEFORE OPTIMISTAION
+//BEFORE OPTIMIZATION
 //thunk для загрузки офферов с сервера
 export const fetchOffersAction = createAsyncThunk<
 void,
@@ -139,7 +132,10 @@ export const fetchAddFavouritesAction = createAsyncThunk<ServerResponse, number,
   },
 );
 //thunk для удаления из списка favourites
-export const fetchRemoveFavouritesAction = createAsyncThunk<ServerResponse, number, {
+export const fetchRemoveFavouritesAction = createAsyncThunk<
+ServerResponse,
+number,
+{
   dispatch: AppDispatch;
   state: RootState;
   extra: AxiosInstance;

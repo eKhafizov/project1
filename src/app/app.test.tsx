@@ -20,13 +20,9 @@ describe('Testing app component', () => {
   });
 
   it('render with mock history LOGIN PAGE with word Password', () => {
-
     const mockHistory : MemoryHistory = createMemoryHistory(); //создаем массив истории
-
     mockHistory.push(AppRoutes.LOGIN); // добавляем в массив истории добавляем нужную страницу
-
     render(withWrapper(<App locations={locations} />, testState, mockHistory)); //передаем в withWrapper не только компонент и состояние, но и массив истории
-
     expect(screen.getByText('Password')).toBeInTheDocument(); //перейдя на страницу ищем на ней нужную надпись
   });
 

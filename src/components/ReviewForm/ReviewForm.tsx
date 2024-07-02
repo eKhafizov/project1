@@ -29,12 +29,12 @@ function ReviewForm({offer}: PassingOfferNew) {
   function handleTextChanges(evt: ChangeEvent<HTMLTextAreaElement>) {
     evt.preventDefault();
     const {value} = evt.target;
-    setForm1({...form1, comment: value});
+    setForm1((prev) => ({...prev, comment: value}));
   }
   function handleRatingChanges(evt: ChangeEvent<HTMLInputElement>) {
     evt.preventDefault();
     const {value} = evt.target;
-    setForm1({...form1, rating: Number(value)});
+    setForm1((prev) => ({...prev, rating: Number(value)}));
   }
 
 

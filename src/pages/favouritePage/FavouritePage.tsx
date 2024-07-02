@@ -2,6 +2,7 @@ import { useAppSelector } from '../../hooks';
 import { getFavouriteOffers } from '../../store/offers-data/selector';
 import { OfferType } from '../../mocks/offers';
 import FavoritesItem from '../../components/FavouritesItem/favouritesItem';
+import { Helmet } from 'react-helmet-async';
 
 function FavouritePage(): JSX.Element {
 
@@ -17,6 +18,7 @@ function FavouritePage(): JSX.Element {
 
   return (
     <main className="page__main page__main--favorites">
+      <Helmet title='Favourite offers' />
       <div className="page__favorites-container container">
         <section className="favorites">
           <h1 className="favorites__title">Saved listing</h1>

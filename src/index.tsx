@@ -9,6 +9,7 @@ import {checkAuthAction, fetchOffersAction, fetchFavouritesAction} from './store
 import HistoryRouter from './history-route';
 import browserHistory from './browser-history';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import {HelmetProvider } from 'react-helmet-async';
 
 store.dispatch(fetchOffersAction());
 store.dispatch(checkAuthAction());
@@ -19,17 +20,20 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
+//обернем все в HelmetProvider
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <HistoryRouter history={browserHistory}>
-        <ScrollToTop />
-        <ErrorMessage />
-        <App
-          locations={locations}
-        />
-      </HistoryRouter>
-    </Provider>
+    <HelmetProvider >
+      <Provider store={store}>
+        <HistoryRouter history={browserHistory}>
+          <ScrollToTop />
+          <ErrorMessage />
+          <App
+            locations={locations}
+          />
+        </HistoryRouter>
+      </Provider>
+    </HelmetProvider>
   </React.StrictMode>,
 );
 

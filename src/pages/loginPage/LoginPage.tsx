@@ -3,6 +3,7 @@ import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/api-actions/api-actions';
 import { Link } from 'react-router-dom';
 import AppRoutes from '../../components/AppRoutes/AppRoutes';
+import { Helmet } from 'react-helmet-async';
 
 function LoginPage(): JSX.Element {
 
@@ -26,9 +27,9 @@ function LoginPage(): JSX.Element {
 
   return (
     <div className="page page--gray page--login">
+      <Helmet title='Login page' />
       <main className="page__main page__main--login">
         <div className="page__login-container container">
-
           <section className="login" onSubmit={handleSubmit} >
             <h1 className="login__title">Sign in</h1>
             <form className="login__form form" action="#" method="post">
