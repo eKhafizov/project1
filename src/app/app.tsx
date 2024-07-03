@@ -22,7 +22,10 @@ function App(props: AppType): JSX.Element {
     <Routes>
       <Route path={AppRoutes.MAIN} element={<Layout />} >
         <Route index element={<Main locations={props.locations} />} />
-        <Route path='/:type/:filter' element={<Main locations={props.locations} />} />
+        <Route
+          path=':city/:filter'
+          element={<Main locations={props.locations} />}
+        />
         <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
         <Route path={AppRoutes.FAVOURITES} element={<FavouritePage />} />
         <Route path={AppRoutes.ROOM} >

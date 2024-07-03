@@ -11,9 +11,13 @@ function Main(props: AppType ): JSX.Element {
 
   //useSearchParams for updating page when copying url link (made myself!!!!)
   const dispatch = useAppDispatch();
+
+  //используем useParams только первый аргумент с информацией.
+  //второй аргумент-функцию не используем, т.к нечего обновлять в параметрах
   const [searchParams] = useSearchParams();
-  const city = searchParams.get('type');
+  const city = searchParams.get('city');
   const filter = searchParams.get('filter');
+
   function chooseCity(name: string) {
     switch(name) {
       case 'Amsterdam':
@@ -32,6 +36,7 @@ function Main(props: AppType ): JSX.Element {
         return changeCityToNothing();
     }
   }
+  //проверка параметров из адресной строки и диспатч
   (city !== null && city !== undefined) && dispatch(chooseCity(city));
   (filter !== null && filter !== undefined) && dispatch(changeFilter(filter));
 

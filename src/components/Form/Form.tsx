@@ -24,8 +24,7 @@ function Form(): JSX.Element {
     });
   }
   //используем searchParams
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
 
   return (
     <form onSubmit={hanldeFormSubmit} className="places__sorting" action="#" method="get">
@@ -43,7 +42,7 @@ function Form(): JSX.Element {
           className={(currentFilter === 'popular') ? ('places__option places__option--active') : ('places__option')}
           tabIndex={0}
           onClick={() => {
-            setSearchParams({type: chosenCity.name, filter:'popular'});
+            setSearchParams({city: chosenCity.name, filter:'popular'});
             currentFilter !== 'popular' && dispatch(changeFilter('popular'));
             toggleUl();
           }}
@@ -53,7 +52,7 @@ function Form(): JSX.Element {
           className={(currentFilter === 'priceLowToHigh') ? ('places__option places__option--active') : ('places__option')}
           tabIndex={1}
           onClick={() => {
-            setSearchParams({type: chosenCity.name, filter:'priceLowToHigh'});
+            setSearchParams({city: chosenCity.name, filter:'priceLowToHigh'});
             currentFilter !== 'priceLowToHigh' && dispatch(changeFilter('priceLowToHigh'));
             toggleUl();
           }}
@@ -63,7 +62,7 @@ function Form(): JSX.Element {
           className={(currentFilter === 'priceHighToLow') ? ('places__option places__option--active') : ('places__option')}
           tabIndex={2}
           onClick={() => {
-            setSearchParams({type: chosenCity.name, filter:'priceHighToLow'});
+            setSearchParams({city: chosenCity.name, filter:'priceHighToLow'});
             currentFilter !== 'priceHighToLow' && dispatch(changeFilter('priceHighToLow'));
             toggleUl();
           }}
@@ -73,7 +72,7 @@ function Form(): JSX.Element {
           className={(currentFilter === 'topRated') ? ('places__option places__option--active') : ('places__option')}
           tabIndex={3}
           onClick={() => {
-            setSearchParams({type: chosenCity.name, filter:'topRated'});
+            setSearchParams({city: chosenCity.name, filter:'topRated'});
             currentFilter !== 'topRated' && dispatch(changeFilter('topRated'));
             toggleUl();
           }}
