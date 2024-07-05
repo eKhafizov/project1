@@ -10,6 +10,8 @@ import HistoryRouter from './history-route';
 import browserHistory from './browser-history';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import {HelmetProvider } from 'react-helmet-async';
+import { ThemeProvider } from 'styled-components';
+import { defaultTheme } from './mocks/utils';
 
 store.dispatch(fetchOffersAction());
 store.dispatch(checkAuthAction());
@@ -24,15 +26,17 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <HelmetProvider >
-      <Provider store={store}>
-        <HistoryRouter history={browserHistory}>
-          <ScrollToTop />
-          <ErrorMessage />
-          <App
-            locations={locations}
-          />
-        </HistoryRouter>
-      </Provider>
+      <ThemeProvider theme={defaultTheme} >
+        <Provider store={store}>
+          <HistoryRouter history={browserHistory}>
+            <ScrollToTop />
+            <ErrorMessage />
+            <App
+              locations={locations}
+            />
+          </HistoryRouter>
+        </Provider>
+      </ThemeProvider>
     </HelmetProvider>
   </React.StrictMode>,
 );

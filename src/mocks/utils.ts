@@ -34,5 +34,11 @@ USER_ACTIVITY: {
   chosenOfferComments: null,
 }};
 
+
+export const defaultTheme : {[key:string]: string} = {
+  fontColorBlack: '#333333',
+  colorWhite: '#ffffff',
+};
+
 export default testState;
 
