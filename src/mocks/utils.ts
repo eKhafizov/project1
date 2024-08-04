@@ -35,8 +35,8 @@ USER_ACTIVITY: {
 }};
 
 
-export const defaultTheme : {[key:string]: string} = {
-  fontColorBlack: '#333333',
+export const defaultTheme : {[name: string] : string} = {
+  fontColorBlack: '#ff0000',
   colorWhite: '#ffffff',
 };
 

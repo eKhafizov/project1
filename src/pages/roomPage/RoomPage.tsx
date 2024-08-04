@@ -63,7 +63,7 @@ function RoomPage(): JSX.Element {
                 <img
                   className="property__image"
                   src={image.replace('pages.academy', 'htmlacademy.pro')}
-                  alt={offer.description}
+                  alt={offer.description.replace('pages.academy', 'htmlacademy.pro')}
                 />
               </div>)
             )}
